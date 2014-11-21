@@ -7,15 +7,15 @@ namespace Algorithms
     {
         public BinaryTree()
         {
-            _root = null;
+            Root = null;
         }
 
         public virtual void Clear()
         {
-            _root = null;
+            Root = null;
         }
 
-        public BinaryTreeNode<T> _root { get; set; }
+        public BinaryTreeNode<T> Root { get; set; }
     }
 }
 
