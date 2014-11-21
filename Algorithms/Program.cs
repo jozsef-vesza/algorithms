@@ -23,6 +23,8 @@ namespace Algorithms
             bst.Add(4);
             bst.Add(2);
             bst.Add(3);
+
+            bst.Remove(2);
         }
     }
 }
