@@ -5,17 +5,20 @@ namespace Algorithms
 {
     public class BinarySearchTree<T>
     {
-        private IComparer<T> _comparer;
+        #region Properties and Setup
+
+        private IComparer<T> _comparer { get; set; }
 
         private BinaryTreeNode<T> _root { get; set; }
 
-        private int _count;
+        private int _count { get; set; }
 
         public BinarySearchTree()
-            : base()
         {
             _comparer = Comparer<T>.Default;
         }
+
+        #endregion
 
         public bool Contains(T data)
         {
@@ -24,7 +27,6 @@ namespace Algorithms
 
             while (current != null)
             {
-
                 result = _comparer.Compare(current.Value, data);
                 if (result == 0)
                 {
@@ -141,7 +143,7 @@ namespace Algorithms
             }
 
             // at this point, we have found the node to remove
-            _count--;
+            _count -= 1;
 
             // now we need to rethread the tree
             // CASE 1: if current has no right child, 

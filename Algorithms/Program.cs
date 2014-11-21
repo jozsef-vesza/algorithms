@@ -6,6 +6,7 @@ namespace Algorithms
     {
         public static void Main(string[] args)
         {
+            #region Binary Tree
             var btree = new BinaryTree<int>();
             btree.Root = new BinaryTreeNode<int>(1);
             btree.Root.Left = new BinaryTreeNode<int>(2);
@@ -18,12 +19,18 @@ namespace Algorithms
             btree.Root.Right.Right.Right = new BinaryTreeNode<int>(7);
 
             btree.Root.Right.Right.Right.Right = new BinaryTreeNode<int>(8);
+            #endregion
 
             var bst = new BinarySearchTree<int>();
             bst.Add(4);
             bst.Add(2);
             bst.Add(3);
             bst.Remove(2);
+
+            var strTree = new BinarySearchTree<string>();
+            strTree.Add("R");
+            strTree.Add("A");
+            strTree.Add("W");
         }
     }
 }
