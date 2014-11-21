@@ -18,6 +18,8 @@ namespace Algorithms
 			btree.Root.Right.Right.Right = new BinaryTreeNode<int>(7);
 
 			btree.Root.Right.Right.Right.Right = new BinaryTreeNode<int>(8);
+
+			btree.Contains(3);
 		}
 	}
 }
