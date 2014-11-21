@@ -97,6 +97,12 @@ namespace Algorithms
                 }
             }
         }
+
+        public bool Remove(T data)
+        {
+
+            return true;
+        }
     }
 }
 

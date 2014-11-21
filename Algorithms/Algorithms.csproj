@@ -37,7 +37,7 @@
     <Compile Include="NodeList.cs" />
     <Compile Include="BinaryTree.cs" />
     <Compile Include="BinaryTreeNode.cs" />
-    <Compile Include="Properties\BinarySearchTree.cs" />
+    <Compile Include="BinarySearchTree.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
