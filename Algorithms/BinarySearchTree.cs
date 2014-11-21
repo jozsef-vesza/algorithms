@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Algorithms
 {
-    public class BinarySearchTree<T> : BinaryTree<T>
+    public class BinarySearchTree<T>
     {
         private IComparer<T> _comparer;
 
-        private new BinaryTreeNode<T> _root { get; set; }
+        private BinaryTreeNode<T> _root { get; set; }
 
         private int _count;
 
