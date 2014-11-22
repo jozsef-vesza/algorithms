@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.IO.IsolatedStorage;
+using System.Linq;
 
 namespace Algorithms
 {
-    [Serializable]
+    [Serializable()]
     public class BinarySearchTree<T> : ISerializable
     {
         #region Properties and Setup
@@ -18,6 +20,23 @@ namespace Algorithms
         public BinarySearchTree()
         {
             _comparer = Comparer<T>.Default;
+        }
+
+        protected BinarySearchTree(SerializationInfo info, StreamingContext context)
+            : this()
+        {
+            var values = (List<T>)info.GetValue("values", typeof(List<T>));
+            foreach (var value in values)
+            {
+                Add(value);
+            }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            var values = new List<T>();
+            InorderTraverse(n => values.Add(n.Value));
+            info.AddValue("values", values);
         }
 
         #endregion
@@ -358,15 +377,6 @@ namespace Algorithms
             }
 
             return true;
-        }
-
-        #endregion
-
-        #region ISerializable implementation
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

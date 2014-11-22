@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Algorithms
 {
@@ -38,12 +40,37 @@ namespace Algorithms
             #endregion
 
             #region BST Operations
+
             bst.InorderTraverse(p => Console.WriteLine(p.Value));
             bst.Contains(3, n =>
                 bst.Remove(n));
             bst.InorderTraverse(p => Console.WriteLine(p.Value));
 
             Console.WriteLine("Min: {0}, max: {1}, size: {2}", bst.Min(), bst.Max(), bst.Size());
+
+            Console.WriteLine("Saving tree...");
+
+            var outFileStream = File.Create("nodes");
+            var serializer = new BinaryFormatter();
+            serializer.Serialize(outFileStream, bst);
+            outFileStream.Close();
+
+            Console.WriteLine("Tree saved!");
+
+            Console.WriteLine("Loading tree...");
+
+            if (File.Exists("nodes"))
+            {
+                var inFileStream = File.OpenRead("nodes");
+                var deserializer = new BinaryFormatter();
+                bst = (BinarySearchTree<int>)deserializer.Deserialize(inFileStream);
+                inFileStream.Close();
+                Console.WriteLine("Tree loaded!");
+            }
+
+            bst.InorderTraverse(p => Console.WriteLine(p.Value));
+            Console.WriteLine("Min: {0}, max: {1}, size: {2}", bst.Min(), bst.Max(), bst.Size());
+
             #endregion
         }
     }
