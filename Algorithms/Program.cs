@@ -23,7 +23,8 @@ namespace Algorithms
             btree.Root.Right.Right.Right.Right = new BinaryTreeNode<int>(8);
             #endregion
 
-            #region Binary Search Tree
+            #region Binary Search Tree Setup
+
             var bst = new BinarySearchTree<int>();
             bst.Add(4);
             bst.Add(2);
@@ -37,6 +38,13 @@ namespace Algorithms
             strTree.Add("R");
             strTree.Add("A");
             strTree.Add("W");
+
+            var pst = new BinarySearchTree<Person>();
+            pst.Add(new Person("Firestorm", 30));
+            pst.Add(new Person("Plastique", 23));
+            pst.Add(new Person("Grundy", 99));
+            pst.Add(new Person("Big Barda", 43));
+
             #endregion
 
             #region BST Operations
@@ -70,6 +78,9 @@ namespace Algorithms
 
             bst.InorderTraverse(p => Console.WriteLine(p.Value));
             Console.WriteLine("Min: {0}, max: {1}, size: {2}", bst.Min(), bst.Max(), bst.Size());
+
+            pst.InorderTraverse(p => Console.WriteLine(p.Value.Name));
+            Console.WriteLine("Min: {0}, max: {1}, size: {2}", pst.Min().Name, pst.Max().Name, pst.Size());
 
             #endregion
         }
