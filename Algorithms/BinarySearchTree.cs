@@ -22,60 +22,60 @@ namespace Algorithms
 
         #region Traversal
 
-        public void PreorderTraverseFromRoot()
+        public void PreorderTraverseFromRoot(Action<BinaryTreeNode<T>> execute)
         {
             if (_root != null)
             {
-                PreorderTraverseFromNode(_root);
+                PreorderTraverseFromNode(_root, execute);
             }
         }
 
-        public void PreorderTraverseFromNode(BinaryTreeNode<T> current)
+        public void PreorderTraverseFromNode(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
         {
             if (current != null)
             {
-                // output the value of the current node
-                Console.WriteLine(current.Value);
+                // execute command on the current node
+                execute(current);
 
                 // recursively print the left and right children
-                PreorderTraverseFromNode(current.Left);
-                PreorderTraverseFromNode(current.Right);
+                PreorderTraverseFromNode(current.Left, execute);
+                PreorderTraverseFromNode(current.Right, execute);
             }
         }
 
-        public void InorderTraverseFromRoot()
+        public void InorderTraverseFromRoot(Action<BinaryTreeNode<T>> execute)
         {
             if (_root != null)
             {
-                InorderTraverseFromNode(_root);
+                InorderTraverseFromNode(_root, execute);
             }
         }
 
-        private void InorderTraverseFromNode(BinaryTreeNode<T> current)
+        public void InorderTraverseFromNode(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
         {
             if (current != null)
             {
-                InorderTraverseFromNode(current.Left);
-                Console.WriteLine(current.Value);
-                InorderTraverseFromNode(current.Right);
+                InorderTraverseFromNode(current.Left, execute);
+                execute(current);
+                InorderTraverseFromNode(current.Right, execute);
             }
         }
 
-        public void PostorderTraverseFromRoot()
+        public void PostorderTraverseFromRoot(Action<BinaryTreeNode<T>> execute)
         {
             if (_root != null)
             {
-                PostorderTraverseFromNode(_root);
+                PostorderTraverseFromNode(_root, execute);
             }
         }
 
-        private void PostorderTraverseFromNode(BinaryTreeNode<T> current)
+        public void PostorderTraverseFromNode(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
         {
             if (current != null)
             {
-                PostorderTraverseFromNode(current.Left);
-                PostorderTraverseFromNode(current.Right);
-                Console.WriteLine(current.Value);
+                PostorderTraverseFromNode(current.Left, execute);
+                PostorderTraverseFromNode(current.Right, execute);
+                execute(current);
             }
         }
 

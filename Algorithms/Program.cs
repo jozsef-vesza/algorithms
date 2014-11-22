@@ -34,7 +34,7 @@ namespace Algorithms
             strTree.Add("W");
             #endregion
 
-            bst.InorderTraverseFromRoot();
+            bst.InorderTraverseFromRoot(p => Console.WriteLine(p.Value));
         }
     }
 }
