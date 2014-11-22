@@ -35,6 +35,9 @@ namespace Algorithms
             #endregion
 
             bst.InorderTraverseFromRoot(p => Console.WriteLine(p.Value));
+            bst.Contains(3, n =>
+                bst.Remove(n));
+            bst.InorderTraverseFromRoot(p => Console.WriteLine(p.Value));
         }
     }
 }

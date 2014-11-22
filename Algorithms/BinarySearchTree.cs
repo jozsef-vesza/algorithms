@@ -111,6 +111,34 @@ namespace Algorithms
             return false;
         }
 
+        public void Contains(T data, Action<T> action)
+        {
+            var current = _root;
+            int result;
+
+            while (current != null)
+            {
+                result = _comparer.Compare(current.Value, data);
+                if (result == 0)
+                {
+                    // we have found data
+                    action(data);
+                    return;
+                }
+                else if (result >
+                         0)
+                {
+                    // current.Value > data, search current's left subtree
+                    current = current.Left;
+                }
+                else if (result < 0)
+                {
+                    // current.Value < data, search current's right subtree
+                    current = current.Right;
+                }
+            }
+        }
+
         public virtual void Add(T data)
         {
             // create a new Node
