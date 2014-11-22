@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Algorithms
 {
-    public class BinarySearchTree<T>
+    [Serializable]
+    public class BinarySearchTree<T> : ISerializable
     {
         #region Properties and Setup
 
@@ -21,6 +23,30 @@ namespace Algorithms
         #endregion
 
         #region Traversal
+
+        public T Min()
+        {
+            var contents = new List<BinaryTreeNode<T>>();
+            InorderTraverse(contents.Add);
+            return contents[0].Value;
+        }
+
+        public T Max()
+        {
+            var contents = new List<BinaryTreeNode<T>>();
+            InorderTraverse(contents.Add);
+            return contents[contents.Count - 1].Value;
+        }
+
+        public int Size()
+        {
+            var count = 0;
+            InorderTraverse(n =>
+                {
+                    count += 1;
+                });
+            return count;
+        }
 
         public void PreorderTraverse(Action<BinaryTreeNode<T>> execute)
         {
@@ -335,6 +361,15 @@ namespace Algorithms
             }
 
             return true;
+        }
+
+        #endregion
+
+        #region ISerializable implementation
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
