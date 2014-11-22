@@ -41,7 +41,7 @@ namespace Algorithms
         public int Size()
         {
             var count = 0;
-            InorderTraverse(n => count += 1);
+            InorderTraverse(_ => count += 1);
             return count;
         }
 
