@@ -22,15 +22,15 @@ namespace Algorithms
 
         #region Traversal
 
-        public void PreorderTraverseFromRoot(Action<BinaryTreeNode<T>> execute)
+        public void PreorderTraverse(Action<BinaryTreeNode<T>> execute)
         {
             if (_root != null)
             {
-                PreorderTraverseFromNode(_root, execute);
+                PreorderTraverse(_root, execute);
             }
         }
 
-        public void PreorderTraverseFromNode(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
+        public void PreorderTraverse(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
         {
             if (current != null)
             {
@@ -38,30 +38,30 @@ namespace Algorithms
                 execute(current);
 
                 // recursively print the left and right children
-                PreorderTraverseFromNode(current.Left, execute);
-                PreorderTraverseFromNode(current.Right, execute);
+                PreorderTraverse(current.Left, execute);
+                PreorderTraverse(current.Right, execute);
             }
         }
 
-        public void InorderTraverseFromRoot(Action<BinaryTreeNode<T>> execute)
+        public void InorderTraverse(Action<BinaryTreeNode<T>> execute)
         {
             if (_root != null)
             {
-                InorderTraverseFromNode(_root, execute);
+                InorderTraverse(_root, execute);
             }
         }
 
-        public void InorderTraverseFromNode(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
+        public void InorderTraverse(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
         {
             if (current != null)
             {
-                InorderTraverseFromNode(current.Left, execute);
+                InorderTraverse(current.Left, execute);
                 execute(current);
-                InorderTraverseFromNode(current.Right, execute);
+                InorderTraverse(current.Right, execute);
             }
         }
 
-        public void PostorderTraverseFromRoot(Action<BinaryTreeNode<T>> execute)
+        public void PostorderTraverse(Action<BinaryTreeNode<T>> execute)
         {
             if (_root != null)
             {

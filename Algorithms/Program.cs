@@ -26,6 +26,9 @@ namespace Algorithms
             bst.Add(4);
             bst.Add(2);
             bst.Add(3);
+            bst.Add(12);
+            bst.Add(8);
+            bst.Add(5);
             bst.Remove(2);
 
             var strTree = new BinarySearchTree<string>();
@@ -34,10 +37,10 @@ namespace Algorithms
             strTree.Add("W");
             #endregion
 
-            bst.InorderTraverseFromRoot(p => Console.WriteLine(p.Value));
+            bst.InorderTraverse(p => Console.WriteLine(p.Value));
             bst.Contains(3, n =>
                 bst.Remove(n));
-            bst.InorderTraverseFromRoot(p => Console.WriteLine(p.Value));
+            bst.InorderTraverse(p => Console.WriteLine(p.Value));
         }
     }
 }
