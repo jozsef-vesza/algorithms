@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Algorithms
 {
@@ -38,12 +37,14 @@ namespace Algorithms
             strTree.Add("W");
             #endregion
 
+            #region BST Operations
             bst.InorderTraverse(p => Console.WriteLine(p.Value));
             bst.Contains(3, n =>
                 bst.Remove(n));
             bst.InorderTraverse(p => Console.WriteLine(p.Value));
 
             Console.WriteLine("Min: {0}, max: {1}, size: {2}", bst.Min(), bst.Max(), bst.Size());
+            #endregion
         }
     }
 }

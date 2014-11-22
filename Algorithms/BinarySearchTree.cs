@@ -48,60 +48,60 @@ namespace Algorithms
             return count;
         }
 
-        public void PreorderTraverse(Action<BinaryTreeNode<T>> execute)
+        public void PreorderTraverse(Action<BinaryTreeNode<T>> action)
         {
             if (_root != null)
             {
-                PreorderTraverse(_root, execute);
+                PreorderTraverse(_root, action);
             }
         }
 
-        public void PreorderTraverse(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
+        public void PreorderTraverse(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> action)
         {
             if (current != null)
             {
                 // execute command on the current node
-                execute(current);
+                action(current);
 
                 // recursively print the left and right children
-                PreorderTraverse(current.Left, execute);
-                PreorderTraverse(current.Right, execute);
+                PreorderTraverse(current.Left, action);
+                PreorderTraverse(current.Right, action);
             }
         }
 
-        public void InorderTraverse(Action<BinaryTreeNode<T>> execute)
+        public void InorderTraverse(Action<BinaryTreeNode<T>> action)
         {
             if (_root != null)
             {
-                InorderTraverse(_root, execute);
+                InorderTraverse(_root, action);
             }
         }
 
-        public void InorderTraverse(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
+        public void InorderTraverse(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> action)
         {
             if (current != null)
             {
-                InorderTraverse(current.Left, execute);
-                execute(current);
-                InorderTraverse(current.Right, execute);
+                InorderTraverse(current.Left, action);
+                action(current);
+                InorderTraverse(current.Right, action);
             }
         }
 
-        public void PostorderTraverse(Action<BinaryTreeNode<T>> execute)
+        public void PostorderTraverse(Action<BinaryTreeNode<T>> action)
         {
             if (_root != null)
             {
-                PostorderTraverseFromNode(_root, execute);
+                PostorderTraverseFromNode(_root, action);
             }
         }
 
-        public void PostorderTraverseFromNode(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> execute)
+        public void PostorderTraverseFromNode(BinaryTreeNode<T> current, Action<BinaryTreeNode<T>> action)
         {
             if (current != null)
             {
-                PostorderTraverseFromNode(current.Left, execute);
-                PostorderTraverseFromNode(current.Right, execute);
-                execute(current);
+                PostorderTraverseFromNode(current.Left, action);
+                PostorderTraverseFromNode(current.Right, action);
+                action(current);
             }
         }
 
