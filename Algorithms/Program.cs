@@ -21,6 +21,7 @@ namespace Algorithms
             btree.Root.Right.Right.Right.Right = new BinaryTreeNode<int>(8);
             #endregion
 
+            #region Binary Search Tree
             var bst = new BinarySearchTree<int>();
             bst.Add(4);
             bst.Add(2);
@@ -31,6 +32,7 @@ namespace Algorithms
             strTree.Add("R");
             strTree.Add("A");
             strTree.Add("W");
+            #endregion
         }
     }
 }

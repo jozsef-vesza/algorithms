@@ -20,6 +20,45 @@ namespace Algorithms
 
         #endregion
 
+        #region Traversal
+
+        public void PreorderTraversal(BinaryTreeNode<T> current)
+        {
+            if (current != null)
+            {
+                // output the value of the current node
+                Console.WriteLine(current.Value);
+
+                // recursively print the left and right children
+                PreorderTraversal(current.Left);
+                PreorderTraversal(current.Right);
+            }
+        }
+
+        public void InorderTraversal(BinaryTreeNode<T> current)
+        {
+            if (current != null)
+            {
+                InorderTraversal(current.Left);
+                Console.WriteLine(current.Value);
+                InorderTraversal(current.Right);
+            }
+        }
+
+        public void PostorderTraversal(BinaryTreeNode<T> current)
+        {
+            if (current != null)
+            {
+                PostorderTraversal(current.Left);
+                PostorderTraversal(current.Right);
+                Console.WriteLine(current.Value);
+            }
+        }
+
+        #endregion
+
+        #region Data Manipulation
+
         public bool Contains(T data)
         {
             var current = _root;
@@ -245,6 +284,8 @@ namespace Algorithms
 
             return true;
         }
+
+        #endregion
     }
 }
 
