@@ -35,7 +35,7 @@ namespace Algorithms
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             var values = new List<T>();
-            InorderTraverse(n => values.Add(n.Value));
+            PreorderTraverse(n => values.Add(n.Value));
             info.AddValue("values", values);
         }
 
