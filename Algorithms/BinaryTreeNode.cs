@@ -2,10 +2,18 @@
 
 namespace Algorithms
 {
-	public class BinaryTreeNode<T> : Node<T>
-	{
-        public BinaryTreeNode() : base() {}
-        public BinaryTreeNode(T data) : base(data, null) {}
+    public class BinaryTreeNode<T> : Node<T>
+    {
+        public BinaryTreeNode()
+            : base()
+        {
+        }
+
+        public BinaryTreeNode(T data)
+            : base(data, null)
+        {
+        }
+
         public BinaryTreeNode(T data, BinaryTreeNode<T> left, BinaryTreeNode<T> right)
         {
             base.Value = data;
@@ -23,7 +31,7 @@ namespace Algorithms
                 if (base.Neighbors == null)
                     return null;
                 else
-                    return (BinaryTreeNode<T>) base.Neighbors[0];
+                    return (BinaryTreeNode<T>)base.Neighbors[0];
             }
             set
             {
@@ -41,7 +49,7 @@ namespace Algorithms
                 if (base.Neighbors == null)
                     return null;
                 else
-                    return (BinaryTreeNode<T>) base.Neighbors[1];
+                    return (BinaryTreeNode<T>)base.Neighbors[1];
             }
             set
             {
@@ -51,6 +59,6 @@ namespace Algorithms
                 base.Neighbors[1] = value;
             }
         }
-	}
+    }
 }
 

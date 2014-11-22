@@ -22,7 +22,15 @@ namespace Algorithms
 
         #region Traversal
 
-        public void PreorderTraversal(BinaryTreeNode<T> current)
+        public void PreorderTraverseFromRoot()
+        {
+            if (_root != null)
+            {
+                PreorderTraverseFromNode(_root);
+            }
+        }
+
+        public void PreorderTraverseFromNode(BinaryTreeNode<T> current)
         {
             if (current != null)
             {
@@ -30,27 +38,43 @@ namespace Algorithms
                 Console.WriteLine(current.Value);
 
                 // recursively print the left and right children
-                PreorderTraversal(current.Left);
-                PreorderTraversal(current.Right);
+                PreorderTraverseFromNode(current.Left);
+                PreorderTraverseFromNode(current.Right);
             }
         }
 
-        public void InorderTraversal(BinaryTreeNode<T> current)
+        public void InorderTraverseFromRoot()
+        {
+            if (_root != null)
+            {
+                InorderTraverseFromNode(_root);
+            }
+        }
+
+        private void InorderTraverseFromNode(BinaryTreeNode<T> current)
         {
             if (current != null)
             {
-                InorderTraversal(current.Left);
+                InorderTraverseFromNode(current.Left);
                 Console.WriteLine(current.Value);
-                InorderTraversal(current.Right);
+                InorderTraverseFromNode(current.Right);
             }
         }
 
-        public void PostorderTraversal(BinaryTreeNode<T> current)
+        public void PostorderTraverseFromRoot()
+        {
+            if (_root != null)
+            {
+                PostorderTraverseFromNode(_root);
+            }
+        }
+
+        private void PostorderTraverseFromNode(BinaryTreeNode<T> current)
         {
             if (current != null)
             {
-                PostorderTraversal(current.Left);
-                PostorderTraversal(current.Right);
+                PostorderTraverseFromNode(current.Left);
+                PostorderTraverseFromNode(current.Right);
                 Console.WriteLine(current.Value);
             }
         }

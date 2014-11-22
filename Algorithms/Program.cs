@@ -33,6 +33,8 @@ namespace Algorithms
             strTree.Add("A");
             strTree.Add("W");
             #endregion
+
+            bst.InorderTraverseFromRoot();
         }
     }
 }
