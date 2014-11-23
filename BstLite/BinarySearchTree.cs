@@ -10,7 +10,7 @@ namespace BstLite
         #region Setup
 
         private BinaryNode<T> _root;
-        private IComparer<T> _comparer;
+        private readonly IComparer<T> _comparer;
 
         public BinarySearchTree()
         {
@@ -171,13 +171,13 @@ namespace BstLite
                 }
             }
 
+            // first time insert, there is no parent
             if (parent == null)
             {
                 _root = newNode;
             }
             else
             {
-
                 comparisonResult = _comparer.Compare(parent.Value, newValue);
                 if (comparisonResult > 0)
                 {
