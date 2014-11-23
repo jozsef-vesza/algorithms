@@ -7,12 +7,14 @@ namespace BstLite
         public static void Main(string[] args)
         {
             var bst = new BinarySearchTree<int>();
-            bst.Add(4);
-            bst.Add(2);
-            bst.Add(3);
-            bst.Add(12);
-            bst.Add(8);
-            bst.Add(5);
+            bst.Insert(4);
+            bst.Insert(2);
+            bst.Insert(3);
+            bst.Insert(12);
+            bst.Insert(8);
+            bst.Insert(5);
+
+            var containsFive = bst.Contains(5, Console.WriteLine);
         }
     }
 }
