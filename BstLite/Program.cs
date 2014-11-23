@@ -15,6 +15,7 @@ namespace BstLite
             bst.Insert(5);
 
             var containsFive = bst.Contains(5, Console.WriteLine);
+            bst.Delete(4);
         }
     }
 }

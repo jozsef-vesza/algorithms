@@ -107,5 +107,136 @@ namespace BstLite
 
             return false;
         }
+
+        public bool Delete(T valueToDelete)
+        {
+            if (_root == null)
+            {
+                // empty tree: the value is not in there
+                return false;
+            }
+
+            var current = _root;
+            BinaryNode<T> parent = null;
+            int comparisonResult = _comparer.Compare(current.Value, valueToDelete);
+
+            // 1.: search for the value
+            while (comparisonResult != 0)
+            {
+                if (comparisonResult > 0)
+                {
+                    // continue the search in the left subtree
+                    parent = current;
+                    current = current.Left;
+                }
+                else if (comparisonResult < 0)
+                {
+                    // continue the search in the right subtree
+                    parent = current;
+                    current = current.Right;
+                }
+
+                comparisonResult = _comparer.Compare(current.Value, valueToDelete);
+            }
+
+            if (current == null)
+            {
+                // we didn't find the item to delete
+                return false;
+            }
+
+            // 2.: delete the item
+            // 2.1.: the item has no right child 
+            // => left child can replace it
+            if (current.Right == null)
+            {
+                // if there is no parent, we are about to delete the root
+                if (parent == null)
+                {
+                    _root = current.Left;
+                }
+                else
+                {
+                    comparisonResult = _comparer.Compare(parent.Value, current.Value);
+                    if (comparisonResult > 0)
+                    {
+                        // the left child should go in parent's left subtree
+                        parent.Left = current.Left;
+                    }
+                    else if (comparisonResult < 0)
+                    {
+                        // the left child should go in the parent's right subtree
+                        parent.Right = current.Left;
+                    }
+                }
+            }
+
+            // 2.2.: the item's right child has no left child 
+            // => right child can replace it
+            else if (current.Right.Left == null)
+            {
+                // if there is no parent, we are about to delete the root
+                if (parent == null)
+                {
+                    _root = current.Right;
+                }
+                else
+                {
+                    comparisonResult = _comparer.Compare(parent.Value, current.Value);
+                    if (comparisonResult > 0)
+                    {
+                        // the right child should go in the parent's left subtree
+                        parent.Left = current.Right;
+                    }
+                    else if (comparisonResult < 0)
+                    {
+                        // the right child should go in the parent's right subtree
+                        parent.Right = current.Right;
+                    }
+                }
+            }
+
+            // 2.3.: the item's right child has a left child 
+            // => we search for its leftmost child to replace the item
+            else
+            {
+                var leftmost = current.Right.Left;
+                BinaryNode<T> lmParent = current.Right;
+
+                while (leftmost.Left != null)
+                {
+                    lmParent = leftmost;
+                    leftmost = leftmost.Left;
+                }
+
+                // right subtree of leftmost will go in its parent's left subtree
+                lmParent.Left = leftmost.Right;
+
+                // replace current with leftmost
+                leftmost.Left = current.Left;
+                leftmost.Right = current.Right;
+
+                if (parent == null)
+                {
+                    _root = leftmost;
+                }
+                else
+                {
+                    comparisonResult = _comparer.Compare(parent.Value, leftmost.Value);
+                    if (comparisonResult > 0)
+                    {
+                        // leftmost will go in parent's left subtree
+                        parent.Left = leftmost;
+                    }
+                    else if (comparisonResult < 0)
+                    {
+                        // leftmost will go in parent's right subtree
+                        parent.Right = leftmost;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }
