@@ -14,7 +14,7 @@ namespace BstLite
             _comparer = Comparer<T>.Default;
         }
 
-        public void Add(T data)
+        public void Insert(T data)
         {
             var newNode = new BinaryNode<T>(data);
 
