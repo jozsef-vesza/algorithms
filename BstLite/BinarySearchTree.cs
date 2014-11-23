@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace BstLite
 {
-    public class BinarySearchTree<T>
+    [Serializable]
+    public class BinarySearchTree<T> : ISerializable
     {
         #region Setup
 
@@ -14,6 +16,23 @@ namespace BstLite
         {
             _root = null;
             _comparer = Comparer<T>.Default;
+        }
+
+        public BinarySearchTree(SerializationInfo info, StreamingContext context)
+            : this()
+        {
+            var values = (List<T>)info.GetValue("values", typeof(List<T>));
+            foreach (var value in values)
+            {
+                Insert(value);
+            }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            var values = new List<T>();
+            InorderTraverse(values.Add);
+            info.AddValue("values", values);
         }
 
         #endregion
