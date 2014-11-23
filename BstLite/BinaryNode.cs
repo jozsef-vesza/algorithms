@@ -1,5 +1,4 @@
-﻿using System;
-using BstLite;
+﻿using BstLite;
 
 namespace BstLite
 {
