@@ -5,6 +5,8 @@ namespace BstLite
 {
     public class BinarySearchTree<T>
     {
+        #region Setup
+
         private BinaryNode<T> _root;
         private IComparer<T> _comparer;
 
@@ -13,6 +15,112 @@ namespace BstLite
             _root = null;
             _comparer = Comparer<T>.Default;
         }
+
+        #endregion
+
+        #region Traversal
+
+        public T Min()
+        {
+            var values = new List<T>();
+            InorderTraverse(values.Add);
+            return values[0];
+        }
+
+        public T Max()
+        {
+            var values = new List<T>();
+            InorderTraverse(values.Add);
+            return values[values.Count - 1];
+        }
+
+        public int Size()
+        {
+            return Size(_root);
+        }
+
+        public int Size(BinaryNode<T> node)
+        {
+            var size = 0;
+            InorderTraverse(_ => size += 1);
+            return size;
+        }
+
+        public void PreorderTraverse(Action<T> action)
+        {
+            if (_root == null)
+            {
+                return;
+            }
+
+            PreorderTraverse(_root, action);
+        }
+
+        public void PreorderTraverse(BinaryNode<T> node, Action<T> action)
+        {
+            if (node != null)
+            {
+                if (action != null)
+                {
+                    action(node.Value);
+                }
+                PreorderTraverse(node.Left, action);
+                PreorderTraverse(node.Right, action);
+            }
+        }
+
+        public void InorderTraverse(Action<T> action)
+        {
+            if (_root == null)
+            {
+                return;
+            }
+
+            InorderTraverse(_root, action);
+        }
+
+        public void InorderTraverse(BinaryNode<T> node, Action<T> action)
+        {
+            if (node != null)
+            {
+                InorderTraverse(node.Left, action);
+
+                if (action != null)
+                {
+                    action(node.Value);
+                }
+
+                InorderTraverse(node.Right, action);
+            }
+        }
+
+        public void PostorderTraverse(Action<T> action)
+        {
+            if (_root == null)
+            {
+                return;
+            }
+
+            PostorderTraverse(_root, action);
+        }
+
+        public void PostorderTraverse(BinaryNode<T> node, Action<T> action)
+        {
+            if (node != null)
+            {
+                PostorderTraverse(node.Left, action);
+                PostorderTraverse(node.Right, action);
+
+                if (action != null)
+                {
+                    action(node.Value);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Data Operations
 
         public void Insert(T newValue)
         {
@@ -238,5 +346,7 @@ namespace BstLite
 
             return true;
         }
+
+        #endregion
     }
 }

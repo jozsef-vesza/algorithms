@@ -14,8 +14,13 @@ namespace BstLite
             bst.Insert(8);
             bst.Insert(5);
 
-            var containsFive = bst.Contains(5, Console.WriteLine);
             bst.Delete(4);
+
+            bst.PreorderTraverse(Console.WriteLine);
+            bst.InorderTraverse(Console.WriteLine);
+            bst.PostorderTraverse(Console.WriteLine);
+
+            Console.WriteLine("Min: {0}, max: {1}, size: {2}", bst.Min(), bst.Max(), bst.Size());
         }
     }
 }
