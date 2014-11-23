@@ -31,7 +31,7 @@ namespace BstLite
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             var values = new List<T>();
-            InorderTraverse(values.Add);
+            PreorderTraverse(values.Add);
             info.AddValue("values", values);
         }
 
