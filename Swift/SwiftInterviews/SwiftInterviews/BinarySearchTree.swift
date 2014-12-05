@@ -9,19 +9,23 @@
 import Foundation
 
 // source: Functional Programming in Swift - http://www.objc.io/books/
-class Box<T> {
+public class Box<T> {
     let unbox: T
     init(_ value: T) { self.unbox = value }
 }
 
-enum ResultType<T> {
+public enum ResultType<T> {
     // source: http://owensd.io/2014/08/06/fixed-enum-layout.html
     //    case Success(@autoclosure() -> T)
     case Success(Box<T>)
     case Error(String)
 }
 
-class BinaryNode<T: Comparable> {
+public enum TraverseType {
+    case Preorder, Inorder, Postorder
+}
+
+public class BinaryNode<T: Comparable> {
     
     var value: T
     var left: BinaryNode<T>?
@@ -32,13 +36,13 @@ class BinaryNode<T: Comparable> {
     }
 }
 
-class BinarySearchTree<T: Comparable> {
+public class BinarySearchTree<T: Comparable> {
     
-    var root: BinaryNode<T>?
+    public var root: BinaryNode<T>?
     
-    init() { }
+    public init() { }
     
-    func insert(newValue value: T) -> ResultType<BinaryNode<T>> {
+    public func insert(newValue value: T) -> ResultType<BinaryNode<T>> {
         
         let newNode = BinaryNode(value: value)
         return insert(newNode, afterNode: root, withParent: nil)
@@ -75,7 +79,7 @@ class BinarySearchTree<T: Comparable> {
             return .Success(Box(newNode))
     }
     
-    func findNodeWithValue(value: T) -> ResultType<BinaryNode<T>> {
+    public func findNodeWithValue(value: T) -> ResultType<BinaryNode<T>> {
         return findNodeWithValue(value, startingAt: root)
     }
     
@@ -97,7 +101,26 @@ class BinarySearchTree<T: Comparable> {
             return .Error("Value not found")
     }
     
-    func preorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
+    public func traverseTree(
+        order: TraverseType,
+        action: T -> ()) -> String? {
+            if let rootNode = root {
+                
+                switch order {
+                    
+                case .Preorder: preorderTraverseFrom(rootNode, action: action)
+                case .Inorder: inorderTraverseFrom(rootNode, action: action)
+                case .Postorder: postorderTraverseFrom(rootNode, action: action)
+                    
+                }
+            } else {
+                return "Tree is empty!"
+            }
+            
+            return nil
+    }
+    
+    private func preorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
         
         action(node.value)
         
@@ -110,7 +133,7 @@ class BinarySearchTree<T: Comparable> {
         }
     }
     
-    func inorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
+    private func inorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
         
         if let left = node.left {
             inorderTraverseFrom(left, action: action)
@@ -123,7 +146,7 @@ class BinarySearchTree<T: Comparable> {
         }
     }
     
-    func postorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
+    private func postorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
         
         if let left = node.left {
             postorderTraverseFrom(left, action: action)

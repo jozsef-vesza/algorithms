@@ -71,3 +71,7 @@ case .Success(let boxedNode):
 case .Error(let message):
     println(message)
 }
+
+binTree.traverseTree(.Inorder) { value in
+    println(value)
+}
