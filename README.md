@@ -1,7 +1,7 @@
 algorithms
 ==========
 
-C# implementation of various algorithms and data structures along with useful resources.
+Implementations of common algorithms and data structures in various languages, along with useful resources.
 
 #### Binary Search Trees
 * [An Extensive Examination of Data Structures Using C#](http://msdn.microsoft.com/en-us/library/hh830851(v=vs.80).aspx)
