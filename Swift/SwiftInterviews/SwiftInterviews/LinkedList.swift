@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol LinkedListNodeType {
+public protocol LinkedListNodeType {
     
     typealias DataType
     typealias NodeType: LinkedListNodeType
@@ -17,7 +17,7 @@ protocol LinkedListNodeType {
     var next: NodeType? { get }
 }
 
-protocol LinkedListType {
+public protocol LinkedListType {
     
     typealias ElementType
     typealias NodeType: LinkedListNodeType
@@ -35,38 +35,38 @@ protocol LinkedListType {
     func removeFirst() -> NodeType
 }
 
-class LinkedListNode<T>: LinkedListNodeType {
+public class LinkedListNode<T>: LinkedListNodeType {
     
-    var data: T
-    var next: LinkedListNode<T>?
+    public var data: T
+    public var next: LinkedListNode<T>?
     
-    init(data: T) {
+    public init(data: T) {
         self.data = data
     }
 }
 
-class DoublyLinkedListNode<T>: LinkedListNodeType {
+public class DoublyLinkedListNode<T>: LinkedListNodeType {
     
-    var data: T
-    var next: DoublyLinkedListNode<T>?
-    weak var previous: DoublyLinkedListNode<T>?
+    public var data: T
+    public var next: DoublyLinkedListNode<T>?
+    public weak var previous: DoublyLinkedListNode<T>?
     
-    init(data: T) {
+    public init(data: T) {
         self.data = data
     }
 }
 
-class LinkedList<T>: LinkedListType {
+public class LinkedList<T>: LinkedListType {
     
-    var first: LinkedListNode<T>?
+    public var first: LinkedListNode<T>?
     
-    init() { }
+    public init() { }
     
-    func head() -> LinkedListNode<T>? {
+    public func head() -> LinkedListNode<T>? {
         return first
     }
     
-    func tail() -> [LinkedListNode<T>]? {
+    public func tail() -> [LinkedListNode<T>]? {
         
         var returnArray = [LinkedListNode<T>]()
         if var current = first {
@@ -83,7 +83,7 @@ class LinkedList<T>: LinkedListType {
         return nil
     }
     
-    func last() -> LinkedListNode<T>? {
+    public func last() -> LinkedListNode<T>? {
         
         if var current = first {
             
@@ -96,7 +96,7 @@ class LinkedList<T>: LinkedListType {
         return nil
     }
     
-    func insert(newValue value: T, afterNode node: LinkedListNode<T>) -> LinkedListNode<T> {
+    public func insert(newValue value: T, afterNode node: LinkedListNode<T>) -> LinkedListNode<T> {
         
         let newNode = LinkedListNode(data: value)
         
@@ -106,7 +106,7 @@ class LinkedList<T>: LinkedListType {
         return newNode
     }
     
-    func addToBeginning(newValue value: T) -> LinkedListNode<T> {
+    public func addToBeginning(newValue value: T) -> LinkedListNode<T> {
         
         let newNode = LinkedListNode(data: value)
         newNode.next = first
@@ -115,14 +115,14 @@ class LinkedList<T>: LinkedListType {
         return newNode
     }
     
-    func remove(afterNode node: LinkedListNode<T>) -> LinkedListNode<T> {
+    public func remove(afterNode node: LinkedListNode<T>) -> LinkedListNode<T> {
         let obsoleteNode = node.next!
         node.next = node.next?.next
         
         return obsoleteNode
     }
     
-    func removeFirst() -> LinkedListNode<T> {
+    public func removeFirst() -> LinkedListNode<T> {
         let obsoleteNode = first!
         first = first!.next
         
@@ -130,17 +130,17 @@ class LinkedList<T>: LinkedListType {
     }
 }
 
-class DoublyLinkedList<T>: LinkedListType {
+public class DoublyLinkedList<T>: LinkedListType {
     
-    var first: DoublyLinkedListNode<T>?
+    public var first: DoublyLinkedListNode<T>?
     
-    init() { }
+    public init() { }
     
-    func head() -> DoublyLinkedListNode<T>? {
+    public func head() -> DoublyLinkedListNode<T>? {
         return first
     }
     
-    func tail() -> [DoublyLinkedListNode<T>]? {
+    public func tail() -> [DoublyLinkedListNode<T>]? {
         
         if var current = first {
             
@@ -156,7 +156,7 @@ class DoublyLinkedList<T>: LinkedListType {
         return nil
     }
     
-    func last() -> DoublyLinkedListNode<T>? {
+    public func last() -> DoublyLinkedListNode<T>? {
         
         if var current = first {
             
@@ -169,7 +169,7 @@ class DoublyLinkedList<T>: LinkedListType {
         return nil
     }
     
-    func insert(newValue value: T, afterNode node: DoublyLinkedListNode<T>) -> DoublyLinkedListNode<T> {
+    public func insert(newValue value: T, afterNode node: DoublyLinkedListNode<T>) -> DoublyLinkedListNode<T> {
         
         let newNode = DoublyLinkedListNode(data: value)
         
@@ -180,7 +180,7 @@ class DoublyLinkedList<T>: LinkedListType {
         return newNode
     }
     
-    func addToBeginning(newValue value: T) -> DoublyLinkedListNode<T> {
+    public func addToBeginning(newValue value: T) -> DoublyLinkedListNode<T> {
         let newNode = DoublyLinkedListNode(data: value)
         newNode.next = first
         first = newNode
@@ -188,7 +188,7 @@ class DoublyLinkedList<T>: LinkedListType {
         return newNode
     }
     
-    func remove(afterNode node: DoublyLinkedListNode<T>) -> DoublyLinkedListNode<T> {
+    public func remove(afterNode node: DoublyLinkedListNode<T>) -> DoublyLinkedListNode<T> {
         let obsoleteNode = node.next!
         node.next = node.next!.next
         node.next?.previous = node
@@ -196,7 +196,7 @@ class DoublyLinkedList<T>: LinkedListType {
         return obsoleteNode
     }
     
-    func removeFirst() -> DoublyLinkedListNode<T> {
+    public func removeFirst() -> DoublyLinkedListNode<T> {
         let obsoleteNode = first!
         first!.next?.previous = nil
         first = first?.next
@@ -204,9 +204,9 @@ class DoublyLinkedList<T>: LinkedListType {
     }
 }
 
-class CircularLinkedList<T>: LinkedList<T> {
+public class CircularLinkedList<T>: LinkedList<T> {
     
-    override func insert(newValue value: T, afterNode node: LinkedListNode<T>) -> LinkedListNode<T> {
+    override public func insert(newValue value: T, afterNode node: LinkedListNode<T>) -> LinkedListNode<T> {
         
         let newNode = LinkedListNode(data: value)
         
@@ -216,7 +216,7 @@ class CircularLinkedList<T>: LinkedList<T> {
         return newNode
     }
     
-    override func addToBeginning(newValue value: T) -> LinkedListNode<T> {
+    override public func addToBeginning(newValue value: T) -> LinkedListNode<T> {
         
         let newNode = LinkedListNode(data: value)
         newNode.next = first
@@ -226,7 +226,7 @@ class CircularLinkedList<T>: LinkedList<T> {
         return newNode
     }
     
-    override func removeFirst() -> LinkedListNode<T> {
+    override public func removeFirst() -> LinkedListNode<T> {
         
         let obsoleteNode = first!
         last()!.next = first!.next
@@ -235,7 +235,7 @@ class CircularLinkedList<T>: LinkedList<T> {
         return obsoleteNode
     }
     
-    override func remove(afterNode node: LinkedListNode<T>) -> LinkedListNode<T> {
+    override public func remove(afterNode node: LinkedListNode<T>) -> LinkedListNode<T> {
         
         let obsoleteNode = node.next!
         
