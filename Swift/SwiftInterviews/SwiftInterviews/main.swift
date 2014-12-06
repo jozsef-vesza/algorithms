@@ -71,9 +71,11 @@ var binTree = BinarySearchTree<Int>()
 
 binTree.insert(newValue: 5)
 binTree.insert(newValue: 2)
+binTree.insert(newValue: 1)
 binTree.insert(newValue: 3)
-binTree.insert(newValue: 9)
 binTree.insert(newValue: 8)
+binTree.insert(newValue: 7)
+binTree.insert(newValue: 9)
 
 println(binTree.insert(newValue: 3))
 
@@ -93,6 +95,22 @@ case .Error(let message):
     println(message)
 }
 
-binTree.traverseTree(.Inorder) { value in
+binTree.traverseTree(.Preorder) { value in
+    println(value)
+}
+
+println()
+
+binTree.deleteNode(value: 8)
+
+binTree.traverseTree(.Preorder) { value in
+    println(value)
+}
+
+println()
+
+binTree.deleteNode(value: 2)
+
+binTree.traverseTree(.Preorder) { value in
     println(value)
 }
