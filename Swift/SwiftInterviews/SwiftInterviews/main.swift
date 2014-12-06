@@ -69,13 +69,15 @@ println("TREES")
 
 var binTree = BinarySearchTree<Int>()
 
-binTree.insert(newValue: 5)
-binTree.insert(newValue: 2)
-binTree.insert(newValue: 1)
-binTree.insert(newValue: 3)
 binTree.insert(newValue: 8)
+binTree.insert(newValue: 3)
+binTree.insert(newValue: 1)
+binTree.insert(newValue: 6)
+binTree.insert(newValue: 4)
 binTree.insert(newValue: 7)
-binTree.insert(newValue: 9)
+binTree.insert(newValue: 10)
+binTree.insert(newValue: 14)
+binTree.insert(newValue: 13)
 
 println(binTree.insert(newValue: 3))
 
@@ -101,9 +103,9 @@ binTree.traverseTree(.Preorder) { value in
 
 println()
 
-switch binTree.deleteNode(value: 8) {
+switch binTree.deleteNode(value: 3) {
 case .Success(let boxedNode):
-    println("Deleted node with value: \(boxedNode.unbox.value)")
+    println("Deleted node with value: \(boxedNode.unbox)")
 case .Error(let message):
     println(message)
 }
@@ -114,9 +116,9 @@ binTree.traverseTree(.Preorder) { value in
 
 println()
 
-switch binTree.deleteNode(value: 2) {
+switch binTree.deleteNode(value: 10) {
 case .Success(let boxedNode):
-    println("Deleted node with value: \(boxedNode.unbox.value)")
+    println("Deleted node with value: \(boxedNode.unbox)")
 case .Error(let message):
     println(message)
 }
