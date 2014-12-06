@@ -101,7 +101,12 @@ binTree.traverseTree(.Preorder) { value in
 
 println()
 
-binTree.deleteNode(value: 8)
+switch binTree.deleteNode(value: 8) {
+case .Success(let boxedNode):
+    println("Deleted node with value: \(boxedNode.unbox.value)")
+case .Error(let message):
+    println(message)
+}
 
 binTree.traverseTree(.Preorder) { value in
     println(value)
@@ -109,7 +114,12 @@ binTree.traverseTree(.Preorder) { value in
 
 println()
 
-binTree.deleteNode(value: 2)
+switch binTree.deleteNode(value: 2) {
+case .Success(let boxedNode):
+    println("Deleted node with value: \(boxedNode.unbox.value)")
+case .Error(let message):
+    println(message)
+}
 
 binTree.traverseTree(.Preorder) { value in
     println(value)

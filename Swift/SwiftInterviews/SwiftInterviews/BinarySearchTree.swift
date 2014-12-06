@@ -127,39 +127,6 @@ public class BinarySearchTree<T: Comparable> {
             return .Error("Value not found")
     }
     
-    public func deleteNode(#value: T) -> ResultType<BinaryNode<T>> {
-        
-        if root == nil {
-            return .Error("Tree is empty")
-        }
-        
-        let soughtNode = findNode(value, startAt: root, parent: nil)
-        
-        switch soughtNode {
-            
-        case (nil, _): return .Error("Could not find node with value: \(value)")
-            
-        case (let node, nil): root = nil
-            
-        case (var node, var parent):
-            
-            if node!.left == nil && node!.right == nil {
-                
-                parent = removeNode(node!, fromParent: parent!)
-                
-            } else if node!.left != nil && node!.right != nil {
-                
-                node = replaceNode(node!)
-                
-            } else if node!.left != nil || node!.right != nil {
-                
-                parent = addNode(node!.left ?? node!.right, toParent: parent!)
-            }
-        }
-        
-        return .Success(Box(soughtNode.node!))
-    }
-    
     private func findNode(
         value: T,
         startAt startNode: BinaryNode<T>?,
@@ -179,43 +146,62 @@ public class BinarySearchTree<T: Comparable> {
             return (nil, parent)
     }
     
-    private func replaceNode(
-        node: BinaryNode<T>) -> BinaryNode<T> {
+    public func deleteNode(#value: T) -> ResultType<BinaryNode<T>> {
+        
+        if root == nil {
+            return .Error("Tree is empty")
+        }
+        
+        let soughtNode = findNode(value, startAt: root, parent: nil)
+        
+        switch soughtNode {
             
-            var subTreeValues = [T]()
+        case (nil, _): return .Error("Could not find node with value: \(value)")
             
-            inorderTraverseFrom(node) { nextValue in
-                subTreeValues.append(nextValue)
-            }
+        case (let node, let parent):
             
-            var replacementNode: ResultType<BinaryNode<T>>
-            
-            switch strategy {
-            case .LeftTree: replacementNode = findNodeWithValue(subTreeValues.first!, startingAt: node)
-            case .RightTree: replacementNode = findNodeWithValue(subTreeValues.last!, startingAt: node)
-            }
-            
-            switch replacementNode {
+            if var parentNode = parent {
                 
-            case .Success(let foundNode):
-                let value = foundNode.unbox.value
-                deleteNode(value: value)
-                node.value = value
+                var subTree = [T]()
                 
-            default: println("This will never happen")
+                preorderTraverseFrom(node!) { nextValue in
+                    subTree.append(nextValue)
+                }
                 
+                parentNode = removeNode(node!, fromParent: parentNode)
+                
+                if !subTree.isEmpty {
+                    let subNodes = subTree.filter({ (nextVal) -> Bool in
+                        nextVal != value
+                    }).map { next -> BinaryNode<T> in
+                        BinaryNode<T>(value: next)
+                    }
+                    
+                    for node in subNodes {
+                        insert(node, afterNode: parentNode, withParent: nil)
+                    }
+                }
+                
+            } else {
+                root = nil
             }
-            
-            var nextStrategy: ReplaceStrategy
-            
-            switch strategy {
-            case .LeftTree: nextStrategy = .RightTree
-            case .RightTree: nextStrategy = .LeftTree
-            }
-            
-            strategy = nextStrategy
-            
-            return node
+        }
+        
+        switchStrategy()
+        
+        return .Success(Box(soughtNode.node!))
+    }
+    
+    private func switchStrategy() {
+        
+        var nextStrategy: ReplaceStrategy
+        
+        switch strategy {
+        case .LeftTree: nextStrategy = .RightTree
+        case .RightTree: nextStrategy = .LeftTree
+        }
+        
+        strategy = nextStrategy
     }
     
     private func addNode(
