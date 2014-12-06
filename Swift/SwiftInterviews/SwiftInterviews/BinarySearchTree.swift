@@ -4,28 +4,6 @@
 //
 //  Created by József Vesza on 03/12/14.
 //
-//  The MIT License (MIT)
-
-//  Copyright (c) 2014 József Vesza
-
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
-
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
-//
 
 import Foundation
 
@@ -48,6 +26,23 @@ private enum ReplaceStrategy {
     case RightTree
 }
 
+public struct Queue<T> {
+    
+    var queue = [T]()
+    
+    mutating func enqueue(item: T) {
+        queue.append(item)
+    }
+    
+    mutating func dequeue() -> T {
+        return queue.removeAtIndex(0)
+    }
+    
+    func isEmpty() -> Bool {
+        return queue.isEmpty
+    }
+}
+
 public class BinaryNode<T: Comparable> {
     
     var value: T
@@ -62,14 +57,12 @@ public class BinaryNode<T: Comparable> {
 public class BinarySearchTree<T: Comparable> {
     
     public var root: BinaryNode<T>?
-    private var strategy: ReplaceStrategy = .LeftTree
+    private var _strategy: ReplaceStrategy = .LeftTree
     
     public init() { }
     
     public func insert(newValue value: T) -> ResultType<BinaryNode<T>> {
-        
-        let newNode = BinaryNode(value: value)
-        return insert(newNode, afterNode: root, withParent: nil)
+        return insert(BinaryNode(value: value), afterNode: root, withParent: nil)
     }
     
     private func insert(
@@ -80,22 +73,24 @@ public class BinarySearchTree<T: Comparable> {
             if let current = node {
                 
                 if current.value == newNode.value {
+                    
                     return .Error("Attempting to insert existing item!")
+                    
                 } else if current.value > newNode.value {
+                    
                     return insert(newNode, afterNode: current.left, withParent: current)
+                    
                 } else if current.value < newNode.value {
+                    
                     return insert(newNode, afterNode: current.right, withParent: current)
                 }
                 
-            } else if let parentNode = parent {
+            } else if var parentNode = parent {
                 
-                if parentNode.value > newNode.value {
-                    parentNode.left = newNode
-                } else {
-                    parentNode.right = newNode
-                }
+                parentNode = addChild(newNode, toParent: parentNode)
                 
             } else {
+                
                 root = newNode
             }
             
@@ -113,10 +108,15 @@ public class BinarySearchTree<T: Comparable> {
             if let current = node {
                 
                 if current.value == value {
+                    
                     return .Success(Box(current))
+                    
                 } else if current.value > value {
+                    
                     return findNodeWithValue(value, startingAt: current.left)
+                    
                 } else  if current.value < value {
+                    
                     return findNodeWithValue(value, startingAt: current.right)
                 }
             }
@@ -124,7 +124,7 @@ public class BinarySearchTree<T: Comparable> {
             return .Error("Value not found")
     }
     
-    private func findNode(
+    private func findNodeAndParent(
         value: T,
         startAt startNode: BinaryNode<T>?,
         parent: BinaryNode<T>?) -> (node: BinaryNode<T>?, parent: BinaryNode<T>?) {
@@ -132,11 +132,16 @@ public class BinarySearchTree<T: Comparable> {
             if let current = startNode {
                 
                 if current.value == value {
+                    
                     return (current, parent)
+                    
                 } else if current.value > value {
-                    return findNode(value, startAt: current.left, parent: current)
+                    
+                    return findNodeAndParent(value, startAt: current.left, parent: current)
+                    
                 } else if current.value < value {
-                    return findNode(value, startAt: current.right, parent: current)
+                    
+                    return findNodeAndParent(value, startAt: current.right, parent: current)
                 }
             }
             
@@ -149,7 +154,7 @@ public class BinarySearchTree<T: Comparable> {
             return .Error("Tree is empty")
         }
         
-        let soughtNode = findNode(value, startAt: root, parent: nil)
+        let soughtNode = findNodeAndParent(value, startAt: root, parent: nil)
         
         switch soughtNode {
             
@@ -161,7 +166,7 @@ public class BinarySearchTree<T: Comparable> {
             
             if node!.left == nil && node!.right == nil {
                 
-                parent = removeNode(node!, fromParent: parent!)
+                parent = removeChild(node!, fromParent: parent!)
                 
             } else if node!.left != nil && node!.right != nil {
                 
@@ -169,7 +174,7 @@ public class BinarySearchTree<T: Comparable> {
                 
             } else if node!.left != nil || node!.right != nil {
                 
-                parent = addNode(node!.left ?? node!.right, toParent: parent!)
+                parent = addChild(node!.left ?? node!.right, toParent: parent!)
             }
         }
         
@@ -182,8 +187,8 @@ public class BinarySearchTree<T: Comparable> {
             var subTreeValues = [T]()
             var replacementNode: ResultType<BinaryNode<T>>
             
-            switch strategy {
-            
+            switch _strategy {
+                
             case .LeftTree:
                 inorderTraverseFrom(node.left!) { smallestInLeftTree in
                     subTreeValues.append(smallestInLeftTree)
@@ -213,11 +218,11 @@ public class BinarySearchTree<T: Comparable> {
             return node
     }
     
-    private func addNode(
-        childNode: BinaryNode<T>?,
+    private func addChild(
+        child: BinaryNode<T>?,
         toParent parent: BinaryNode<T>) -> BinaryNode<T> {
             
-            if let node = childNode {
+            if let node = child {
                 if node.value < parent.value { parent.left = node }
                 else { parent.right = node }
             }
@@ -225,11 +230,11 @@ public class BinarySearchTree<T: Comparable> {
             return parent
     }
     
-    private func removeNode(
-        childNode: BinaryNode<T>,
+    private func removeChild(
+        child: BinaryNode<T>,
         fromParent parent: BinaryNode<T>) -> BinaryNode<T> {
             
-            if childNode.value < parent.value { parent.left = nil }
+            if child.value < parent.value { parent.left = nil }
             else { parent.right = nil }
             
             return parent
@@ -281,6 +286,44 @@ public class BinarySearchTree<T: Comparable> {
         }
     }
     
+    public func findBreadthFirst(
+        value: T,
+        action: T -> ()) {
+            
+            if let rootNode = root {
+                
+                var queue = Queue<BinaryNode<T>>()
+                queue.enqueue(rootNode)
+                
+                searchNodes(value, inQueue: queue, action: action)
+            }
+    }
+    
+    private func searchNodes(value: T, var inQueue queue: Queue<BinaryNode<T>>, action: T -> ()) {
+        
+        while !queue.isEmpty() {
+            
+            let next = queue.dequeue()
+            
+            if next.value == value {
+                
+                action(next.value)
+                
+                return
+                
+            } else {
+                
+                if let left = next.left {
+                    queue.enqueue(left)
+                }
+                
+                if let right = next.right {
+                    queue.enqueue(right)
+                }
+            }
+        }
+    }
+    
     private func postorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
         
         if let left = node.left {
@@ -295,13 +338,14 @@ public class BinarySearchTree<T: Comparable> {
     }
     
     private func switchStrategy() {
+        
         var nextStrategy: ReplaceStrategy
         
-        switch strategy {
+        switch _strategy {
         case .LeftTree: nextStrategy = .RightTree
         case .RightTree: nextStrategy = .LeftTree
         }
         
-        strategy = nextStrategy
+        _strategy = nextStrategy
     }
 }
