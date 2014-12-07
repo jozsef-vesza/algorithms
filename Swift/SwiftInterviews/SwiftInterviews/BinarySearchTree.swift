@@ -22,8 +22,27 @@ public enum TraverseType {
 }
 
 private enum ReplaceStrategy {
-    case LeftTree
-    case RightTree
+    case LeftTree, RightTree
+}
+
+private enum ComparisonOrder {
+    case Ascending, Equal, Descending
+}
+
+private enum NodeChildrenStatus {
+    case NoChildren, OneChild, TwoChildren
+}
+
+public func ==<T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
+    return lhs.value == rhs.value
+}
+
+public func ><T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
+    return lhs.value > rhs.value
+}
+
+public func <<T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
+    return lhs.value < rhs.value
 }
 
 public struct Queue<T> {
@@ -43,7 +62,7 @@ public struct Queue<T> {
     }
 }
 
-public class BinaryNode<T: Comparable> {
+public class BinaryNode<T: Comparable>: Comparable {
     
     var value: T
     var left: BinaryNode<T>?
@@ -52,6 +71,7 @@ public class BinaryNode<T: Comparable> {
     init(value: T) {
         self.value = value
     }
+    
 }
 
 public class BinarySearchTree<T: Comparable> {
@@ -72,16 +92,15 @@ public class BinarySearchTree<T: Comparable> {
             
             if let current = node {
                 
-                if current.value == newNode.value {
+                switch compareValues(current, second: newNode) {
                     
+                case .Equal:
                     return .Error("Attempting to insert existing item!")
                     
-                } else if current.value > newNode.value {
-                    
+                case .Descending:
                     return insert(newNode, afterNode: current.left, withParent: current)
                     
-                } else if current.value < newNode.value {
-                    
+                case .Ascending:
                     return insert(newNode, afterNode: current.right, withParent: current)
                 }
                 
@@ -107,16 +126,15 @@ public class BinarySearchTree<T: Comparable> {
             
             if let current = node {
                 
-                if current.value == value {
+                switch compareValues(current.value, second: value) {
                     
+                case .Equal:
                     return .Success(Box(current))
                     
-                } else if current.value > value {
-                    
+                case .Descending:
                     return findNodeWithValue(value, startingAt: current.left)
                     
-                } else  if current.value < value {
-                    
+                case .Ascending:
                     return findNodeWithValue(value, startingAt: current.right)
                 }
             }
@@ -131,16 +149,15 @@ public class BinarySearchTree<T: Comparable> {
             
             if let current = startNode {
                 
-                if current.value == value {
+                switch compareValues(current.value, second: value) {
                     
+                case .Equal:
                     return (current, parent)
                     
-                } else if current.value > value {
-                    
+                case .Descending:
                     return findNodeAndParent(value, startAt: current.left, parent: current)
                     
-                } else if current.value < value {
-                    
+                case .Ascending:
                     return findNodeAndParent(value, startAt: current.right, parent: current)
                 }
             }
@@ -164,58 +181,49 @@ public class BinarySearchTree<T: Comparable> {
             
         case (var node, var parent):
             
-            if node!.left == nil && node!.right == nil {
+            switch checkChildrenForNode(node!) {
                 
+            case .NoChildren:
                 parent = removeChild(node!, fromParent: parent!)
                 
-            } else if node!.left != nil && node!.right != nil {
-                
+            case .TwoChildren:
                 node = replaceNode(node!)
                 
-            } else if node!.left != nil || node!.right != nil {
-                
+            case .OneChild:
                 parent = addChild(node!.left ?? node!.right, toParent: parent!)
+                
             }
         }
         
         return .Success(Box(value))
     }
     
-    private func replaceNode(
-        node: BinaryNode<T>) -> BinaryNode<T> {
+    private func replaceNode(node: BinaryNode<T>) -> BinaryNode<T> {
+        
+        var subTreeValues = [BinaryNode<T>]()
+        
+        switch _strategy {
             
-            var subTreeValues = [T]()
-            var replacementNode: ResultType<BinaryNode<T>>
-            
-            switch _strategy {
-                
-            case .LeftTree:
-                inorderTraverseFrom(node.left!) { smallestInLeftTree in
-                    subTreeValues.append(smallestInLeftTree)
-                }
-                
-            case .RightTree:
-                inorderTraverseFrom(node.right!) { smallestInRightTree in
-                    subTreeValues.append(smallestInRightTree)
-                }
+        case .LeftTree:
+            inorderTraverseFrom(node.left!) { leftNode in
+                subTreeValues.append(leftNode)
             }
             
-            replacementNode = findNodeWithValue(subTreeValues.first!, startingAt: node)
-            
-            switch replacementNode {
-                
-            case .Success(let foundNode):
-                let value = foundNode.unbox.value
-                deleteNode(value: value)
-                node.value = value
-                
-            default:
-                assert(false, "This will never happen")
+        case .RightTree:
+            inorderTraverseFrom(node.right!) { rightNode in
+                subTreeValues.append(rightNode)
             }
-            
-            switchStrategy()
-            
-            return node
+        }
+        
+        if let replacementNode = subTreeValues.first {
+            let value = replacementNode.value
+            deleteNode(value: value)
+            node.value = value
+        }
+        
+        switchStrategy()
+        
+        return node
     }
     
     private func addChild(
@@ -242,14 +250,16 @@ public class BinarySearchTree<T: Comparable> {
     
     public func traverseTree(
         order: TraverseType,
-        action: T -> ()) -> String? {
+        action: BinaryNode<T> -> ()) -> String? {
             
             if let rootNode = root {
                 
                 switch order {
                     
                 case .Preorder: preorderTraverseFrom(rootNode, action: action)
+                    
                 case .Inorder: inorderTraverseFrom(rootNode, action: action)
+                    
                 case .Postorder: postorderTraverseFrom(rootNode, action: action)
                     
                 }
@@ -260,9 +270,9 @@ public class BinarySearchTree<T: Comparable> {
             return nil
     }
     
-    private func preorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
+    private func preorderTraverseFrom(node: BinaryNode<T>, action: BinaryNode<T> -> ()) {
         
-        action(node.value)
+        action(node)
         
         if let left = node.left {
             preorderTraverseFrom(left, action: action)
@@ -273,22 +283,35 @@ public class BinarySearchTree<T: Comparable> {
         }
     }
     
-    private func inorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
+    private func inorderTraverseFrom(node: BinaryNode<T>, action: BinaryNode<T> -> ()) {
         
         if let left = node.left {
             inorderTraverseFrom(left, action: action)
         }
         
-        action(node.value)
+        action(node)
         
         if let right = node.right {
             inorderTraverseFrom(right, action: action)
         }
     }
     
+    private func postorderTraverseFrom(node: BinaryNode<T>, action: BinaryNode<T> -> ()) {
+        
+        if let left = node.left {
+            postorderTraverseFrom(left, action: action)
+        }
+        
+        if let right = node.right {
+            postorderTraverseFrom(right, action: action)
+        }
+        
+        action(node)
+    }
+    
     public func findBreadthFirst(
         value: T,
-        action: T -> ()) {
+        action: BinaryNode<T> -> ()) {
             
             if let rootNode = root {
                 
@@ -299,7 +322,7 @@ public class BinarySearchTree<T: Comparable> {
             }
     }
     
-    private func searchNodes(value: T, var inQueue queue: Queue<BinaryNode<T>>, action: T -> ()) {
+    private func searchNodes(value: T, var inQueue queue: Queue<BinaryNode<T>>, action: BinaryNode<T> -> ()) {
         
         while !queue.isEmpty() {
             
@@ -307,7 +330,7 @@ public class BinarySearchTree<T: Comparable> {
             
             if next.value == value {
                 
-                action(next.value)
+                action(next)
                 
                 return
                 
@@ -324,17 +347,22 @@ public class BinarySearchTree<T: Comparable> {
         }
     }
     
-    private func postorderTraverseFrom(node: BinaryNode<T>, action: T -> ()) {
+    private func compareValues<T: Comparable>(first: T, second: T) -> ComparisonOrder {
         
-        if let left = node.left {
-            postorderTraverseFrom(left, action: action)
-        }
+        if first > second { return .Descending }
+            
+        else if first < second { return .Ascending }
+            
+        else { return .Equal }
+    }
+    
+    private func checkChildrenForNode(node: BinaryNode<T>) -> NodeChildrenStatus {
         
-        if let right = node.right {
-            postorderTraverseFrom(right, action: action)
-        }
-        
-        action(node.value)
+        if node.left == nil && node.right == nil { return .NoChildren }
+            
+        else if node.left != nil && node.right != nil { return .TwoChildren }
+            
+        else { return .OneChild }
     }
     
     private func switchStrategy() {
@@ -342,8 +370,11 @@ public class BinarySearchTree<T: Comparable> {
         var nextStrategy: ReplaceStrategy
         
         switch _strategy {
+            
         case .LeftTree: nextStrategy = .RightTree
+            
         case .RightTree: nextStrategy = .LeftTree
+            
         }
         
         _strategy = nextStrategy

@@ -79,8 +79,8 @@ case .Error(let message):
     println(message)
 }
 
-binTree.traverseTree(.Preorder) { value in
-    println(value)
+binTree.traverseTree(.Preorder) { node in
+    println("Node value: \(node.value)")
 }
 
 println()
@@ -92,8 +92,8 @@ case .Error(let message):
     println(message)
 }
 
-binTree.traverseTree(.Preorder) { value in
-    println(value)
+binTree.traverseTree(.Preorder) { node in
+    println("Node value: \(node.value)")
 }
 
 println()
@@ -105,6 +105,6 @@ case .Error(let message):
     println(message)
 }
 
-binTree.traverseTree(.Preorder) { value in
-    println(value)
+binTree.traverseTree(.Preorder) { node in
+    println("Node value: \(node.value)")
 }
