@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: Helpers
+
 public class Box<T> {
     let unbox: T
     init(_ value: T) { self.unbox = value }
@@ -33,17 +35,7 @@ private enum NodeChildrenStatus {
     case NoChildren, OneChild, TwoChildren
 }
 
-public func ==<T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
-    return lhs.value == rhs.value
-}
-
-public func ><T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
-    return lhs.value > rhs.value
-}
-
-public func <<T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
-    return lhs.value < rhs.value
-}
+// MARK: Data structure definitions
 
 public struct Queue<T> {
     
@@ -74,12 +66,30 @@ public class BinaryNode<T: Comparable>: Comparable {
     
 }
 
+// MARK: Protocol comformance for BinaryNode<T>
+
+public func ==<T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
+    return lhs.value == rhs.value
+}
+
+public func ><T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
+    return lhs.value > rhs.value
+}
+
+public func <<T: Comparable>(lhs: BinaryNode<T>, rhs: BinaryNode<T>) -> Bool {
+    return lhs.value < rhs.value
+}
+
+// MARK: Main implementation start
+
 public class BinarySearchTree<T: Comparable> {
     
     public var root: BinaryNode<T>?
     private var _strategy: ReplaceStrategy = .LeftTree
     
     public init() { }
+    
+    //MARK: Tree manipulation
     
     public func insert(newValue value: T) -> ResultType<BinaryNode<T>> {
         return insert(BinaryNode(value: value), afterNode: root, withParent: nil)
@@ -248,6 +258,8 @@ public class BinarySearchTree<T: Comparable> {
             return parent
     }
     
+    // MARK: Traversal
+    
     public func traverseTree(
         order: TraverseType,
         action: BinaryNode<T> -> ()) -> String? {
@@ -309,6 +321,8 @@ public class BinarySearchTree<T: Comparable> {
         action(node)
     }
     
+    // MARK: BFS
+    
     public func findBreadthFirst(
         value: T,
         action: BinaryNode<T> -> ()) {
@@ -346,6 +360,8 @@ public class BinarySearchTree<T: Comparable> {
             }
         }
     }
+    
+    // MARK: Private helper methods
     
     private func compareValues<T: Comparable>(first: T, second: T) -> ComparisonOrder {
         
