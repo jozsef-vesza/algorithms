@@ -108,3 +108,40 @@ case .Error(let message):
 binTree.traverseTree(.Preorder) { node in
     println("Node value: \(node.value)")
 }
+
+println("Insertion")
+
+let funcTree = insert(13, inTree: insert(14, inTree: insert(10, inTree: insert(7, inTree: insert(4, inTree: insert(6, inTree: insert(1, inTree: insert(3, inTree: single(8)))))))))
+
+traverseTree(funcTree, TraverseType.Preorder).map { next in
+    println(next)
+}
+
+println("Search")
+
+switch find(99, inTree: funcTree) {
+
+case ResultType.Success(let tree):
+    println("found it")
+
+case ResultType.Error(let message):
+    println(message)
+}
+
+switch find(3, inTree: funcTree) {
+
+case ResultType.Success(let tree):
+    println("found it:")
+    traverseTree(tree.unbox, TraverseType.Inorder).map { next in
+        println(next)
+    }
+
+case ResultType.Error(let message):
+    println(message)
+}
+
+println("Deletion")
+
+traverseTree(delete(3, fromTree: funcTree), TraverseType.Preorder).map { next in
+    println(next)
+}

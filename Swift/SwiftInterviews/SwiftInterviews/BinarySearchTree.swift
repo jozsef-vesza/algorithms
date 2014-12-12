@@ -9,29 +9,15 @@ import Foundation
 
 // MARK: Helpers
 
-public class Box<T> {
-    let unbox: T
-    init(_ value: T) { self.unbox = value }
-}
-
-public enum ResultType<T> {
-    case Success(Box<T>)
-    case Error(String)
-}
-
-public enum TraverseType {
-    case Preorder, Inorder, Postorder
-}
-
-private enum ReplaceStrategy {
+public enum ReplaceStrategy {
     case LeftTree, RightTree
 }
 
-private enum ComparisonOrder {
+public enum ComparisonOrder {
     case Ascending, Equal, Descending
 }
 
-private enum NodeChildrenStatus {
+public enum NodeChildrenStatus {
     case NoChildren, OneChild, TwoChildren
 }
 
