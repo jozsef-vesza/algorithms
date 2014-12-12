@@ -7,20 +7,6 @@
 
 import Foundation
 
-// MARK: Helpers
-
-public enum ReplaceStrategy {
-    case LeftTree, RightTree
-}
-
-public enum ComparisonOrder {
-    case Ascending, Equal, Descending
-}
-
-public enum NodeChildrenStatus {
-    case NoChildren, OneChild, TwoChildren
-}
-
 // MARK: Data structure definitions
 
 public struct Queue<T> {

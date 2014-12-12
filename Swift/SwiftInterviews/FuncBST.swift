@@ -8,20 +8,6 @@
 
 import Foundation
 
-public class Box<T> {
-    let unbox: T
-    init(_ value: T) { self.unbox = value }
-}
-
-public enum ResultType<T> {
-    case Success(Box<T>)
-    case Error(String)
-}
-
-public enum TraverseType {
-    case Preorder, Inorder, Postorder
-}
-
 public enum Tree<T: Comparable> {
     case Leaf
     case Node(Box<Tree<T>>, Box<T>, Box<Tree<T>>)

@@ -11,6 +11,7 @@
 		BB3026BA1A2E641F00B61830 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3026B91A2E641F00B61830 /* main.swift */; };
 		BB3026C11A2E644000B61830 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3026C01A2E644000B61830 /* LinkedList.swift */; };
 		BB4A823E1A2FBCAF008CD952 /* BinarySearchTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4A823D1A2FBCAF008CD952 /* BinarySearchTree.swift */; };
+		BBAB1F101A3A69BA00B30AA4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB1F0F1A3A69BA00B30AA4 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		BB3026B91A2E641F00B61830 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		BB3026C01A2E644000B61830 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		BB4A823D1A2FBCAF008CD952 /* BinarySearchTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTree.swift; sourceTree = "<group>"; };
+		BBAB1F0F1A3A69BA00B30AA4 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				BB1CA93A1A3A4DAE00923E9C /* FuncBST.swift */,
+				BBAB1F0F1A3A69BA00B30AA4 /* Helpers.swift */,
 				BB3026B81A2E641F00B61830 /* SwiftInterviews */,
 				BB3026B71A2E641F00B61830 /* Products */,
 			);
@@ -130,6 +133,7 @@
 				BB3026BA1A2E641F00B61830 /* main.swift in Sources */,
 				BB1CA93B1A3A4DAE00923E9C /* FuncBST.swift in Sources */,
 				BB3026C11A2E644000B61830 /* LinkedList.swift in Sources */,
+				BBAB1F101A3A69BA00B30AA4 /* Helpers.swift in Sources */,
 				BB4A823E1A2FBCAF008CD952 /* BinarySearchTree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
