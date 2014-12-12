@@ -143,6 +143,6 @@ case ResultType.Error(let message):
 
 println("Deletion")
 
-traverseTree(delete(3, fromTree: funcTree), TraverseType.Preorder).map { next in
+traverseTree(delete(8, fromTree: funcTree), TraverseType.Preorder).map { next in
     println(next)
 }
