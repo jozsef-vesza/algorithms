@@ -126,7 +126,7 @@ private func rotate<T>(tree: Tree<T>) -> Tree<T> {
         return right.unbox
         
     case let Tree.Node(left, x, right) where !isEmptyTree(left.unbox) && !isEmptyTree(right.unbox):
-        return Tree.Node(left, Box(inorderTraverseTree(right.unbox).first!), Box(delete(inorderTraverseTree(right.unbox).first!, fromTree: tree)))
+        return Tree.Node(left, Box(inorderTraverseTree(right.unbox).first!), Box(delete(inorderTraverseTree(right.unbox).first!, fromTree: right.unbox)))
         
     default:
         assert(false, "This will never happen")
