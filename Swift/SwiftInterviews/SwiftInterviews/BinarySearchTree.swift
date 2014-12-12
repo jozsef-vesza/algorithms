@@ -184,6 +184,8 @@ public class BinarySearchTree<T: Comparable> {
         
         var subTreeValues = [BinaryNode<T>]()
         
+        var replacementNode: BinaryNode<T>
+        
         switch _strategy {
             
         case .LeftTree:
@@ -191,17 +193,19 @@ public class BinarySearchTree<T: Comparable> {
                 subTreeValues.append(leftNode)
             }
             
+            replacementNode = subTreeValues.last!
+            
         case .RightTree:
             inorderTraverseFrom(node.right!) { rightNode in
                 subTreeValues.append(rightNode)
             }
+            
+            replacementNode = subTreeValues.first!
         }
         
-        if let replacementNode = subTreeValues.first {
-            let value = replacementNode.value
-            deleteNode(value: value)
-            node.value = value
-        }
+        let value = replacementNode.value
+        deleteNode(value: value)
+        node.value = value
         
         switchStrategy()
         

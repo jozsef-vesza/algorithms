@@ -48,6 +48,7 @@ println("TREES")
 var binTree = BinarySearchTree<Int>()
 
 binTree.insert(newValue: 8)
+binTree.insert(newValue: 5)
 binTree.insert(newValue: 3)
 binTree.insert(newValue: 1)
 binTree.insert(newValue: 6)
@@ -85,7 +86,7 @@ binTree.traverseTree(.Preorder) { node in
 
 println()
 
-switch binTree.deleteNode(value: 3) {
+switch binTree.deleteNode(value: 5) {
 case .Success(let boxedNode):
     println("Deleted node with value: \(boxedNode.unbox)")
 case .Error(let message):
