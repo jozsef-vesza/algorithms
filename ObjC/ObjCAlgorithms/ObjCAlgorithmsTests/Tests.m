@@ -1,6 +1,6 @@
 //
-//  ObjCAlgorithmsTests.m
-//  ObjCAlgorithmsTests
+//  Tests.m
+//  Tests
 //
 //  Created by József Vesza on 14/12/14.
 //  Copyright (c) 2014 Jozsef Vesza. All rights reserved.
@@ -11,7 +11,7 @@
 #import "JVReversePolish.h"
 #import "JVPalindromic.h"
 
-@interface ObjCAlgorithmsTests : XCTestCase
+@interface Tests : XCTestCase
 
 @property (nonatomic, strong) NSMutableArray *reversePolishInputs;
 @property (nonatomic, strong) NSMutableArray *reversePolishOutputs;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation ObjCAlgorithmsTests
+@implementation Tests
 
 - (void)setUp {
     

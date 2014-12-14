@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BBECC5931A3E1D8D004C0DED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5921A3E1D8D004C0DED /* main.m */; };
-		BBECC5A21A3E1E3E004C0DED /* ObjCAlgorithmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5A11A3E1E3E004C0DED /* ObjCAlgorithmsTests.m */; };
+		BBECC5A21A3E1E3E004C0DED /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5A11A3E1E3E004C0DED /* Tests.m */; };
 		BBECC5B31A3E2319004C0DED /* JVReversePolish.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B21A3E2319004C0DED /* JVReversePolish.m */; };
 		BBECC5B41A3E2319004C0DED /* JVReversePolish.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B21A3E2319004C0DED /* JVReversePolish.m */; };
 		BBECC5B81A3E2748004C0DED /* JVStack.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B71A3E2748004C0DED /* JVStack.m */; };
@@ -35,7 +35,7 @@
 		BBECC5921A3E1D8D004C0DED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBECC59D1A3E1E3E004C0DED /* ObjCAlgorithmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjCAlgorithmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBECC5A01A3E1E3E004C0DED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BBECC5A11A3E1E3E004C0DED /* ObjCAlgorithmsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAlgorithmsTests.m; sourceTree = "<group>"; };
+		BBECC5A11A3E1E3E004C0DED /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		BBECC5B11A3E2319004C0DED /* JVReversePolish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVReversePolish.h; sourceTree = "<group>"; };
 		BBECC5B21A3E2319004C0DED /* JVReversePolish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVReversePolish.m; sourceTree = "<group>"; };
 		BBECC5B61A3E2748004C0DED /* JVStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVStack.h; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				BBECC5BE1A3E3AB0004C0DED /* TestData */,
-				BBECC5A11A3E1E3E004C0DED /* ObjCAlgorithmsTests.m */,
+				BBECC5A11A3E1E3E004C0DED /* Tests.m */,
 				BBECC59F1A3E1E3E004C0DED /* Supporting Files */,
 			);
 			path = ObjCAlgorithmsTests;
@@ -229,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBECC5B91A3E2748004C0DED /* JVStack.m in Sources */,
-				BBECC5A21A3E1E3E004C0DED /* ObjCAlgorithmsTests.m in Sources */,
+				BBECC5A21A3E1E3E004C0DED /* Tests.m in Sources */,
 				BBECC5BD1A3E3A17004C0DED /* JVPalindromic.m in Sources */,
 				BBECC5B41A3E2319004C0DED /* JVReversePolish.m in Sources */,
 			);
