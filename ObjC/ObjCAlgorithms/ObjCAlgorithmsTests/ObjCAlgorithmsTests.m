@@ -8,8 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
-#import "ReversePolish.h"
-#import "Palindromic.h"
+#import "JVReversePolish.h"
+#import "JVPalindromic.h"
 
 @interface ObjCAlgorithmsTests : XCTestCase
 
@@ -24,6 +24,7 @@
 @implementation ObjCAlgorithmsTests
 
 - (void)setUp {
+    
     [super setUp];
     
     NSArray *testFiles = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"txt" inDirectory:nil];
@@ -33,12 +34,19 @@
         NSString *contents = [NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil];
         
         if ([fileName hasPrefix:@"reversePolishInput"]) {
+            
             [self.reversePolishInputs addObject:contents];
+            
         } else if ([fileName hasPrefix:@"reversePolishOutput"]) {
+            
             [self.reversePolishOutputs addObject:contents];
+            
         } else if ([fileName hasPrefix:@"palindromicInput"]) {
+            
             self.palindromicInputs = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+            
         } else if ([fileName hasPrefix:@"palindromicOutput"]) {
+            
             self.palindromicOutputs = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         }
     }
@@ -53,13 +61,13 @@
 
 - (void)testReversePolish {
     for (int i = 0; i < [self.reversePolishInputs count]; i++) {
-        XCTAssertEqual([self.reversePolishOutputs[i] intValue], [ReversePolish calculateValue:self.reversePolishInputs[i]]);
+        XCTAssertEqual([self.reversePolishOutputs[i] intValue], [JVReversePolish calculateValue:self.reversePolishInputs[i]]);
     }
 }
 
 - (void)testPalindromic {
     for (int i = 0; i < [self.palindromicInputs count]; i++) {
-        XCTAssert([[Palindromic findLongestPalindromicSubstring:self.palindromicInputs[i]] isEqualToString:self.palindromicOutputs[i]]);
+        XCTAssert([[JVPalindromic findLongestPalindromicSubstring:self.palindromicInputs[i]] isEqualToString:self.palindromicOutputs[i]]);
     }
 }
 

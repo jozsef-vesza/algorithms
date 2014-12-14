@@ -1,15 +1,15 @@
 //
-//  ReversePolish.m
+//  JVReversePolish.m
 //  ObjCAlgorithms
 //
 //  Created by József Vesza on 14/12/14.
 //  Copyright (c) 2014 Jozsef Vesza. All rights reserved.
 //
 
-#import "ReversePolish.h"
+#import "JVReversePolish.h"
 #import "JVStack.h"
 
-@implementation ReversePolish
+@implementation JVReversePolish
 
 + (int)calculateValue:(NSArray *)inputFiles {
     

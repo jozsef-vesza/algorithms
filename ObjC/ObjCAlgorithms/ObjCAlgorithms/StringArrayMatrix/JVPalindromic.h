@@ -1,5 +1,5 @@
 //
-//  ReversePolish.h
+//  JVPalindromic.h
 //  ObjCAlgorithms
 //
 //  Created by József Vesza on 14/12/14.
@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ReversePolish : NSObject
+@interface JVPalindromic : NSObject
 
-+ (int)calculateValue:(NSArray *)inputFiles;
++ (NSString *)findLongestPalindromicSubstring:(NSString *)inputString;
 
 @end

@@ -1,14 +1,14 @@
 //
-//  Palindromic.m
+//  JVPalindromic.m
 //  ObjCAlgorithms
 //
 //  Created by József Vesza on 14/12/14.
 //  Copyright (c) 2014 Jozsef Vesza. All rights reserved.
 //
 
-#import "Palindromic.h"
+#import "JVPalindromic.h"
 
-@implementation Palindromic
+@implementation JVPalindromic
 
 + (NSString *)findLongestPalindromicSubstring:(NSString *)inputString {
     
