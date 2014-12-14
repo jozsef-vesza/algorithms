@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		BBECC5931A3E1D8D004C0DED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5921A3E1D8D004C0DED /* main.m */; };
 		BBECC5A21A3E1E3E004C0DED /* ObjCAlgorithmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5A11A3E1E3E004C0DED /* ObjCAlgorithmsTests.m */; };
-		BBECC5AB1A3E1E85004C0DED /* reversePolishInput1.txt in Resources */ = {isa = PBXBuildFile; fileRef = BBECC5A71A3E1E85004C0DED /* reversePolishInput1.txt */; };
-		BBECC5AC1A3E1E85004C0DED /* reversePolishInput2.txt in Resources */ = {isa = PBXBuildFile; fileRef = BBECC5A81A3E1E85004C0DED /* reversePolishInput2.txt */; };
-		BBECC5AD1A3E1E85004C0DED /* reversePolishOutput1.txt in Resources */ = {isa = PBXBuildFile; fileRef = BBECC5A91A3E1E85004C0DED /* reversePolishOutput1.txt */; };
-		BBECC5AE1A3E1E85004C0DED /* reversePolishOutput2.txt in Resources */ = {isa = PBXBuildFile; fileRef = BBECC5AA1A3E1E85004C0DED /* reversePolishOutput2.txt */; };
 		BBECC5B31A3E2319004C0DED /* ReversePolish.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B21A3E2319004C0DED /* ReversePolish.m */; };
 		BBECC5B41A3E2319004C0DED /* ReversePolish.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B21A3E2319004C0DED /* ReversePolish.m */; };
 		BBECC5B81A3E2748004C0DED /* JVStack.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B71A3E2748004C0DED /* JVStack.m */; };
 		BBECC5B91A3E2748004C0DED /* JVStack.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B71A3E2748004C0DED /* JVStack.m */; };
+		BBECC5BC1A3E34FB004C0DED /* Palindromic.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5BB1A3E34FB004C0DED /* Palindromic.m */; };
+		BBECC5BD1A3E3A17004C0DED /* Palindromic.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5BB1A3E34FB004C0DED /* Palindromic.m */; };
+		BBECC5BF1A3E3AB0004C0DED /* TestData in Resources */ = {isa = PBXBuildFile; fileRef = BBECC5BE1A3E3AB0004C0DED /* TestData */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,14 +36,13 @@
 		BBECC59D1A3E1E3E004C0DED /* ObjCAlgorithmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjCAlgorithmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBECC5A01A3E1E3E004C0DED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBECC5A11A3E1E3E004C0DED /* ObjCAlgorithmsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAlgorithmsTests.m; sourceTree = "<group>"; };
-		BBECC5A71A3E1E85004C0DED /* reversePolishInput1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reversePolishInput1.txt; sourceTree = "<group>"; };
-		BBECC5A81A3E1E85004C0DED /* reversePolishInput2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reversePolishInput2.txt; sourceTree = "<group>"; };
-		BBECC5A91A3E1E85004C0DED /* reversePolishOutput1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reversePolishOutput1.txt; sourceTree = "<group>"; };
-		BBECC5AA1A3E1E85004C0DED /* reversePolishOutput2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reversePolishOutput2.txt; sourceTree = "<group>"; };
 		BBECC5B11A3E2319004C0DED /* ReversePolish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversePolish.h; sourceTree = "<group>"; };
 		BBECC5B21A3E2319004C0DED /* ReversePolish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversePolish.m; sourceTree = "<group>"; };
 		BBECC5B61A3E2748004C0DED /* JVStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVStack.h; sourceTree = "<group>"; };
 		BBECC5B71A3E2748004C0DED /* JVStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVStack.m; sourceTree = "<group>"; };
+		BBECC5BA1A3E34FB004C0DED /* Palindromic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palindromic.h; sourceTree = "<group>"; };
+		BBECC5BB1A3E34FB004C0DED /* Palindromic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palindromic.m; sourceTree = "<group>"; };
+		BBECC5BE1A3E3AB0004C0DED /* TestData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestData; path = "../../../C#/AlgorithmTests/TestData"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +94,7 @@
 		BBECC59E1A3E1E3E004C0DED /* ObjCAlgorithmsTests */ = {
 			isa = PBXGroup;
 			children = (
-				BBECC5A61A3E1E72004C0DED /* TestData */,
+				BBECC5BE1A3E3AB0004C0DED /* TestData */,
 				BBECC5A11A3E1E3E004C0DED /* ObjCAlgorithmsTests.m */,
 				BBECC59F1A3E1E3E004C0DED /* Supporting Files */,
 			);
@@ -108,18 +106,7 @@
 			children = (
 				BBECC5A01A3E1E3E004C0DED /* Info.plist */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BBECC5A61A3E1E72004C0DED /* TestData */ = {
-			isa = PBXGroup;
-			children = (
-				BBECC5A71A3E1E85004C0DED /* reversePolishInput1.txt */,
-				BBECC5A81A3E1E85004C0DED /* reversePolishInput2.txt */,
-				BBECC5A91A3E1E85004C0DED /* reversePolishOutput1.txt */,
-				BBECC5AA1A3E1E85004C0DED /* reversePolishOutput2.txt */,
-			);
-			name = TestData;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		BBECC5AF1A3E22E3004C0DED /* StringArrayMatrix */ = {
@@ -127,8 +114,10 @@
 			children = (
 				BBECC5B11A3E2319004C0DED /* ReversePolish.h */,
 				BBECC5B21A3E2319004C0DED /* ReversePolish.m */,
+				BBECC5BA1A3E34FB004C0DED /* Palindromic.h */,
+				BBECC5BB1A3E34FB004C0DED /* Palindromic.m */,
 			);
-			name = StringArrayMatrix;
+			path = StringArrayMatrix;
 			sourceTree = "<group>";
 		};
 		BBECC5B51A3E273B004C0DED /* Helpers */ = {
@@ -137,7 +126,7 @@
 				BBECC5B61A3E2748004C0DED /* JVStack.h */,
 				BBECC5B71A3E2748004C0DED /* JVStack.m */,
 			);
-			name = Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,10 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBECC5AE1A3E1E85004C0DED /* reversePolishOutput2.txt in Resources */,
-				BBECC5AD1A3E1E85004C0DED /* reversePolishOutput1.txt in Resources */,
-				BBECC5AC1A3E1E85004C0DED /* reversePolishInput2.txt in Resources */,
-				BBECC5AB1A3E1E85004C0DED /* reversePolishInput1.txt in Resources */,
+				BBECC5BF1A3E3AB0004C0DED /* TestData in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +219,7 @@
 			files = (
 				BBECC5B81A3E2748004C0DED /* JVStack.m in Sources */,
 				BBECC5931A3E1D8D004C0DED /* main.m in Sources */,
+				BBECC5BC1A3E34FB004C0DED /* Palindromic.m in Sources */,
 				BBECC5B31A3E2319004C0DED /* ReversePolish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +230,7 @@
 			files = (
 				BBECC5B91A3E2748004C0DED /* JVStack.m in Sources */,
 				BBECC5A21A3E1E3E004C0DED /* ObjCAlgorithmsTests.m in Sources */,
+				BBECC5BD1A3E3A17004C0DED /* Palindromic.m in Sources */,
 				BBECC5B41A3E2319004C0DED /* ReversePolish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +338,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ObjCAlgorithmsTests/Info.plist;
+				INFOPLIST_FILE = "ObjCAlgorithmsTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -364,7 +352,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ObjCAlgorithmsTests/Info.plist;
+				INFOPLIST_FILE = "ObjCAlgorithmsTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -389,6 +377,7 @@
 				BBECC5981A3E1D8D004C0DED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BBECC5A31A3E1E3E004C0DED /* Build configuration list for PBXNativeTarget "ObjCAlgorithmsTests" */ = {
 			isa = XCConfigurationList;
@@ -397,6 +386,7 @@
 				BBECC5A51A3E1E3E004C0DED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

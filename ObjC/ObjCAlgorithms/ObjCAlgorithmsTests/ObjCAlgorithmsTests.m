@@ -9,11 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 #import "ReversePolish.h"
+#import "Palindromic.h"
 
 @interface ObjCAlgorithmsTests : XCTestCase
 
 @property (nonatomic, strong) NSMutableArray *reversePolishInputs;
 @property (nonatomic, strong) NSMutableArray *reversePolishOutputs;
+
+@property (nonatomic, strong) NSArray *palindromicInputs;
+@property (nonatomic, strong) NSArray *palindromicOutputs;
 
 @end
 
@@ -22,15 +26,24 @@
 - (void)setUp {
     [super setUp];
     
-    NSArray *reversePolishFiles = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"txt" inDirectory:nil];
+    NSArray *testFiles = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"txt" inDirectory:nil];
     
-    for (NSString *fileName in reversePolishFiles) {
+    for (NSString *fileName in testFiles) {
+        
+        NSString *contents = [NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil];
+        
         if ([fileName hasPrefix:@"reversePolishInput"]) {
-            [self.reversePolishInputs addObject:[NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil]];
+            [self.reversePolishInputs addObject:contents];
         } else if ([fileName hasPrefix:@"reversePolishOutput"]) {
-            [self.reversePolishOutputs addObject:[NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil]];
+            [self.reversePolishOutputs addObject:contents];
+        } else if ([fileName hasPrefix:@"palindromicInput"]) {
+            self.palindromicInputs = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        } else if ([fileName hasPrefix:@"palindromicOutput"]) {
+            self.palindromicOutputs = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         }
     }
+    
+    
 }
 
 - (void)tearDown {
@@ -41,6 +54,12 @@
 - (void)testReversePolish {
     for (int i = 0; i < [self.reversePolishInputs count]; i++) {
         XCTAssertEqual([self.reversePolishOutputs[i] intValue], [ReversePolish calculateValue:self.reversePolishInputs[i]]);
+    }
+}
+
+- (void)testPalindromic {
+    for (int i = 0; i < [self.palindromicInputs count]; i++) {
+        XCTAssert([[Palindromic findLongestPalindromicSubstring:self.palindromicInputs[i]] isEqualToString:self.palindromicOutputs[i]]);
     }
 }
 

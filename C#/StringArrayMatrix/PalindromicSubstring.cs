@@ -19,7 +19,7 @@ namespace StringArrayMatrix
 
             var longest = input.Substring(0, 1);
 
-            for (int i = 0; i < input.Length - 1; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 var temp = PalindromeHelper(input, i, i);
 
@@ -47,8 +47,8 @@ namespace StringArrayMatrix
                 toEnd++;
             }
 
-            var firstChar = input.IndexOf(input[toFront + 1]);
-            var lastChar = input.LastIndexOf(input[toEnd - 1]);
+            var firstChar = toFront + 1;
+            var lastChar = toEnd - 1;
 
             return input.Substring(firstChar, lastChar - firstChar + 1);
         }
