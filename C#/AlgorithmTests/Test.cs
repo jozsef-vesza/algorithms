@@ -67,6 +67,16 @@ namespace AlgorithmTests
                 StringAssert.AreEqualIgnoringCase(palindromicOutputs[i], PalindromicSubstring.LongestPalindrome(palindromicInputs[i]));
             }
         }
+
+        [Test]
+        public void TestWordBreak()
+        {
+            var inputString = "shortlongeronelonglonglonglonglong";
+            var inputDict = new List<string>(){ "short", "longerone", "longlonglonglonglong" };
+            var expectedOutput = true;
+
+            Assert.AreEqual(expectedOutput, WordBreak.WordBreakPossble(inputString, inputDict));
+        }
     }
 }
 
