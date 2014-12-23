@@ -3,6 +3,7 @@ using System;
 using StringArrayMatrix;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace AlgorithmTests
 {
@@ -71,11 +72,22 @@ namespace AlgorithmTests
         [Test]
         public void TestWordBreak()
         {
-            var inputString = "shortlongeronelonglonglonglonglong";
-            var inputDict = new List<string>(){ "short", "longerone", "longlonglonglonglong" };
-            var expectedOutput = true;
+            const string inputString = "shortlongeronelonglonglonglonglong";
+            var inputDict = new HashSet<string>(){ "short", "longerone", "longlonglonglonglong" };
+            const bool expectedOutput = true;
 
             Assert.AreEqual(expectedOutput, WordBreak.WordBreakPossble(inputString, inputDict));
+        }
+
+        [Test]
+        public void TestWordLadder()
+        {
+            const string startString = "hit";
+            const string endString = "cog";
+            var inputDict = new HashSet<string>(){ "hot", "dot", "dog", "lot", "log" };
+            const int expectedOperations = 5;
+
+            Assert.AreEqual(expectedOperations, WordLadder.LadderLength(startString, endString, inputDict));
         }
     }
 }

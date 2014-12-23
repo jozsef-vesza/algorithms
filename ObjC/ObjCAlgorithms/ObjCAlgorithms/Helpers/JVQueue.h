@@ -1,17 +1,17 @@
 //
-//  JVStack.h
+//  JVQueue.h
 //  ObjCAlgorithms
 //
-//  Created by József Vesza on 14/12/14.
+//  Created by József Vesza on 23/12/14.
 //  Copyright (c) 2014 Jozsef Vesza. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface JVStack : NSObject
+@interface JVQueue : NSObject
 
-- (void)push:(id)newValue;
-- (id)pop;
+- (void)enqueue:(id)newValue;
+- (id)dequeue;
 - (BOOL)isEmpty;
 
 @end

@@ -7,32 +7,32 @@
 //
 
 #import "JVStack.h"
+#import "JVLinkedNode.h"
 
 @interface JVStack ()
 
-@property (nonatomic, strong) NSMutableArray *values;
+@property (nonatomic, strong) JVLinkedNode *first;
 
 @end
 
 @implementation JVStack
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.values = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
 - (void)push:(id)newValue {
-    [self.values addObject:newValue];
+    
+    JVLinkedNode *oldFirst = self.first;
+    self.first = [[JVLinkedNode alloc] initWithValue:newValue];
+    self.first.next = oldFirst;
 }
 
 - (id)pop {
-    id value = [self.values lastObject];
-    [self.values removeLastObject];
+    id value = self.first.value;
+    self.first = self.first.next;
     
     return value;
+}
+
+- (BOOL)isEmpty {
+    return self.first == nil;
 }
 
 @end

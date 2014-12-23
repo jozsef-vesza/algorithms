@@ -6,12 +6,12 @@ namespace StringArrayMatrix
 {
     public static class WordBreak
     {
-        public static bool WordBreakPossble(string input, ICollection<string> dictionary)
+        public static bool WordBreakPossble(string input, HashSet<string> dictionary)
         {
             return WordBreakHelper(input, dictionary, 0);
         }
 
-        private static bool WordBreakHelper(string input, ICollection<string> dictionary, int start)
+        private static bool WordBreakHelper(string input, HashSet<string> dictionary, int start)
         {
             var memo = new HashSet<int>();
 
