@@ -17,17 +17,8 @@
         return head;
     }
     
-    JVLinkedNode *slow = head;
-    JVLinkedNode *fast = head;
-    
-    while (fast != nil && fast.next != nil && fast.next.next != nil) {
-        
-        slow = slow.next;
-        fast = fast.next.next;
-    }
-    
-    JVLinkedNode *secondHead = slow.next;
-    slow.next = nil;
+    JVLinkedNode *secondHead;
+    [JVReverseOrder splitLinkedList:head intoFront:&head andBack:&secondHead];
     
     secondHead = [JVReverseOrder reverseOrder:secondHead];
     
@@ -69,6 +60,28 @@
     head.next = nil;
     
     return pre;
+}
+
++ (void)splitLinkedList:(JVLinkedNode *)head intoFront:(JVLinkedNode **)front andBack:(JVLinkedNode **)back {
+
+    if (head == nil) {
+        return;
+    }
+    
+    JVLinkedNode *endOfFront;
+    JVLinkedNode *slow = head;
+    JVLinkedNode *fast = head;
+    
+    while (fast) {
+        
+        endOfFront = slow;
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    
+    endOfFront.next = nil;
+    *front = head;
+    *back = slow;
 }
 
 @end

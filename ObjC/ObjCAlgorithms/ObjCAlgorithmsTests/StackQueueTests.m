@@ -84,4 +84,20 @@
     }
 }
 
+- (void)testListSplit {
+    
+    JVLinkedNode *n1 = [[JVLinkedNode alloc] initWithValue:@1];
+    n1.next = [[JVLinkedNode alloc] initWithValue:@2];
+    n1.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    n1.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    
+    JVLinkedNode *front;
+    JVLinkedNode *back;
+    
+    [JVReverseOrder splitLinkedList:n1 intoFront:&front andBack:&back];
+    
+    XCTAssertEqual(front.value, @1);
+    XCTAssertEqual(back.value, @3);
+}
+
 @end
