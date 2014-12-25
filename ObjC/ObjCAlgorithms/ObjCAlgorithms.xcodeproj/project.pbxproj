@@ -20,6 +20,8 @@
 		BB55C7481A4C32D200CEF3C4 /* JVAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55C7471A4C32D200CEF3C4 /* JVAddition.m */; };
 		BB55C7491A4C32D200CEF3C4 /* JVAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55C7471A4C32D200CEF3C4 /* JVAddition.m */; };
 		BB55C74B1A4C338600CEF3C4 /* StackQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55C74A1A4C338600CEF3C4 /* StackQueueTests.m */; };
+		BB55C74E1A4CD0FF00CEF3C4 /* JVReverseOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55C74D1A4CD0FF00CEF3C4 /* JVReverseOrder.m */; };
+		BB55C74F1A4CD0FF00CEF3C4 /* JVReverseOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55C74D1A4CD0FF00CEF3C4 /* JVReverseOrder.m */; };
 		BBECC5931A3E1D8D004C0DED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5921A3E1D8D004C0DED /* main.m */; };
 		BBECC5A21A3E1E3E004C0DED /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5A11A3E1E3E004C0DED /* Tests.m */; };
 		BBECC5B31A3E2319004C0DED /* JVReversePolish.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B21A3E2319004C0DED /* JVReversePolish.m */; };
@@ -57,6 +59,8 @@
 		BB55C7461A4C32D200CEF3C4 /* JVAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVAddition.h; sourceTree = "<group>"; };
 		BB55C7471A4C32D200CEF3C4 /* JVAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVAddition.m; sourceTree = "<group>"; };
 		BB55C74A1A4C338600CEF3C4 /* StackQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackQueueTests.m; sourceTree = "<group>"; };
+		BB55C74C1A4CD0FF00CEF3C4 /* JVReverseOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVReverseOrder.h; sourceTree = "<group>"; };
+		BB55C74D1A4CD0FF00CEF3C4 /* JVReverseOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVReverseOrder.m; sourceTree = "<group>"; };
 		BBECC58F1A3E1D8D004C0DED /* ObjCAlgorithms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjCAlgorithms; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBECC5921A3E1D8D004C0DED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBECC59D1A3E1E3E004C0DED /* ObjCAlgorithmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjCAlgorithmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,19 +135,21 @@
 		BB55C7441A4C32B600CEF3C4 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				BB55C7451A4C32BA00CEF3C4 /* StackQueue */,
+				BB55C7451A4C32BA00CEF3C4 /* StackQueueLinkedList */,
 				BBECC5AF1A3E22E3004C0DED /* StringArrayMatrix */,
 			);
 			name = Examples;
 			sourceTree = "<group>";
 		};
-		BB55C7451A4C32BA00CEF3C4 /* StackQueue */ = {
+		BB55C7451A4C32BA00CEF3C4 /* StackQueueLinkedList */ = {
 			isa = PBXGroup;
 			children = (
 				BB55C7461A4C32D200CEF3C4 /* JVAddition.h */,
 				BB55C7471A4C32D200CEF3C4 /* JVAddition.m */,
+				BB55C74C1A4CD0FF00CEF3C4 /* JVReverseOrder.h */,
+				BB55C74D1A4CD0FF00CEF3C4 /* JVReverseOrder.m */,
 			);
-			name = StackQueue;
+			name = StackQueueLinkedList;
 			sourceTree = "<group>";
 		};
 		BBECC5861A3E1D8D004C0DED = {
@@ -310,6 +316,7 @@
 				BBECC5B81A3E2748004C0DED /* JVStack.m in Sources */,
 				BBECC5931A3E1D8D004C0DED /* main.m in Sources */,
 				BBECC5BC1A3E34FB004C0DED /* JVPalindromic.m in Sources */,
+				BB55C74E1A4CD0FF00CEF3C4 /* JVReverseOrder.m in Sources */,
 				BB55C71D1A47F10800CEF3C4 /* JVLinkedNode.m in Sources */,
 				BB55C73E1A4897A100CEF3C4 /* JVBinaryTree.m in Sources */,
 				BBECC5B31A3E2319004C0DED /* JVReversePolish.m in Sources */,
@@ -328,6 +335,7 @@
 				BBECC5A21A3E1E3E004C0DED /* Tests.m in Sources */,
 				BBECC5BD1A3E3A17004C0DED /* JVPalindromic.m in Sources */,
 				BB55C74B1A4C338600CEF3C4 /* StackQueueTests.m in Sources */,
+				BB55C74F1A4CD0FF00CEF3C4 /* JVReverseOrder.m in Sources */,
 				BB55C71E1A47F10800CEF3C4 /* JVLinkedNode.m in Sources */,
 				BB55C73F1A4897A100CEF3C4 /* JVBinaryTree.m in Sources */,
 				BBECC5B41A3E2319004C0DED /* JVReversePolish.m in Sources */,

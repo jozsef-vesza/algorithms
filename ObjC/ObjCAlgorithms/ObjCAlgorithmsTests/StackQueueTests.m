@@ -11,6 +11,7 @@
 #import "JVLinkedNode.h"
 #import "JVLinkedList.h"
 #import "JVAddition.h"
+#import "JVReverseOrder.h"
 
 @interface StackQueueTests : XCTestCase
 
@@ -41,6 +42,46 @@
         XCTAssertEqual(v1.value, v2.value);
     }
     
+}
+
+- (void)testReversal {
+
+    JVLinkedNode *n1 = [[JVLinkedNode alloc] initWithValue:@1];
+    n1.next = [[JVLinkedNode alloc] initWithValue:@2];
+    n1.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    n1.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    
+    JVLinkedNode *r1 = [[JVLinkedNode alloc] initWithValue:@4];
+    r1.next = [[JVLinkedNode alloc] initWithValue:@3];
+    r1.next.next = [[JVLinkedNode alloc] initWithValue:@2];
+    r1.next.next.next = [[JVLinkedNode alloc] initWithValue:@1];
+    
+    for (JVLinkedNode *i1 = r1, *i2 = [JVReverseOrder reverseOrder:n1];
+         i1 != nil || i2 != nil;
+         i1 = i1.next, i2 = i2.next) {
+        
+        XCTAssertEqual(i1.value, i2.value);
+    }
+}
+
+- (void)testReorder {
+    
+    JVLinkedNode *n1 = [[JVLinkedNode alloc] initWithValue:@1];
+    n1.next = [[JVLinkedNode alloc] initWithValue:@2];
+    n1.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    n1.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    
+    JVLinkedNode *r1 = [[JVLinkedNode alloc] initWithValue:@1];
+    r1.next = [[JVLinkedNode alloc] initWithValue:@4];
+    r1.next.next = [[JVLinkedNode alloc] initWithValue:@2];
+    r1.next.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    
+    for (JVLinkedNode *i1 = r1, *i2 = [JVReverseOrder reorderList:n1];
+         i1 != nil || i2 != nil;
+         i1 = i1.next, i2 = i2.next) {
+        
+        XCTAssertEqual(i1.value, i2.value);
+    }
 }
 
 @end
