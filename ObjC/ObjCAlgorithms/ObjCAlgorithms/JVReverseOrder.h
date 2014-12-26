@@ -14,5 +14,6 @@
 + (JVLinkedNode *)reverseOrder:(JVLinkedNode *)head;
 + (JVLinkedNode *)reorderList:(JVLinkedNode *)head;
 + (void)splitLinkedList:(JVLinkedNode *)head intoFront:(JVLinkedNode **)front andBack:(JVLinkedNode **)back;
++ (JVLinkedNode *)mergeList:(JVLinkedNode *)firstHead withList:(JVLinkedNode *)secondHead;
 
 @end

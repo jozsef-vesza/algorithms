@@ -100,4 +100,18 @@
     XCTAssertEqual(back.value, @3);
 }
 
+- (void)testListMerge {
+    
+    JVLinkedNode *n1 = [[JVLinkedNode alloc] initWithValue:@1];
+    n1.next = [[JVLinkedNode alloc] initWithValue:@2];
+    
+    JVLinkedNode *n2 = [[JVLinkedNode alloc] initWithValue:@3];
+    n2.next = [[JVLinkedNode alloc] initWithValue:@4];
+    
+    JVLinkedNode *merged = [JVReverseOrder mergeList:n1 withList:n2];
+    
+    XCTAssertEqual(merged.value, @1);
+    XCTAssertEqual(merged.next.value, @3);
+}
+
 @end

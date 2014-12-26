@@ -19,25 +19,31 @@
     
     JVLinkedNode *secondHead;
     [JVReverseOrder splitLinkedList:head intoFront:&head andBack:&secondHead];
-    
     secondHead = [JVReverseOrder reverseOrder:secondHead];
     
-    JVLinkedNode *p1 = head;
-    JVLinkedNode *p2 = secondHead;
+    return [JVReverseOrder mergeList:head withList:secondHead];
+}
+
++ (void)splitLinkedList:(JVLinkedNode *)head intoFront:(JVLinkedNode **)front andBack:(JVLinkedNode **)back {
     
-    while (p2 != nil) {
-        
-        JVLinkedNode *temp1 = p1.next;
-        JVLinkedNode *temp2 = p2.next;
-        
-        p1.next = p2;
-        p2.next = temp1;
-        
-        p1 = temp1;
-        p2 = temp2;
+    if (head == nil) {
+        return;
     }
     
-    return head;
+    JVLinkedNode *endOfFront;
+    JVLinkedNode *slow = head;
+    JVLinkedNode *fast = head;
+    
+    while (fast) {
+        
+        endOfFront = slow;
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    
+    endOfFront.next = nil;
+    *front = head;
+    *back = slow;
 }
 
 + (JVLinkedNode *)reverseOrder:(JVLinkedNode *)head {
@@ -62,26 +68,24 @@
     return pre;
 }
 
-+ (void)splitLinkedList:(JVLinkedNode *)head intoFront:(JVLinkedNode **)front andBack:(JVLinkedNode **)back {
-
-    if (head == nil) {
-        return;
-    }
++ (JVLinkedNode *)mergeList:(JVLinkedNode *)firstHead withList:(JVLinkedNode *)secondHead {
     
-    JVLinkedNode *endOfFront;
-    JVLinkedNode *slow = head;
-    JVLinkedNode *fast = head;
+    JVLinkedNode *p1 = firstHead;
+    JVLinkedNode *p2 = secondHead;
     
-    while (fast) {
+    while (p2 != nil) {
         
-        endOfFront = slow;
-        slow = slow.next;
-        fast = fast.next.next;
+        JVLinkedNode *temp1 = p1.next;
+        JVLinkedNode *temp2 = p2.next;
+        
+        p1.next = p2;
+        p2.next = temp1;
+        
+        p1 = temp1;
+        p2 = temp2;
     }
     
-    endOfFront.next = nil;
-    *front = head;
-    *back = slow;
+    return firstHead;
 }
 
 @end
