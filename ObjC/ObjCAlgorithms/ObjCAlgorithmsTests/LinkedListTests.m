@@ -1,5 +1,5 @@
 //
-//  StackQueueTests.m
+//  LinkedListTests.m
 //  ObjCAlgorithms
 //
 //  Created by József Vesza on 25/12/14.
@@ -12,12 +12,13 @@
 #import "JVLinkedList.h"
 #import "JVAddition.h"
 #import "JVReverseOrder.h"
+#import "JVDetectCycle.h"
 
-@interface StackQueueTests : XCTestCase
+@interface LinkedListTests : XCTestCase
 
 @end
 
-@implementation StackQueueTests
+@implementation LinkedListTests
 
 - (void)testAddition {
     
@@ -112,6 +113,23 @@
     
     XCTAssertEqual(merged.value, @1);
     XCTAssertEqual(merged.next.value, @3);
+}
+
+- (void)testCycle {
+    
+    JVLinkedNode *n1 = [[JVLinkedNode alloc] initWithValue:@1];
+    n1.next = [[JVLinkedNode alloc] initWithValue:@2];
+    n1.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    n1.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    
+    XCTAssertFalse([JVDetectCycle listHasCycle:n1]);
+    
+    JVLinkedNode *n2 = [[JVLinkedNode alloc] initWithValue:@1];
+    n2.next = [[JVLinkedNode alloc] initWithValue:@2];
+    n2.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    n2.next.next.next = n2;
+    
+    XCTAssertTrue([JVDetectCycle listHasCycle:n2]);
 }
 
 @end
