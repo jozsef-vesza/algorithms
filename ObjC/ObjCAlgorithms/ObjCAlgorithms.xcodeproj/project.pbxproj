@@ -23,6 +23,10 @@
 		BB59DE031A504F83000008DC /* DataStructureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59DE021A504F83000008DC /* DataStructureTests.m */; };
 		BB59DE0A1A5058FE000008DC /* JVLinkedNode+Examples.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59DE091A5058FE000008DC /* JVLinkedNode+Examples.m */; };
 		BB59DE0B1A5058FE000008DC /* JVLinkedNode+Examples.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59DE091A5058FE000008DC /* JVLinkedNode+Examples.m */; };
+		BB59DE0E1A5094F0000008DC /* JVDoublyLinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59DE0D1A5094F0000008DC /* JVDoublyLinkedNode.m */; };
+		BB59DE0F1A5094F0000008DC /* JVDoublyLinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59DE0D1A5094F0000008DC /* JVDoublyLinkedNode.m */; };
+		BB59DE131A5097C9000008DC /* JVLRUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59DE121A5097C9000008DC /* JVLRUCache.m */; };
+		BB59DE141A5097C9000008DC /* JVLRUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59DE121A5097C9000008DC /* JVLRUCache.m */; };
 		BBECC5931A3E1D8D004C0DED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5921A3E1D8D004C0DED /* main.m */; };
 		BBECC5A21A3E1E3E004C0DED /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5A11A3E1E3E004C0DED /* Tests.m */; };
 		BBECC5B31A3E2319004C0DED /* JVReversePolish.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECC5B21A3E2319004C0DED /* JVReversePolish.m */; };
@@ -63,6 +67,10 @@
 		BB59DE021A504F83000008DC /* DataStructureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStructureTests.m; sourceTree = "<group>"; };
 		BB59DE081A5058FE000008DC /* JVLinkedNode+Examples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JVLinkedNode+Examples.h"; sourceTree = "<group>"; };
 		BB59DE091A5058FE000008DC /* JVLinkedNode+Examples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JVLinkedNode+Examples.m"; sourceTree = "<group>"; };
+		BB59DE0C1A5094F0000008DC /* JVDoublyLinkedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVDoublyLinkedNode.h; sourceTree = "<group>"; };
+		BB59DE0D1A5094F0000008DC /* JVDoublyLinkedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVDoublyLinkedNode.m; sourceTree = "<group>"; };
+		BB59DE111A5097C9000008DC /* JVLRUCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLRUCache.h; sourceTree = "<group>"; };
+		BB59DE121A5097C9000008DC /* JVLRUCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVLRUCache.m; sourceTree = "<group>"; };
 		BBECC58F1A3E1D8D004C0DED /* ObjCAlgorithms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjCAlgorithms; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBECC5921A3E1D8D004C0DED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBECC59D1A3E1E3E004C0DED /* ObjCAlgorithmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjCAlgorithmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +106,7 @@
 		BB55C71F1A47F23B00CEF3C4 /* Data structures */ = {
 			isa = PBXGroup;
 			children = (
+				BB59DE101A5097B9000008DC /* Cache */,
 				BB55C7251A48034500CEF3C4 /* Trees */,
 				BB55C7201A47F23E00CEF3C4 /* Linked lists */,
 			);
@@ -111,6 +120,8 @@
 				BB55C71C1A47F10800CEF3C4 /* JVLinkedNode.m */,
 				BB55C7211A47F24E00CEF3C4 /* JVLinkedList.h */,
 				BB55C7221A47F24E00CEF3C4 /* JVLinkedList.m */,
+				BB59DE0C1A5094F0000008DC /* JVDoublyLinkedNode.h */,
+				BB59DE0D1A5094F0000008DC /* JVDoublyLinkedNode.m */,
 			);
 			path = "Linked lists";
 			sourceTree = "<group>";
@@ -150,6 +161,15 @@
 				BB59DE091A5058FE000008DC /* JVLinkedNode+Examples.m */,
 			);
 			path = LinkedList;
+			sourceTree = "<group>";
+		};
+		BB59DE101A5097B9000008DC /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				BB59DE111A5097C9000008DC /* JVLRUCache.h */,
+				BB59DE121A5097C9000008DC /* JVLRUCache.m */,
+			);
+			name = Cache;
 			sourceTree = "<group>";
 		};
 		BBECC5861A3E1D8D004C0DED = {
@@ -313,9 +333,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB59DE131A5097C9000008DC /* JVLRUCache.m in Sources */,
 				BB55C72C1A48063700CEF3C4 /* JVTree.m in Sources */,
 				BB55C7231A47F24E00CEF3C4 /* JVLinkedList.m in Sources */,
 				BB55C7421A48E2F100CEF3C4 /* JVQueue.m in Sources */,
+				BB59DE0E1A5094F0000008DC /* JVDoublyLinkedNode.m in Sources */,
 				BB59DE001A504C06000008DC /* JVPriorityQueue.m in Sources */,
 				BBECC5B81A3E2748004C0DED /* JVStack.m in Sources */,
 				BBECC5931A3E1D8D004C0DED /* main.m in Sources */,
@@ -334,6 +356,7 @@
 				BB55C72D1A48063700CEF3C4 /* JVTree.m in Sources */,
 				BB55C7241A47F24E00CEF3C4 /* JVLinkedList.m in Sources */,
 				BB59DE0B1A5058FE000008DC /* JVLinkedNode+Examples.m in Sources */,
+				BB59DE0F1A5094F0000008DC /* JVDoublyLinkedNode.m in Sources */,
 				BB55C7431A48E2F100CEF3C4 /* JVQueue.m in Sources */,
 				BBECC5B91A3E2748004C0DED /* JVStack.m in Sources */,
 				BBECC5A21A3E1E3E004C0DED /* Tests.m in Sources */,
@@ -341,6 +364,7 @@
 				BB55C74B1A4C338600CEF3C4 /* LinkedListTests.m in Sources */,
 				BB59DE011A504C06000008DC /* JVPriorityQueue.m in Sources */,
 				BB55C71E1A47F10800CEF3C4 /* JVLinkedNode.m in Sources */,
+				BB59DE141A5097C9000008DC /* JVLRUCache.m in Sources */,
 				BB55C73F1A4897A100CEF3C4 /* JVBinaryTree.m in Sources */,
 				BB59DE031A504F83000008DC /* DataStructureTests.m in Sources */,
 				BBECC5B41A3E2319004C0DED /* JVReversePolish.m in Sources */,
