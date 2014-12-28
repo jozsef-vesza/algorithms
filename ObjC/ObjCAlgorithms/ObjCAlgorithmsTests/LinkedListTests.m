@@ -8,11 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
-#import "JVLinkedNode.h"
-#import "JVLinkedList.h"
-#import "JVAddition.h"
-#import "JVReverseOrder.h"
-#import "JVDetectCycle.h"
+#import "JVLinkedNode+Examples.h"
 
 @interface LinkedListTests : XCTestCase
 
@@ -34,7 +30,7 @@
     result.next = [[JVLinkedNode alloc] initWithValue:@0];
     result.next.next = [[JVLinkedNode alloc] initWithValue:@8];
     
-    JVLinkedNode *actualResult = [JVAddition addNumber:num1 toNumber:num2];
+    JVLinkedNode *actualResult = [JVLinkedNode addNumber:num1 toNumber:num2];
     
     for (JVLinkedNode *v1 = result, *v2 = actualResult;
          v1 != nil || v2 != nil;
@@ -57,7 +53,7 @@
     r1.next.next = [[JVLinkedNode alloc] initWithValue:@2];
     r1.next.next.next = [[JVLinkedNode alloc] initWithValue:@1];
     
-    for (JVLinkedNode *i1 = r1, *i2 = [JVReverseOrder reverseOrder:n1];
+    for (JVLinkedNode *i1 = r1, *i2 = [JVLinkedNode reverseOrder:n1];
          i1 != nil || i2 != nil;
          i1 = i1.next, i2 = i2.next) {
         
@@ -77,7 +73,7 @@
     r1.next.next = [[JVLinkedNode alloc] initWithValue:@2];
     r1.next.next.next = [[JVLinkedNode alloc] initWithValue:@3];
     
-    for (JVLinkedNode *i1 = r1, *i2 = [JVReverseOrder reorderList:n1];
+    for (JVLinkedNode *i1 = r1, *i2 = [JVLinkedNode reorderList:n1];
          i1 != nil || i2 != nil;
          i1 = i1.next, i2 = i2.next) {
         
@@ -95,7 +91,7 @@
     JVLinkedNode *front;
     JVLinkedNode *back;
     
-    [JVReverseOrder splitLinkedList:n1 intoFront:&front andBack:&back];
+    [JVLinkedNode splitLinkedList:n1 intoFront:&front andBack:&back];
     
     XCTAssertEqual(front.value, @1);
     XCTAssertEqual(back.value, @3);
@@ -109,7 +105,7 @@
     JVLinkedNode *n2 = [[JVLinkedNode alloc] initWithValue:@3];
     n2.next = [[JVLinkedNode alloc] initWithValue:@4];
     
-    JVLinkedNode *merged = [JVReverseOrder mergeList:n1 withList:n2];
+    JVLinkedNode *merged = [JVLinkedNode mergeList:n1 withSecondList:n2];
     
     XCTAssertEqual(merged.value, @1);
     XCTAssertEqual(merged.next.value, @3);
@@ -122,14 +118,103 @@
     n1.next.next = [[JVLinkedNode alloc] initWithValue:@3];
     n1.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
     
-    XCTAssertFalse([JVDetectCycle listHasCycle:n1]);
+    XCTAssertFalse([JVLinkedNode listHasCycle:n1]);
     
     JVLinkedNode *n2 = [[JVLinkedNode alloc] initWithValue:@1];
     n2.next = [[JVLinkedNode alloc] initWithValue:@2];
     n2.next.next = [[JVLinkedNode alloc] initWithValue:@3];
     n2.next.next.next = n2;
     
-    XCTAssertTrue([JVDetectCycle listHasCycle:n2]);
+    XCTAssertTrue([JVLinkedNode listHasCycle:n2]);
+}
+
+- (void)testTwoListMerge {
+    
+    JVLinkedNode *n1 = [[JVLinkedNode alloc] initWithValue:@5];
+    n1.next = [[JVLinkedNode alloc] initWithValue:@6];
+    n1.next.next = [[JVLinkedNode alloc] initWithValue:@7];
+    n1.next.next.next = [[JVLinkedNode alloc] initWithValue:@8];
+    
+    JVLinkedNode *n2 = [[JVLinkedNode alloc] initWithValue:@1];
+    n2.next = [[JVLinkedNode alloc] initWithValue:@2];
+    n2.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    n2.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    
+    JVLinkedNode *expected = [[JVLinkedNode alloc] initWithValue:@1];
+    expected.next = [[JVLinkedNode alloc] initWithValue:@2];
+    expected.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    expected.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    expected.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@5];
+    expected.next.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@6];
+    expected.next.next.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@7];
+    expected.next.next.next.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@8];
+    
+    JVLinkedNode *merged = [JVLinkedNode mergeList:n1 withList:n2];
+    
+    
+    for (
+         JVLinkedNode *r1 = expected, *r2 = merged;
+         r1 != nil || r2 != nil;
+         r1 = r1.next, r2 = r2.next) {
+        
+        XCTAssertEqual(r1.value, r2.value);
+    }
+}
+
+- (void)testNListMerge {
+    
+    JVLinkedNode *n1 = [[JVLinkedNode alloc] initWithValue:@5];
+    n1.next = [[JVLinkedNode alloc] initWithValue:@6];
+    n1.next.next = [[JVLinkedNode alloc] initWithValue:@7];
+    n1.next.next.next = [[JVLinkedNode alloc] initWithValue:@8];
+    
+    JVLinkedNode *n2 = [[JVLinkedNode alloc] initWithValue:@1];
+    n2.next = [[JVLinkedNode alloc] initWithValue:@2];
+    n2.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    n2.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    
+    JVLinkedNode *expected = [[JVLinkedNode alloc] initWithValue:@1];
+    expected.next = [[JVLinkedNode alloc] initWithValue:@2];
+    expected.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    expected.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    expected.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@5];
+    expected.next.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@6];
+    expected.next.next.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@7];
+    expected.next.next.next.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@8];
+    
+    NSArray *input = @[n1, n2];
+    
+    JVLinkedNode *output = [JVLinkedNode mergeLists:input];
+    for (
+         JVLinkedNode *r1 = expected, *r2 = output;
+         r1 != nil || r2 != nil;
+         r1 = r1.next, r2 = r2.next) {
+        
+        XCTAssertEqual(r1.value, r2.value);
+    }
+}
+
+- (void)testDuplicateRemoval {
+    
+    JVLinkedNode *input = [[JVLinkedNode alloc] initWithValue:@1];
+    input.next = [[JVLinkedNode alloc] initWithValue:@1];
+    input.next.next = [[JVLinkedNode alloc] initWithValue:@2];
+    input.next.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    input.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    
+    JVLinkedNode *expected = [[JVLinkedNode alloc] initWithValue:@1];
+    expected.next = [[JVLinkedNode alloc] initWithValue:@2];
+    expected.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    
+    JVLinkedNode *output = [JVLinkedNode removeDuplicates:input];
+    
+    for (
+         JVLinkedNode *r1 = expected, *r2 = output;
+         r1 != nil || r2 != nil;
+         r1 = r1.next, r2 = r2.next) {
+        
+        XCTAssertEqual(r1.value, r2.value);
+    }
 }
 
 @end
