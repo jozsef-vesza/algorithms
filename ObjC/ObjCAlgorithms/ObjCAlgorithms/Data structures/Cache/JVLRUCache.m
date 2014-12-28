@@ -55,6 +55,7 @@
         entry = [[JVDoublyLinkedNode alloc] initWithValue:value withKey:key];
         
         if ([self.entries count] == self.capacity) {
+            
             [self.entries removeObjectForKey:self.tail.key];
             self.tail = self.tail.previous;
             
@@ -67,6 +68,7 @@
     }
     
     entry.value = value;
+    
     [self moveToHead:entry];
     
     if (!self.tail) {

@@ -10,12 +10,65 @@
 #import <XCTest/XCTest.h>
 #import "JVPriorityQueue.h"
 #import "JVLRUCache.h"
+#import "JVLinkedList.h"
+#import "JVLinkedNode.h"
+#import "JVTree.h"
+#import "JVStack.h"
+#import "JVQueue.h"
 
 @interface DataStructureTests : XCTestCase
 
 @end
 
 @implementation DataStructureTests
+
+- (void)testLinkedLists {
+    
+    JVLinkedList *list = [[JVLinkedList alloc] init];
+    JVLinkedNode *prev;
+    
+    for (int i = 0; i < 10; i++) {
+        prev = [list insertValue:@(i) afterNode:prev];
+    }
+    
+    XCTAssertEqual(0, [[list head].value intValue]);
+    
+    JVLinkedNode *removedSecond = [list removeAfterNode:[list head]];
+    
+    XCTAssertEqual(1, [removedSecond.value intValue]);
+    XCTAssertEqual(2, [[list head].next.value intValue]);
+}
+
+- (void)testStacks {
+    
+    JVStack *stack = [[JVStack alloc] init];
+    
+    [stack push:@1];
+    [stack push:@2];
+    
+    id poppedTwo = [stack pop];
+    XCTAssertEqual(@2, poppedTwo);
+    
+    [stack push:@3];
+    
+    while (![stack isEmpty]) {
+        [stack pop];
+    }
+    
+    XCTAssertTrue([stack isEmpty]);
+}
+
+- (void)testQueues {
+    
+    JVQueue *queue = [[JVQueue alloc] init];
+    
+    [queue enqueue:@1];
+    [queue enqueue:@2];
+    
+    id dequeuedTwo = [queue dequeue];
+    XCTAssertEqual(@1, dequeuedTwo);
+}
+
 
 - (void)testPriorityQueue {
     
