@@ -121,7 +121,7 @@
             
             int saved = [dict[soughtKey] intValue];
             result[0] = @(saved);
-            result[1] = @(value);
+            result[1] = @(i);
             
             break;
             
@@ -129,7 +129,7 @@
             
             int result = target - value;
             NSString *key = [NSString stringWithFormat:@"%d", result];
-            dict[key] = @(value);
+            dict[key] = @(i);
         }
     }
     

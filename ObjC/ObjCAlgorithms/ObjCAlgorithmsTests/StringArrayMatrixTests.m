@@ -78,10 +78,17 @@
     
     NSArray *input = @[@2, @7, @11, @15];
     NSArray *output = [JVStringArrayMatrix twoSumInArray:input withTarget:9];
+    
+    int first = [[output firstObject] intValue];
+    int second = [[output lastObject] intValue];
+    
+    NSArray *result = @[ input[first], input[second] ];
+    
+    
     NSArray *expected = @[@2, @7];
     
     for (int i = 0; i < [output count]; i++) {
-        XCTAssertEqual(expected[i], output[i]);
+        XCTAssertEqual(expected[i], result[i]);
     }
 }
 
