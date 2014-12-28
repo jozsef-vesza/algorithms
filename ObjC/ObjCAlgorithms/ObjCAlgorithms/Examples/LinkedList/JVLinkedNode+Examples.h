@@ -27,4 +27,6 @@
 
 + (instancetype)removeDuplicates:(JVLinkedNode *)head;
 
++ (instancetype)splitList:(JVLinkedNode *)head atValue:(id)value;
+
 @end

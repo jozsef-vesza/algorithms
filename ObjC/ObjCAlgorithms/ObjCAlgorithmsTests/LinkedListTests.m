@@ -217,4 +217,33 @@
     }
 }
 
+- (void)testSplitWithValue {
+    
+    JVLinkedNode *input = [[JVLinkedNode alloc] initWithValue:@1];
+    input.next = [[JVLinkedNode alloc] initWithValue:@4];
+    input.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    input.next.next.next = [[JVLinkedNode alloc] initWithValue:@2];
+    input.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@5];
+    input.next.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@2];
+    
+    id value = @3;
+    
+    JVLinkedNode *expected = [[JVLinkedNode alloc] initWithValue:@1];
+    expected.next = [[JVLinkedNode alloc] initWithValue:@2];
+    expected.next.next = [[JVLinkedNode alloc] initWithValue:@2];
+    expected.next.next.next = [[JVLinkedNode alloc] initWithValue:@4];
+    expected.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@3];
+    expected.next.next.next.next.next = [[JVLinkedNode alloc] initWithValue:@5];
+    
+    JVLinkedNode *output = [JVLinkedNode splitList:input atValue:value];
+    
+    for (
+         JVLinkedNode *r1 = expected, *r2 = output;
+         r1 != nil || r2 != nil;
+         r1 = r1.next, r2 = r2.next) {
+        
+        XCTAssertEqual(r1.value, r2.value);
+    }
+}
+
 @end

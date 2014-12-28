@@ -212,4 +212,33 @@
     return head;
 }
 
++ (instancetype)splitList:(JVLinkedNode *)head atValue:(id)value {
+    
+    JVLinkedNode *less = [[JVLinkedNode alloc] initWithValue:@0];
+    JVLinkedNode *lessCursor = less;
+    JVLinkedNode *greaterOfEqual = [[JVLinkedNode alloc] initWithValue:@0];
+    JVLinkedNode *greaterCursor = greaterOfEqual;
+    
+    JVLinkedNode *cursor = head;
+    
+    while (cursor != nil) {
+        
+        if (cursor.value < value) {
+            lessCursor.next = cursor;
+            lessCursor = lessCursor.next;
+        } else {
+            greaterCursor.next = cursor;
+            greaterCursor = greaterCursor.next;
+        }
+        
+        cursor = cursor.next;
+    }
+    
+    greaterCursor.next = nil;
+    
+    lessCursor.next = greaterOfEqual.next;
+    
+    return less.next;
+}
+
 @end
