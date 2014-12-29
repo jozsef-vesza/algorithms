@@ -123,8 +123,6 @@
             result[0] = @(saved);
             result[1] = @(i);
             
-            break;
-            
         } else {
             
             int result = target - value;
@@ -134,6 +132,37 @@
     }
     
     return result;
+}
+
++ (int)countSumsInArray:(NSArray *)numbers withTarget:(int)target {
+    
+    NSMutableArray *nums = [numbers mutableCopy];
+    [nums removeObjectAtIndex:0];
+    
+    return [self countSumsInArray:nums withTarget:target startingatIndex:0 withChecked:nil];
+}
+
++ (int)countSumsInArray:(NSArray *)numbers withTarget:(int)target startingatIndex:(long)index withChecked:(NSMutableDictionary *)checkedInfo {
+    
+    int count = 0;
+    int preSum = 0;
+    
+    for (long i = index; i < [numbers count]; i++) {
+        
+        int currentValue = [numbers[i] intValue];
+        
+        if (preSum + currentValue == target) {
+            count += 1;
+        }
+        
+        preSum += currentValue;
+    }
+    
+    if (index < [numbers count]) {
+        count += [self countSumsInArray:numbers withTarget:target startingatIndex:index + 1 withChecked:checkedInfo];
+    }
+    
+    return count;
 }
 
 @end

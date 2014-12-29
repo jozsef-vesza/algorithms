@@ -15,5 +15,6 @@
 + (NSString *)findLongestPalindromicSubstring:(NSString *)inputString;
 
 + (NSArray *)twoSumInArray:(NSArray *)numbers withTarget:(int)target;
++ (int)countSumsInArray:(NSArray *)numbers withTarget:(int)target;
 
 @end

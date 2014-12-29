@@ -22,6 +22,9 @@
 @property (nonatomic, strong) NSArray *palindromicInputs;
 @property (nonatomic, strong) NSArray *palindromicOutputs;
 
+@property (nonatomic, strong) NSMutableArray *zeroSumInputs;
+@property (nonatomic, strong) NSMutableArray *zeroSumOutputs;
+
 @end
 
 @implementation StringArrayMatrixTests
@@ -31,26 +34,34 @@
     [super setUp];
     
     NSArray *testFiles = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"txt" inDirectory:nil];
+    self.zeroSumOutputs = [[NSMutableArray alloc] init];
+    self.zeroSumInputs = [[NSMutableArray alloc] init];
     
     for (NSString *fileName in testFiles) {
         
         NSString *contents = [NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil];
         
-        if ([fileName hasPrefix:@"reversePolishInput"]) {
+        if ([fileName containsString:@"reversePolishInput"]) {
             
             [self.reversePolishInputs addObject:contents];
             
-        } else if ([fileName hasPrefix:@"reversePolishOutput"]) {
+        } else if ([fileName containsString:@"reversePolishOutput"]) {
             
             [self.reversePolishOutputs addObject:contents];
             
-        } else if ([fileName hasPrefix:@"palindromicInput"]) {
+        } else if ([fileName containsString:@"palindromicInput"]) {
             
             self.palindromicInputs = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
             
-        } else if ([fileName hasPrefix:@"palindromicOutput"]) {
+        } else if ([fileName containsString:@"palindromicOutput"]) {
             
             self.palindromicOutputs = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        } else if ([fileName containsString:@"input00"]) {
+            
+            [self.zeroSumInputs addObject:[contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]];
+        } else if ([fileName containsString:@"output00"]) {
+            
+            [self.zeroSumOutputs addObject:contents];
         }
     }
     
@@ -79,10 +90,10 @@
     NSArray *input = @[@2, @7, @11, @15];
     NSArray *output = [JVStringArrayMatrix twoSumInArray:input withTarget:9];
     
-    int first = [[output firstObject] intValue];
-    int second = [[output lastObject] intValue];
-    
-    NSArray *result = @[ input[first], input[second] ];
+    NSArray *result = @[
+                        input[[[output firstObject] intValue]],
+                        input[[[output lastObject] intValue]]
+                        ];
     
     
     NSArray *expected = @[@2, @7];
@@ -90,6 +101,15 @@
     for (int i = 0; i < [output count]; i++) {
         XCTAssertEqual(expected[i], result[i]);
     }
+}
+
+- (void)testSumCount {
+    
+    XCTAssertEqual([self.zeroSumOutputs[0] intValue], [JVStringArrayMatrix countSumsInArray:self.zeroSumInputs[0] withTarget:0]);
+    
+    XCTAssertEqual([self.zeroSumOutputs[1] intValue], [JVStringArrayMatrix countSumsInArray:self.zeroSumInputs[1] withTarget:0]);
+    
+//    XCTAssertEqual([self.zeroSumOutputs[2] intValue], [JVStringArrayMatrix countSumsInArray:self.zeroSumInputs[2] withTarget:0]);
 }
 
 @end
