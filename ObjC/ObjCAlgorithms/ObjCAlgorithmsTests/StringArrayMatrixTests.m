@@ -112,4 +112,29 @@
 //    XCTAssertEqual([self.zeroSumOutputs[2] intValue], [JVStringArrayMatrix countSumsInArray:self.zeroSumInputs[2] withTarget:0]);
 }
 
+- (void)testThreeSum {
+    
+    NSArray *input = @[@-10, @-25, @-3, @-7, @4, @2, @10, @8];
+    NSArray *output = [[JVStringArrayMatrix threeSumInArray:input] firstObject];
+    NSArray *expected = @[@-10, @2, @8];
+    
+    for (int i = 0; i < [expected count]; i++) {
+        XCTAssertEqual([expected[i] intValue], [output[i] intValue]);
+    }
+    
+    NSArray *input2 = @[@-1, @0, @1, @2, @-1, @-4];
+    NSArray *output2 = [JVStringArrayMatrix threeSumInArray:input2];
+    NSArray *expected2 = @[@-1, @-1, @2, @-1, @0, @1];
+    
+    NSMutableArray *flatOutput = [[NSMutableArray alloc] init];
+    
+    for (NSArray *value in output2) {
+        [flatOutput addObjectsFromArray:value];
+    }
+    
+    for (int i = 0; i < [expected2 count]; i++) {
+        XCTAssertEqual([expected2[i] intValue], [flatOutput[i] intValue]);
+    }
+}
+
 @end

@@ -142,12 +142,12 @@
     return [self countSumsInArray:nums withTarget:target startingatIndex:0];
 }
 
-+ (int)countSumsInArray:(NSArray *)numbers withTarget:(int)target startingatIndex:(long)index {
++ (int)countSumsInArray:(NSArray *)numbers withTarget:(int)target startingatIndex:(int)index {
     
     int count = 0;
     int preSum = 0;
     
-    for (long i = index; i < [numbers count]; i++) {
+    for (int i = index; i < [numbers count]; i++) {
         
         int currentValue = [numbers[i] intValue];
         
@@ -163,6 +163,46 @@
     }
     
     return count;
+}
+
++ (NSArray *)threeSumInArray:(NSArray *)numbers {
+    
+    NSArray *sorted =[numbers sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2];
+    }];
+    
+    NSUInteger n = [sorted count];
+    NSMutableSet *result = [[NSMutableSet alloc] init];
+    
+    for (int i = 0; i < n; i++) {
+
+        int a = [sorted[i] intValue];
+        NSUInteger start = i + 1;
+        NSUInteger end = n - 1;
+        
+        while (start < end) {
+            
+            int b = [sorted[start] intValue];
+            int c = [sorted[end] intValue];
+            
+            if (a + b + c == 0) {
+                
+                [result addObject:@[@(a), @(b), @(c)]];
+                start += 1;
+                end -= 1;
+                
+            } else if (a + b + c > 0) {
+            
+                end = end - 1;
+                
+            } else {
+                
+                start = start + 1;
+            }
+        }
+    }
+    
+    return [result allObjects];
 }
 
 @end
