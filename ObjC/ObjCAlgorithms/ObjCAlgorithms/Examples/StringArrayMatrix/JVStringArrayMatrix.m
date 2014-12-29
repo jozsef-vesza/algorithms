@@ -139,10 +139,10 @@
     NSMutableArray *nums = [numbers mutableCopy];
     [nums removeObjectAtIndex:0];
     
-    return [self countSumsInArray:nums withTarget:target startingatIndex:0 withChecked:nil];
+    return [self countSumsInArray:nums withTarget:target startingatIndex:0];
 }
 
-+ (int)countSumsInArray:(NSArray *)numbers withTarget:(int)target startingatIndex:(long)index withChecked:(NSMutableDictionary *)checkedInfo {
++ (int)countSumsInArray:(NSArray *)numbers withTarget:(int)target startingatIndex:(long)index {
     
     int count = 0;
     int preSum = 0;
@@ -159,7 +159,7 @@
     }
     
     if (index < [numbers count]) {
-        count += [self countSumsInArray:numbers withTarget:target startingatIndex:index + 1 withChecked:checkedInfo];
+        count += [self countSumsInArray:numbers withTarget:target startingatIndex:index + 1];
     }
     
     return count;
