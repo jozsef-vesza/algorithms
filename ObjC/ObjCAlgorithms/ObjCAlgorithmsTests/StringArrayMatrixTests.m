@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 #import "JVLinkedNode.h"
-#import "JVTree.h"
 #import "JVStack.h"
 #import "JVQueue.h"
 #import "JVStringArrayMatrix.h"

@@ -12,9 +12,9 @@
 #import "JVLRUCache.h"
 #import "JVLinkedList.h"
 #import "JVLinkedNode.h"
-#import "JVTree.h"
 #import "JVStack.h"
 #import "JVQueue.h"
+#import "JVTree.h"
 
 @interface DataStructureTests : XCTestCase
 
@@ -103,6 +103,36 @@
     NSString *fifth = [cache getValueForKey:@"fifth"];
     
     XCTAssert([fifth isEqualToString:@"5"]);
+}
+
+- (void)testTree {
+    
+    JVTree *tree = [[JVTree alloc] initWithValue:@5];
+    
+    [JVTree insertValue:@3 intoTree:tree];
+    [JVTree insertValue:@1 intoTree:tree];
+    [JVTree insertValue:@2 intoTree:tree];
+    
+    [JVTree insertValue:@9 intoTree:tree];
+    [JVTree insertValue:@8 intoTree:tree];
+    [JVTree insertValue:@10 intoTree:tree];
+    
+    NSLog(@"Preorder: \n");
+    [JVTree traverseTree:tree withTraversalType:Preorder withAction:^(JVTree *tree) {
+        NSLog(@"%@", tree.value);
+    }];
+    
+    NSLog(@"Inorder: \n");
+    [JVTree traverseTree:tree withTraversalType:Inorder withAction:^(JVTree *tree) {
+        NSLog(@"%@", tree.value);
+    }];
+    
+    NSLog(@"Postorder: \n");
+    [JVTree traverseTree:tree withTraversalType:Postorder withAction:^(JVTree *tree) {
+        NSLog(@"%@", tree.value);
+    }];
+    
+    NSLog(@"fin");
 }
 
 @end

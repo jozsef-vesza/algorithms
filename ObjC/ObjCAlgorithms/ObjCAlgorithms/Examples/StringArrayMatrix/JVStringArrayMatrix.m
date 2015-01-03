@@ -258,19 +258,14 @@
 + (NSString *)reverseStringWordByWord:(NSString *)input {
     
     NSMutableString *output = [[NSMutableString alloc] init];
-    JVStack *stack = [[JVStack alloc] init];
     
     NSArray *words = [input componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    for (NSString *word in words) {
-        [stack push:word];
+    for (NSInteger i = [words count] - 1; i > 0; i--) {
+        [output appendFormat:@"%@ ", words[i]];
     }
     
-    while (![stack isEmpty]) {
-        [output appendFormat:@"%@ ", [stack pop]];
-    }
-    
-    [output deleteCharactersInRange:NSMakeRange([output length]-1, 1)];
+    [output appendString:[words firstObject]];
     
     return output;
 }

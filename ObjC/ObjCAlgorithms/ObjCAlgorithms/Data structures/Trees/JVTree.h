@@ -2,32 +2,26 @@
 //  JVTree.h
 //  ObjCAlgorithms
 //
-//  Created by József Vesza on 22/12/14.
-//  Copyright (c) 2014 Jozsef Vesza. All rights reserved.
+//  Created by József Vesza on 03/01/15.
+//  Copyright (c) 2015 Jozsef Vesza. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, SearchType) {
-    BreadthFirst,
-    DepthFirst
-};
+typedef enum : NSUInteger {
+    Preorder,
+    Inorder,
+    Postorder,
+} TreeTraversalType;
 
 @interface JVTree : NSObject
 
-@property (nonatomic, strong) id root;
+@property (nonatomic, strong) id value;
+@property (nonatomic, strong) JVTree *left, *right;
 
-+ (instancetype)createTreeWithRoot:(id)root;
-+ (instancetype)addValue:(id)newValue toTree:(JVTree *)tree;
-+ (instancetype)deleteValue:(id)value fromTree:(JVTree *)tree;
-+ (void)traverseTree:(JVTree *)tree withAction:(void (^)(JVTree *current))action;
-+ (instancetype)findValue:(id)value inTree:(JVTree *)tree withSearchMethod:(SearchType)searchType;
+- (instancetype)initWithValue:(id)value;
 
-- (instancetype)initWithRoot:(id)root;
-- (instancetype)addValue:(id)newValue;
-- (instancetype)deleteValue:(id)value;
-- (void)traverseWithAction:(void (^)(JVTree *current))action;
-- (instancetype)findValue:(id)value withSearchMethod:(SearchType)searchType;
-- (NSSet *)getSubTree;
++ (instancetype)insertValue:(id)newValue intoTree:(JVTree *)tree;
++ (void)traverseTree:(JVTree *)tree withTraversalType:(TreeTraversalType)traversalType withAction:(void (^)(JVTree *))action;
 
 @end

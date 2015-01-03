@@ -2,154 +2,105 @@
 //  JVTree.m
 //  ObjCAlgorithms
 //
-//  Created by József Vesza on 22/12/14.
-//  Copyright (c) 2014 Jozsef Vesza. All rights reserved.
+//  Created by József Vesza on 03/01/15.
+//  Copyright (c) 2015 Jozsef Vesza. All rights reserved.
 //
 
 #import "JVTree.h"
-#import "JVStack.h"
-
-@interface JVTree ()
-
-@property (nonatomic, strong) NSMutableSet *subTree;
-
-@end
 
 @implementation JVTree
 
-+ (instancetype)createTreeWithRoot:(id)root {
-    return [[JVTree alloc] initWithRoot:root];
-}
-
-+ (instancetype)addValue:(id)newValue toTree:(JVTree *)tree {
+- (instancetype)initWithValue:(id)value {
     
-    if (![tree.subTree containsObject:newValue]) {
-        [tree.subTree addObject:[JVTree createTreeWithRoot:newValue]];
-    }
-    
-    return tree;
-}
-
-+ (instancetype)addTree:(JVTree *)newTree toTree:(JVTree *)tree {
-    
-    [tree.subTree addObject:newTree];
-    return tree;
-}
-
-+ (instancetype)deleteValue:(id)value fromTree:(JVTree *)tree {
-    
-    return [JVTree deleteValue:value fromTree:tree withParent:nil];
-}
-
-+ (instancetype)deleteValue:(id)value fromTree:(JVTree *)tree withParent:(JVTree *)parent {
-    
-//    if ([tree.root isEqual:value]) {
-//        
-//        if (parent != nil) {
-//            
-//            for (JVTree *subtree in tree.subTree) {
-//                [JVTree addTree:subtree toTree:parent];
-//                
-//            }
-//        }
-//        
-//        tree = nil;
-//    }
-    
-    //TODO: fix this
-    return nil;
-}
-
-+ (instancetype)findValue:(id)value inTree:(JVTree *)tree withSearchMethod:(SearchType)searchType {
-    
-    switch (searchType) {
-            
-        case BreadthFirst:
-            return [JVTree findValueBFS:value inTree:tree];
-            break;
-            
-        case DepthFirst:
-            return [JVTree findValuePreorder:value inTree:tree];
-            break;
-            
-        default:
-            return nil;
-            break;
-    }
-}
-
-+ (instancetype)findValueBFS:(id)value inTree:(JVTree *)tree {
-    
-    JVStack *stack = [[JVStack alloc] init];
-    [stack push:tree];
-    
-    while (![stack isEmpty]) {
-        JVTree *next = [stack pop];
-        
-        if ([next.root isEqual:value]) {
-            return next;
-        } else {
-            for (JVTree *subTree in next.subTree) {
-                [stack push:subTree];
-            }
-        }
-    }
-    
-    return nil;
-}
-
-+ (instancetype)findValuePreorder:(id)value inTree:(JVTree *)tree {
-    
-    JVTree *foundNode;
-    
-    if ([tree.root isEqual:value]) {
-        foundNode = tree;
-    } else {
-        for (JVTree *subtree in tree.subTree) {
-            foundNode = [JVTree findValuePreorder:value inTree:subtree];
-            if (foundNode != nil) {
-                break;
-            }
-        }
-    }
-    
-    return foundNode;
-}
-
-+ (void)traverseTree:(JVTree *)tree withAction:(void (^)(JVTree *current))action {
-    action(tree);
-    for (JVTree *subtree in tree.subTree) {
-        [JVTree traverseTree:subtree withAction:action];
-    }
-}
-
-- (instancetype)initWithRoot:(id)root {
     self = [super init];
+    
     if (self) {
-        self.root = root;
-        self.subTree = [[NSMutableSet alloc] init];
+        self.value = value;
     }
+    
     return self;
 }
 
-- (instancetype)addValue:(id)newValue {
-    return [JVTree addValue:newValue toTree:self];
++ (instancetype)insertValue:(id)newValue intoTree:(JVTree *)tree {
+    
+    if ([newValue isEqual:tree.value]) {
+        return tree;
+    }
+    
+    JVTree *newTree = [[JVTree alloc] initWithValue:newValue];
+    
+    if (newValue < tree.value) {
+        
+        if (tree.left != nil) {
+            tree.left = [self insertValue:newValue intoTree:tree.left];
+        } else {
+            tree.left = newTree;
+        }
+    } else {
+        
+        if (tree.right != nil) {
+            tree.right = [self insertValue:newValue intoTree:tree.right];
+        } else {
+            tree.right = newTree;
+        }
+    }
+    
+    return tree;
 }
 
-- (instancetype)deleteValue:(id)value {
-    return [JVTree deleteValue:value fromTree:self];
++ (void)traverseTree:(JVTree *)tree withTraversalType:(TreeTraversalType)traversalType withAction:(void (^)(JVTree *))action {
+    
+    switch (traversalType) {
+            
+        case Preorder:
+            [self preorderTraverseTree:tree withAction:action];
+            break;
+        case Inorder:
+            [self inorderTraverseTree:tree withAction:action];
+            break;
+        case Postorder:
+            [self postorderTraverseTree:tree withAction:action];
+            break;
+    }
 }
 
-- (instancetype)findValue:(id)value withSearchMethod:(SearchType)searchType {
-    return [JVTree findValue:value inTree:self withSearchMethod:searchType];
++ (void)preorderTraverseTree:(JVTree *)tree withAction:(void (^)(JVTree *))action {
+    
+    action(tree);
+    
+    if (tree.left != nil) {
+        [self preorderTraverseTree:tree.left withAction:action];
+    }
+    
+    if (tree.right != nil) {
+        [self preorderTraverseTree:tree.right withAction:action];
+    }
 }
 
-- (void)traverseWithAction:(void (^)(JVTree *current))action {
-    [JVTree traverseTree:self withAction:action];
++ (void)inorderTraverseTree:(JVTree *)tree withAction:(void (^)(JVTree *))action {
+    
+    if (tree.left != nil) {
+        [self inorderTraverseTree:tree.left withAction:action];
+    }
+    
+    action(tree);
+    
+    if (tree.right != nil) {
+        [self inorderTraverseTree:tree.right withAction:action];
+    }
 }
 
-- (NSSet *)getSubTree {
-    return self.subTree;
++ (void)postorderTraverseTree:(JVTree *)tree withAction:(void (^)(JVTree *))action {
+    
+    if (tree.left != nil) {
+        [self postorderTraverseTree:tree.left withAction:action];
+    }
+    
+    if (tree.right != nil) {
+        [self postorderTraverseTree:tree.right withAction:action];
+    }
+    
+    action(tree);
 }
 
 @end
