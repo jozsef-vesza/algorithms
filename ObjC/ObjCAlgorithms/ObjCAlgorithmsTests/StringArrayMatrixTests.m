@@ -137,4 +137,17 @@
     }
 }
 
+- (void)testTwoArrayMerge {
+    
+    NSArray *input2 = @[@1, @2, @3, @4, @5];
+    NSArray *input1 = @[@5, @6, @7, @8, @9, @10];
+    
+    NSArray *output = [JVStringArrayMatrix mergeArray:input2 intoArray:input1];
+    NSArray *expected = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10];
+    
+    for (int i = 0; i < [expected count]; i++) {
+        XCTAssertEqual([expected[i] intValue], [output[i] intValue]);
+    }
+}
+
 @end

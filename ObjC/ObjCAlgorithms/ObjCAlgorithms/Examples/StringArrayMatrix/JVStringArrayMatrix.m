@@ -205,4 +205,41 @@
     return [result allObjects];
 }
 
++ (NSArray *)mergeArray:(NSArray *)input1 intoArray:(NSArray *)input2 {
+    
+    NSMutableArray *output = [input1 mutableCopy];
+    
+    NSUInteger count1 = [input1 count];
+    NSUInteger count2 = [input2 count];
+    
+    for (int i = 0; i < count2; i++) {
+        
+        BOOL inserted = NO;
+        
+        for (int j = 0; j < count1; j++) {
+            
+            if ([input2[i] intValue] == [input1[j] intValue]) {
+                
+                i++;
+                break;
+            }
+            
+            if ([input2[i] intValue] < [input1[j] intValue]) {
+                
+                NSUInteger index = [output indexOfObject:input1[j]];
+                [output insertObject:input2[i] atIndex:index];
+                inserted = YES;
+                
+                break;
+            }
+        }
+        
+        if (!inserted) {
+            [output addObject:input2[i]];
+        }
+    }
+    
+    return output;
+}
+
 @end
