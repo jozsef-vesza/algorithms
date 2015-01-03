@@ -242,4 +242,51 @@
     return output;
 }
 
++ (int)maximumSubarray:(NSArray *)input {
+    
+    int sum = [input[0] intValue];
+    int max = [input[0] intValue];
+    
+    for (int i = 1; i < [input count]; i++) {
+        sum = MAX(sum + [input[i] intValue], [input[i] intValue]);
+        max = MAX(max, sum);
+    }
+    
+    return max;
+}
+
++ (NSString *)reverseStringWordByWord:(NSString *)input {
+    
+    NSMutableString *output = [[NSMutableString alloc] init];
+    JVStack *stack = [[JVStack alloc] init];
+    
+    NSArray *words = [input componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    for (NSString *word in words) {
+        [stack push:word];
+    }
+    
+    while (![stack isEmpty]) {
+        [output appendFormat:@"%@ ", [stack pop]];
+    }
+    
+    [output deleteCharactersInRange:NSMakeRange([output length]-1, 1)];
+    
+    return output;
+}
+
++ (NSString *)reverseString:(NSString *)input {
+    
+    NSMutableString *output = [[NSMutableString alloc] init];
+    NSUInteger charIndex = [input length];
+    
+    while (charIndex > 0) {
+        charIndex--;
+        NSRange subStrRange = NSMakeRange(charIndex, 1);
+        [output appendString:[input substringWithRange:subStrRange]];
+    }
+    
+    return output;
+}
+
 @end

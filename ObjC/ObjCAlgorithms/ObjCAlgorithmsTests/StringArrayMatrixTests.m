@@ -150,4 +150,30 @@
     }
 }
 
+- (void)testMaximumSubarraySum {
+    
+    NSArray *input = @[@-2, @1, @-3, @4, @-1, @2, @1, @-5, @4];
+    int expected = 6;
+    
+    XCTAssertEqual(expected, [JVStringArrayMatrix maximumSubarray:input]);
+}
+
+- (void)testSentenceReversal {
+    
+    NSString *input = @"the sky is blue";
+    NSString *expected = @"blue is sky the";
+    NSString *output = [JVStringArrayMatrix reverseStringWordByWord:input];
+    
+    XCTAssert([expected isEqualToString:output]);
+}
+
+- (void)testStringReversal {
+    
+    NSString *input = @"abcde";
+    NSString *expected = @"edcba";
+    NSString *output = [JVStringArrayMatrix reverseString:input];
+    
+    XCTAssert([expected isEqualToString:output]);
+}
+
 @end

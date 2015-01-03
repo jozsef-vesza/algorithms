@@ -15,11 +15,19 @@
 + (NSString *)findLongestPalindromicSubstring:(NSString *)inputString;
 
 + (NSArray *)twoSumInArray:(NSArray *)numbers withTarget:(int)target;
+
 + (int)countSumsInArray:(NSArray *)numbers withTarget:(int)target;
+
 + (NSArray *)threeSumInArray:(NSArray *)numbers;
 
 + (BOOL)findSumsInArray:(NSArray *)numbers withTarget:(int)targetSum;
 
 + (NSArray *)mergeArray:(NSArray *)input1 intoArray:(NSArray *)input2;
+
++ (int)maximumSubarray:(NSArray *)input;
+
++ (NSString *)reverseStringWordByWord:(NSString *)input;
+
++ (NSString *)reverseString:(NSString *)input;
 
 @end
