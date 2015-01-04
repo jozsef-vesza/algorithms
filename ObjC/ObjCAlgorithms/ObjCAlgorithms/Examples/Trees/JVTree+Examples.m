@@ -135,10 +135,10 @@
         return 0;
     }
     
-    int height = 1;
+    int height = 0;
     
     if (root.left != nil || root.right != nil) {
-        height += MAX([self getHeightOfTree:root.left], [self getHeightOfTree:root.right]);
+        height += MAX([self getHeightOfTree:root.left], [self getHeightOfTree:root.right]) + 1;
     }
     
     return height;

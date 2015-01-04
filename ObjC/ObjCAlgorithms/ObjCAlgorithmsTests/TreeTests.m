@@ -132,14 +132,14 @@
     [JVTree insertValue:@2 intoTree:inbalancedInput];
     [JVTree insertValue:@3 intoTree:inbalancedInput];
     
-    XCTAssertEqual(4, [JVTree getHeightOfTree:inbalancedInput]);
+    XCTAssertEqual(3, [JVTree getHeightOfTree:inbalancedInput]);
     
     JVTree *balancedInput = [[JVTree alloc] initWithValue:@5];
     [JVTree insertValue:@1 intoTree:balancedInput];
     [JVTree insertValue:@2 intoTree:balancedInput];
     [JVTree insertValue:@6 intoTree:balancedInput];
     
-    XCTAssertEqual(3, [JVTree getHeightOfTree:balancedInput]);
+    XCTAssertEqual(2, [JVTree getHeightOfTree:balancedInput]);
     
 }
 
