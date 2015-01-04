@@ -109,4 +109,20 @@
     XCTAssertEqual(output, expected);
 }
 
+- (void)testMaxSum {
+    
+    JVTree *tree2= [[JVTree alloc] initWithValue:@5];
+    tree2.left = [[JVTree alloc] initWithValue:@4];
+    tree2.left.left = [[JVTree alloc] initWithValue:@11];
+    tree2.left.right = [[JVTree alloc] initWithValue:@7];
+    tree2.right = [[JVTree alloc] initWithValue:@8];
+    tree2.right.left = [[JVTree alloc] initWithValue:@13];
+    tree2.right.right = [[JVTree alloc] initWithValue:@4];
+    
+    int output = [JVTree findMaxPathSumInTree:tree2];
+    int expected = 26;
+    
+    XCTAssertEqual(output, expected);
+}
+
 @end

@@ -16,5 +16,6 @@
 + (BOOL)tree:(JVTree *)root hasPathSum:(int)sum;
 + (JVTree *)createBalancedTreeFromArray:(NSArray *)array;
 + (int)findMinimumDepthInTree:(JVTree *)tree;
++ (int)findMaxPathSumInTree:(JVTree *)tree;
 
 @end

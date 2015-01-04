@@ -100,4 +100,28 @@
     return minDepth;
 }
 
++ (int)findMaxPathSumInTree:(JVTree *)tree {
+    
+    return [self findMaxPathSumInTree:tree withCurrentSum:0 withMax:0];
+}
+
++ (int)findMaxPathSumInTree:(JVTree *)tree withCurrentSum:(int)currentSum withMax:(int)maxSum {
+    
+    currentSum += [tree.value intValue];
+    
+    if (currentSum > maxSum) {
+        maxSum = currentSum;
+    }
+    
+    if (tree.left == nil && tree.right == nil) {
+        
+        return maxSum;
+        
+    } else {
+        
+        JVTree *nextTree = tree.left.value > tree.right.value ? tree.left : tree.right;
+        return [self findMaxPathSumInTree:nextTree withCurrentSum:currentSum withMax:maxSum];
+    }
+}
+
 @end
