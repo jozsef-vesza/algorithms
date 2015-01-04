@@ -77,4 +77,20 @@
     XCTAssertTrue([JVTree tree:tree2 hasPathSum:22]);
 }
 
+- (void)testBalancedTreeConstruction {
+    
+    NSArray *input = @[@1, @2, @3, @4, @5, @6];
+    NSArray *expected = @[@3, @1, @2, @5, @4, @6];
+    
+    JVTree *output = [JVTree createBalancedTreeFromArray:input];
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    [JVTree traverseTree:output withTraversalType:Preorder withAction:^(JVTree *next) {
+        [result addObject:next.value];
+    }];
+    
+    XCTAssert([result isEqualToArray:expected]);
+}
+
 @end

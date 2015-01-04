@@ -54,4 +54,24 @@
     return [self tree:root.left hasPathSum:sum - [root.value intValue]] || [self tree:root.right hasPathSum:sum - [root.value intValue]];
 }
 
++ (JVTree *)createBalancedTreeFromArray:(NSArray *)array {
+    
+    return [self createTreeFromArray:array start:0 end:(int)[array count] - 1];
+}
+
++ (JVTree *)createTreeFromArray:(NSArray *)array start:(int)start end:(int)end {
+
+    if (start > end) {
+        return nil;
+    }
+    
+    int mid = (start + end) / 2;
+    
+    JVTree *root = [[JVTree alloc] initWithValue:array[mid]];
+    root.left = [self createTreeFromArray:array start:start end:mid - 1];
+    root.right = [self createTreeFromArray:array start:mid + 1 end:end];
+    
+    return root;
+}
+
 @end

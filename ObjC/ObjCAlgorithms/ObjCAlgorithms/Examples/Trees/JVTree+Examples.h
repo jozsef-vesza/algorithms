@@ -14,5 +14,6 @@
 + (BOOL)isBST:(JVTree *)tree;
 + (JVLinkedNode *)flattenTree:(JVTree *)tree;
 + (BOOL)tree:(JVTree *)root hasPathSum:(int)sum;
++ (JVTree *)createBalancedTreeFromArray:(NSArray *)array;
 
 @end
