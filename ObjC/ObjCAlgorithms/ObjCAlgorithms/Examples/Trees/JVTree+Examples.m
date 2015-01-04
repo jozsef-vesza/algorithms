@@ -74,4 +74,30 @@
     return root;
 }
 
++ (int)findMinimumDepthInTree:(JVTree *)tree {
+    
+    return [self findMinimumDepthInTree:tree minDepth:INT_MAX depth:0];
+}
+
++ (int)findMinimumDepthInTree:(JVTree *)tree minDepth:(int)minDepth depth:(int)depth {
+    
+    if (tree.right == nil && tree.left == nil) {
+        
+        if (depth < minDepth) {
+            minDepth = depth;
+        }
+        
+    } else {
+        
+        depth++;
+        
+        minDepth = MIN(
+                       [self findMinimumDepthInTree:tree.left minDepth:minDepth depth:depth],
+                       [self findMinimumDepthInTree:tree.right minDepth:minDepth depth:depth]
+                       );
+    }
+    
+    return minDepth;
+}
+
 @end

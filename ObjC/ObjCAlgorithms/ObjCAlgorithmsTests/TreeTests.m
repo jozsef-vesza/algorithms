@@ -93,4 +93,20 @@
     XCTAssert([result isEqualToArray:expected]);
 }
 
+- (void)testMinimumDepth {
+    
+    JVTree *tree1 = [[JVTree alloc] initWithValue:@5];
+    
+    [JVTree insertValue:@3 intoTree:tree1];
+    
+    [JVTree insertValue:@9 intoTree:tree1];
+    [JVTree insertValue:@8 intoTree:tree1];
+    [JVTree insertValue:@10 intoTree:tree1];
+    
+    int output = [JVTree findMinimumDepthInTree:tree1];
+    int expected = 1;
+    
+    XCTAssertEqual(output, expected);
+}
+
 @end

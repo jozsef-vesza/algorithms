@@ -15,5 +15,6 @@
 + (JVLinkedNode *)flattenTree:(JVTree *)tree;
 + (BOOL)tree:(JVTree *)root hasPathSum:(int)sum;
 + (JVTree *)createBalancedTreeFromArray:(NSArray *)array;
++ (int)findMinimumDepthInTree:(JVTree *)tree;
 
 @end
