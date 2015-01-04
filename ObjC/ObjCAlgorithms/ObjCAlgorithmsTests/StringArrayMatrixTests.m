@@ -68,11 +68,6 @@
     
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
 - (void)testReversePolish {
     for (int i = 0; i < [self.reversePolishInputs count]; i++) {
         XCTAssertEqual([self.reversePolishOutputs[i] intValue], [JVStringArrayMatrix calculateValue:self.reversePolishInputs[i]]);
