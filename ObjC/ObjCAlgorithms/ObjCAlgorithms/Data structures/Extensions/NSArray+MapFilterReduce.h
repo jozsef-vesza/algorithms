@@ -10,8 +10,8 @@
 
 @interface NSArray (MapFilterReduce)
 
-- (NSArray *)map:(id (^)(id next))mapBlock;
-- (NSArray *)filter:(BOOL (^)(id next))filterBlock;
-- (id)reduce:(id)initial withBlock:(id (^)(id reduced, id next))combineBlock;
+- (NSArray *)jv_map:(id (^)(id next))mapBlock;
+- (NSArray *)jv_filter:(BOOL (^)(id next))filterBlock;
+- (id)jv_reduce:(id)initial withBlock:(id (^)(id reduced, id next))combineBlock;
 
 @end

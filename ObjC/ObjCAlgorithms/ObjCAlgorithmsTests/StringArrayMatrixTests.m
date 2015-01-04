@@ -12,6 +12,7 @@
 #import "JVStack.h"
 #import "JVQueue.h"
 #import "JVStringArrayMatrix.h"
+#import "NSArray+MapFilterReduce.h"
 
 @interface StringArrayMatrixTests : XCTestCase
 
@@ -87,19 +88,14 @@
 - (void)testTwoSum {
     
     NSArray *input = @[@2, @7, @11, @15];
-    NSArray *output = [JVStringArrayMatrix twoSumInArray:input withTarget:9];
-    
-    NSArray *result = @[
-                        input[[[output firstObject] intValue]],
-                        input[[[output lastObject] intValue]]
-                        ];
-    
+    NSArray *output = [[JVStringArrayMatrix twoSumInArray:input withTarget:9] jv_map:^id(id next) {
+        return input[[next intValue]];
+    }];
     
     NSArray *expected = @[@2, @7];
     
-    for (int i = 0; i < [output count]; i++) {
-        XCTAssertEqual(expected[i], result[i]);
-    }
+    XCTAssert([expected isEqualToArray:output]);
+    
 }
 
 - (void)testSumCount {
@@ -117,23 +113,18 @@
     NSArray *output = [[JVStringArrayMatrix threeSumInArray:input] firstObject];
     NSArray *expected = @[@-10, @2, @8];
     
-    for (int i = 0; i < [expected count]; i++) {
-        XCTAssertEqual([expected[i] intValue], [output[i] intValue]);
-    }
+    XCTAssert([expected isEqualToArray:output]);
     
     NSArray *input2 = @[@-1, @0, @1, @2, @-1, @-4];
     NSArray *output2 = [JVStringArrayMatrix threeSumInArray:input2];
     NSArray *expected2 = @[@-1, @-1, @2, @-1, @0, @1];
     
-    NSMutableArray *flatOutput = [[NSMutableArray alloc] init];
+    NSArray *flat = [output2 jv_reduce:[[NSMutableArray alloc] init] withBlock:^id(id reduced, id next) {
+        [reduced addObjectsFromArray:next];
+        return reduced;
+    }];
     
-    for (NSArray *value in output2) {
-        [flatOutput addObjectsFromArray:value];
-    }
-    
-    for (int i = 0; i < [expected2 count]; i++) {
-        XCTAssertEqual([expected2[i] intValue], [flatOutput[i] intValue]);
-    }
+    XCTAssert([expected2 isEqualToArray:flat]);
 }
 
 - (void)testTwoArrayMerge {
@@ -144,9 +135,7 @@
     NSArray *output = [JVStringArrayMatrix mergeArray:input2 intoArray:input1];
     NSArray *expected = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10];
     
-    for (int i = 0; i < [expected count]; i++) {
-        XCTAssertEqual([expected[i] intValue], [output[i] intValue]);
-    }
+    XCTAssert([expected isEqualToArray:output]);
 }
 
 - (void)testMaximumSubarraySum {

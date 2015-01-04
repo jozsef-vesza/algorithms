@@ -10,7 +10,7 @@
 
 @implementation NSArray (MapFilterReduce)
 
-- (NSArray *)map:(id (^)(id))mapBlock {
+- (NSArray *)jv_map:(id (^)(id))mapBlock {
     
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     
@@ -21,7 +21,7 @@
     return temp;
 }
 
-- (NSArray *)filter:(BOOL (^)(id))filterBlock {
+- (NSArray *)jv_filter:(BOOL (^)(id))filterBlock {
     
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     
@@ -34,7 +34,7 @@
     return temp;
 }
 
-- (id)reduce:(id)initial withBlock:(id (^)(id, id))combineBlock {
+- (id)jv_reduce:(id)initial withBlock:(id (^)(id, id))combineBlock {
     
     id reduce = initial;
     

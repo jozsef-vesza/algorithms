@@ -110,7 +110,7 @@
     
     NSArray *input = @[@1, @2, @3];
     NSArray *expected = @[@2, @3, @4];
-    NSArray *output = [input map:^id(id next) {
+    NSArray *output = [input jv_map:^id(id next) {
         return @([next intValue] + 1);
     }];
     
@@ -123,7 +123,7 @@
 
     NSArray *input = @[@1, @2, @3];
     NSArray *expected = @[@2];
-    NSArray *output = [input filter:^BOOL(id next) {
+    NSArray *output = [input jv_filter:^BOOL(id next) {
         return [next intValue] % 2 == 0;
     }];
     
@@ -136,7 +136,7 @@
     
     NSArray *input = @[@1, @2, @3];
     int expected = 6;
-    int output = [[input reduce:@0 withBlock:^id(id reduced, id next) {
+    int output = [[input jv_reduce:@0 withBlock:^id(id reduced, id next) {
         return @([reduced intValue] + [next intValue]);
     }] intValue];
     
@@ -144,7 +144,7 @@
     
     NSArray *input2 = @[@"a", @"b", @"c"];
     NSString *expected2 = @"abc";
-    NSString *output2 = [input2 reduce:@"" withBlock:^id(id reduced, id next) {
+    NSString *output2 = [input2 jv_reduce:@"" withBlock:^id(id reduced, id next) {
         return [NSString stringWithFormat:@"%@%@", reduced, next];
     }];
     
