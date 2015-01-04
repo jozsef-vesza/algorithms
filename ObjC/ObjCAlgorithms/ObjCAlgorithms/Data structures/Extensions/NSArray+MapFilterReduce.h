@@ -12,6 +12,6 @@
 
 - (NSArray *)map:(id (^)(id next))mapBlock;
 - (NSArray *)filter:(BOOL (^)(id next))filterBlock;
-- (id)reduce:(id (^)(id reduced, id next))combineBlock;
+- (id)reduce:(id)initial withBlock:(id (^)(id reduced, id next))combineBlock;
 
 @end

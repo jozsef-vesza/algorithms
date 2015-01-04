@@ -136,11 +136,19 @@
     
     NSArray *input = @[@1, @2, @3];
     int expected = 6;
-    int output = [[input reduce:^id(id reduced, id next) {
+    int output = [[input reduce:@0 withBlock:^id(id reduced, id next) {
         return @([reduced intValue] + [next intValue]);
     }] intValue];
     
     XCTAssertEqual(expected, output);
+    
+    NSArray *input2 = @[@"a", @"b", @"c"];
+    NSString *expected2 = @"abc";
+    NSString *output2 = [input2 reduce:@"" withBlock:^id(id reduced, id next) {
+        return [NSString stringWithFormat:@"%@%@", reduced, next];
+    }];
+    
+    XCTAssert([expected2 isEqualToString:output2]);
 }
 
 - (void)testTree {

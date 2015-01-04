@@ -34,9 +34,9 @@
     return temp;
 }
 
-- (id)reduce:(id (^)(id, id))combineBlock {
+- (id)reduce:(id)initial withBlock:(id (^)(id, id))combineBlock {
     
-    id reduce;
+    id reduce = initial;
     
     for (id obj in self) {
         reduce = combineBlock(reduce, obj);
