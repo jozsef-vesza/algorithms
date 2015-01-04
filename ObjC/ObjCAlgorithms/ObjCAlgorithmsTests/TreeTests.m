@@ -125,4 +125,39 @@
     XCTAssertEqual(output, expected);
 }
 
+- (void)testHeightCheck {
+    
+    JVTree *inbalancedInput = [[JVTree alloc] initWithValue:@0];
+    [JVTree insertValue:@1 intoTree:inbalancedInput];
+    [JVTree insertValue:@2 intoTree:inbalancedInput];
+    [JVTree insertValue:@3 intoTree:inbalancedInput];
+    
+    XCTAssertEqual(4, [JVTree getHeightOfTree:inbalancedInput]);
+    
+    JVTree *balancedInput = [[JVTree alloc] initWithValue:@5];
+    [JVTree insertValue:@1 intoTree:balancedInput];
+    [JVTree insertValue:@2 intoTree:balancedInput];
+    [JVTree insertValue:@6 intoTree:balancedInput];
+    
+    XCTAssertEqual(3, [JVTree getHeightOfTree:balancedInput]);
+    
+}
+
+- (void)testBalanced {
+    
+    JVTree *inbalancedInput = [[JVTree alloc] initWithValue:@0];
+    [JVTree insertValue:@1 intoTree:inbalancedInput];
+    [JVTree insertValue:@2 intoTree:inbalancedInput];
+    [JVTree insertValue:@3 intoTree:inbalancedInput];
+    
+    XCTAssertFalse([JVTree isBalanced:inbalancedInput]);
+    
+    JVTree *balancedInput = [[JVTree alloc] initWithValue:@5];
+    [JVTree insertValue:@1 intoTree:balancedInput];
+    [JVTree insertValue:@2 intoTree:balancedInput];
+    [JVTree insertValue:@6 intoTree:balancedInput];
+    
+    XCTAssertTrue([JVTree isBalanced:balancedInput]);
+}
+
 @end

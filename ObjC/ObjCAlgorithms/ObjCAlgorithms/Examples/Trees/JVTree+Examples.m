@@ -124,4 +124,24 @@
     }
 }
 
++ (BOOL)isBalanced:(JVTree *)tree {
+    
+    return ABS([self getHeightOfTree:tree.left] - [self getHeightOfTree:tree.right]) <= 1;
+}
+
++ (int)getHeightOfTree:(JVTree *)root {
+    
+    if (root == nil) {
+        return 0;
+    }
+    
+    int height = 1;
+    
+    if (root.left != nil || root.right != nil) {
+        height += MAX([self getHeightOfTree:root.left], [self getHeightOfTree:root.right]);
+    }
+    
+    return height;
+}
+
 @end

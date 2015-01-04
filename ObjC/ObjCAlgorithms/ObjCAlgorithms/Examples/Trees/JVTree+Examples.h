@@ -17,5 +17,7 @@
 + (JVTree *)createBalancedTreeFromArray:(NSArray *)array;
 + (int)findMinimumDepthInTree:(JVTree *)tree;
 + (int)findMaxPathSumInTree:(JVTree *)tree;
++ (BOOL)isBalanced:(JVTree *)tree;
++ (int)getHeightOfTree:(JVTree *)root;
 
 @end
