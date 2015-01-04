@@ -62,4 +62,19 @@
     XCTAssert([expected isEqualToArray:result]);
 }
 
+- (void)testPathSum {
+    
+    JVTree *tree2= [[JVTree alloc] initWithValue:@5];
+    tree2.left = [[JVTree alloc] initWithValue:@4];
+    tree2.left.left = [[JVTree alloc] initWithValue:@11];
+    tree2.left.left.left = [[JVTree alloc] initWithValue:@7];
+    tree2.left.left.right = [[JVTree alloc] initWithValue:@2];
+    tree2.right = [[JVTree alloc] initWithValue:@8];
+    tree2.right.left = [[JVTree alloc] initWithValue:@13];
+    tree2.right.right = [[JVTree alloc] initWithValue:@4];
+    tree2.right.right.right = [[JVTree alloc] initWithValue:@1];
+    
+    XCTAssertTrue([JVTree tree:tree2 hasPathSum:22]);
+}
+
 @end

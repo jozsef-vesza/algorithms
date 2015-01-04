@@ -41,4 +41,17 @@
     return fakeHead.next;
 }
 
++ (BOOL)tree:(JVTree *)root hasPathSum:(int)sum {
+    
+    if (root == nil) {
+        return NO;
+    }
+    
+    if ([root.value intValue] == sum && root.left == nil && root.right == nil) {
+        return YES;
+    }
+    
+    return [self tree:root.left hasPathSum:sum - [root.value intValue]] || [self tree:root.right hasPathSum:sum - [root.value intValue]];
+}
+
 @end
