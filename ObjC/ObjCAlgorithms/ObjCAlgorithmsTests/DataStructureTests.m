@@ -15,6 +15,7 @@
 #import "JVStack.h"
 #import "JVQueue.h"
 #import "JVTree.h"
+#import "NSArray+MapFilterReduce.h"
 
 @interface DataStructureTests : XCTestCase
 
@@ -103,6 +104,43 @@
     NSString *fifth = [cache getValueForKey:@"fifth"];
     
     XCTAssert([fifth isEqualToString:@"5"]);
+}
+
+- (void)testMap {
+    
+    NSArray *input = @[@1, @2, @3];
+    NSArray *expected = @[@2, @3, @4];
+    NSArray *output = [input map:^id(id next) {
+        return @([next intValue] + 1);
+    }];
+    
+    for (int i = 0; i < [expected count]; i++) {
+        XCTAssertEqual([expected[i] intValue], [output[i] intValue]);
+    }
+}
+
+- (void)testFilter {
+
+    NSArray *input = @[@1, @2, @3];
+    NSArray *expected = @[@2];
+    NSArray *output = [input filter:^BOOL(id next) {
+        return [next intValue] % 2 == 0;
+    }];
+    
+    for (int i = 0; i < [expected count]; i++) {
+        XCTAssertEqual([expected[i] intValue], [output[i] intValue]);
+    }
+}
+
+- (void)testReduce {
+    
+    NSArray *input = @[@1, @2, @3];
+    int expected = 6;
+    int output = [[input reduce:^id(id reduced, id next) {
+        return @([reduced intValue] + [next intValue]);
+    }] intValue];
+    
+    XCTAssertEqual(expected, output);
 }
 
 - (void)testTree {

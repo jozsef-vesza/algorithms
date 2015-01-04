@@ -54,6 +54,7 @@
 		<dict>
 			<key>children</key>
 			<array>
+				<string>BB9534C41A594A7200207114</string>
 				<string>BB59DE1D1A50B9CD000008DC</string>
 				<string>BB59DE101A5097B9000008DC</string>
 				<string>BB55C7251A48034500CEF3C4</string>
@@ -492,8 +493,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>LocalTestData</string>
 			<key>path</key>
 			<string>LocalTestData</string>
 			<key>sourceTree</key>
@@ -625,8 +624,6 @@
 			<array/>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Trees</string>
 			<key>path</key>
 			<string>Trees</string>
 			<key>sourceTree</key>
@@ -660,8 +657,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>JVTree.h</string>
 			<key>path</key>
 			<string>JVTree.h</string>
 			<key>sourceTree</key>
@@ -675,8 +670,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>JVTree.m</string>
 			<key>path</key>
 			<string>JVTree.m</string>
 			<key>sourceTree</key>
@@ -693,6 +686,62 @@
 		<dict>
 			<key>fileRef</key>
 			<string>BB9534C11A589EE300207114</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BB9534C41A594A7200207114</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BB9534C51A594A9B00207114</string>
+				<string>BB9534C61A594A9B00207114</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Extensions</string>
+			<key>path</key>
+			<string>Extensions</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BB9534C51A594A9B00207114</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>NSArray+MapFilterReduce.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BB9534C61A594A9B00207114</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>NSArray+MapFilterReduce.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BB9534C71A594A9B00207114</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BB9534C61A594A9B00207114</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BB9534C81A594A9B00207114</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BB9534C61A594A9B00207114</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -788,6 +837,7 @@
 				<string>BB59DE0E1A5094F0000008DC</string>
 				<string>BB59DE001A504C06000008DC</string>
 				<string>BBECC5B81A3E2748004C0DED</string>
+				<string>BB9534C71A594A9B00207114</string>
 				<string>BBECC5931A3E1D8D004C0DED</string>
 				<string>BB59DE0A1A5058FE000008DC</string>
 				<string>BB55C71D1A47F10800CEF3C4</string>
@@ -1101,6 +1151,7 @@
 				<string>BB55C7431A48E2F100CEF3C4</string>
 				<string>BBECC5B91A3E2748004C0DED</string>
 				<string>BBECC5A21A3E1E3E004C0DED</string>
+				<string>BB9534C81A594A9B00207114</string>
 				<string>BB55C74B1A4C338600CEF3C4</string>
 				<string>BB59DE011A504C06000008DC</string>
 				<string>BB55C71E1A47F10800CEF3C4</string>
