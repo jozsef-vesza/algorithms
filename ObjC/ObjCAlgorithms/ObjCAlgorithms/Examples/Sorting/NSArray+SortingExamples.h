@@ -11,5 +11,7 @@
 @interface NSArray (SortingExamples)
 
 + (instancetype)bubbleSortArray:(NSArray *)input;
++ (instancetype)selectionSortArray:(NSArray *)input;
++ (instancetype)insertionSortArray:(NSArray *)input;
 
 @end

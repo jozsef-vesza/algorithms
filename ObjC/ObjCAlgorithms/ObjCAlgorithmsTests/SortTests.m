@@ -12,17 +12,31 @@
 
 @interface SortTests : XCTestCase
 
+@property (nonatomic, copy) NSArray *forward;
+@property (nonatomic, copy) NSArray *rewerse;
+
 @end
 
 @implementation SortTests
 
+- (void)setUp {
+    self.forward = @[@1, @2, @3, @4];
+    self.rewerse = @[@4, @3, @2, @1];
+}
+
 - (void)testBubbleSort {
-    
-    NSArray *input = @[@1, @2, @3, @4];
-    NSArray *expected = @[@4, @3, @2, @1];
-    NSArray *output = [NSArray bubbleSortArray:input];
-    
-    XCTAssert([output isEqualToArray:expected]);
+    NSArray *output = [NSArray bubbleSortArray:self.forward];
+    XCTAssert([output isEqualToArray:self.rewerse]);
+}
+
+- (void)testSelectionSort {
+    NSArray *output = [NSArray selectionSortArray:self.rewerse];
+    XCTAssert([output isEqualToArray:self.forward]);
+}
+
+- (void)testInsertionSort {
+    NSArray *output = [NSArray insertionSortArray:self.rewerse];
+    XCTAssert([output isEqualToArray:self.forward]);
 }
 
 @end
