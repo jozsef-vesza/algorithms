@@ -80,4 +80,41 @@
     return output;
 }
 
++ (instancetype)quickSortArray:(NSArray *)input {
+    
+    NSUInteger count = [input count];
+    
+    if (count < 1) {
+        return nil;
+    }
+    
+    NSMutableArray *unsortedInput = [input mutableCopy];
+    NSMutableArray *output = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *less = [[NSMutableArray alloc] init];
+    NSMutableArray *greater = [[NSMutableArray alloc] init];
+    
+    NSUInteger randomPivotPoint = arc4random() % [input count];
+    NSNumber *pivotValue = unsortedInput[randomPivotPoint];
+    
+    [unsortedInput removeObjectAtIndex:randomPivotPoint];
+    for (NSNumber *number in unsortedInput) {
+        
+        if ([number compare:pivotValue] == NSOrderedAscending) {
+            
+            [less addObject:number];
+            
+        } else {
+            
+            [greater addObject:number];
+        }
+    }
+    
+    [output addObjectsFromArray:[self quickSortArray:less]];
+    [output addObject:pivotValue];
+    [output addObjectsFromArray:[self quickSortArray:greater]];
+    
+    return output;
+}
+
 @end

@@ -39,4 +39,9 @@
     XCTAssert([output isEqualToArray:self.forward]);
 }
 
+- (void)testQuickSort {
+    NSArray *output = [NSArray quickSortArray:self.rewerse];
+    XCTAssert([output isEqualToArray:self.forward]);
+}
+
 @end
