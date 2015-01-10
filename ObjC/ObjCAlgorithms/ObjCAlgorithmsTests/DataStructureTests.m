@@ -15,6 +15,7 @@
 #import "JVStack.h"
 #import "JVQueue.h"
 #import "JVTree.h"
+#import "JVHashTable.h"
 #import "NSArray+MapFilterReduce.h"
 
 @interface DataStructureTests : XCTestCase
@@ -179,6 +180,16 @@
     }];
     
     NSLog(@"fin");
+}
+
+- (void)testHashMap {
+    
+    NSNumber *input = @2;
+    JVHashTable *hashTable = [[JVHashTable alloc] init];
+    [hashTable addItem:input];
+    id output = [hashTable findItem:input];
+    
+    XCTAssertEqual(output, input);
 }
 
 @end
