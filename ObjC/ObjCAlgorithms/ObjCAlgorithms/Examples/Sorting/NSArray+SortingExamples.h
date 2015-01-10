@@ -14,5 +14,6 @@
 + (instancetype)selectionSortArray:(NSArray *)input;
 + (instancetype)insertionSortArray:(NSArray *)input;
 + (instancetype)quickSortArray:(NSArray *)input;
++ (instancetype)mergeSortArray:(NSArray *)input;
 
 @end

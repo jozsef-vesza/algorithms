@@ -117,4 +117,59 @@
     return output;
 }
 
++ (instancetype)mergeSortArray:(NSArray *)input {
+    
+    NSUInteger count = [input count];
+    
+    if ([input count] < 2) {
+        return input;
+    }
+    
+    NSMutableArray *left = [[NSMutableArray alloc] init];
+    NSMutableArray *right = [[NSMutableArray alloc] init];
+    NSUInteger middle = count / 2;
+    
+    for (NSUInteger i = 0; i < middle; i++) {
+        [left addObject:input[i]];
+    }
+    
+    for (NSUInteger i = middle; i < count; i++) {
+        [right addObject:input[i]];
+    }
+    
+    left = [self mergeSortArray:left];
+    right = [self mergeSortArray:right];
+    
+    return [self mergeArray:left into:right];
+}
+
++ (instancetype)mergeArray:(NSArray *)left into:(NSArray *)right {
+    
+    NSMutableArray *mergedResult = [[NSMutableArray alloc] init];
+    NSUInteger leftIndex = 0;
+    NSUInteger rightIndex = 0;
+    NSUInteger leftSize = [left count];
+    NSUInteger rightSize = [right count];
+    
+    while (leftIndex < leftSize && rightIndex < rightSize) {
+        
+        if ([left[leftIndex] compare:right[rightIndex]] == NSOrderedAscending) {
+            
+            [mergedResult addObject:left[leftIndex++]];
+            
+        } else {
+            
+            [mergedResult addObject:right[rightIndex++]];
+        }
+    }
+    
+    NSRange leftRange = NSMakeRange(leftIndex, leftSize - leftIndex);
+    NSRange rightRange = NSMakeRange(rightIndex, rightSize - rightIndex);
+    
+    [mergedResult addObjectsFromArray:[left subarrayWithRange:leftRange]];
+    [mergedResult addObjectsFromArray:[right subarrayWithRange:rightRange]];
+    
+    return mergedResult;
+}
+
 @end

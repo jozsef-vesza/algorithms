@@ -44,4 +44,9 @@
     XCTAssert([output isEqualToArray:self.forward]);
 }
 
+- (void)testMergeSort {
+    NSArray *output = [NSArray mergeSortArray:self.rewerse];
+    XCTAssert([output isEqualToArray:self.forward]);
+}
+
 @end
