@@ -30,20 +30,17 @@
 }
 
 - (void)setValue:(id)value {
+    
+    JVLinkedNode *newItem = [[JVLinkedNode alloc] initWithValue:value];
 
     if (self.item == nil) {
         
-        self.item = [[JVLinkedNode alloc] initWithValue:value];
+        self.item = newItem;
         
     } else {
         
-        JVLinkedNode *cursor = self.item;
-        
-        while (cursor.next != nil) {
-            cursor = cursor.next;
-        }
-        
-        cursor.next = [[JVLinkedNode alloc] initWithValue:value];
+        newItem.next = self.item;
+        self.item = newItem;
     }
 }
 
