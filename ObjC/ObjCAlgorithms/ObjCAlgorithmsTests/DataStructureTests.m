@@ -184,7 +184,7 @@
 
 - (void)testHashMap {
     
-    NSNumber *input = @2;
+    NSNumber *input = @"Test string";
     JVHashTable *hashTable = [[JVHashTable alloc] init];
     [hashTable addItem:input];
     id output = [hashTable findItem:input];
