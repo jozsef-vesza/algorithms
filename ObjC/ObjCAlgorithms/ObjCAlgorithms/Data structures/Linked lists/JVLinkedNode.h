@@ -14,5 +14,8 @@
 @property (nonatomic, strong) JVLinkedNode *next;
 
 - (instancetype)initWithValue:(id)value;
++ (instancetype)findValue:(id)value inList:(JVLinkedNode *)list;
++ (instancetype)insertValue:(id)value inList:(JVLinkedNode *)list;
++ (instancetype)deleteValue:(id)value fromList:(JVLinkedNode *)list;
 
 @end

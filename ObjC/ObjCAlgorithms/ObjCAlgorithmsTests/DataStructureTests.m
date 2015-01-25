@@ -10,11 +10,9 @@
 #import <XCTest/XCTest.h>
 #import "JVPriorityQueue.h"
 #import "JVLRUCache.h"
-#import "JVLinkedList.h"
 #import "JVLinkedNode.h"
 #import "JVStack.h"
 #import "JVQueue.h"
-#import "JVTree.h"
 #import "JVHashTable.h"
 #import "NSArray+MapFilterReduce.h"
 
@@ -26,19 +24,24 @@
 
 - (void)testLinkedLists {
     
-    JVLinkedList *list = [[JVLinkedList alloc] init];
-    JVLinkedNode *prev;
-    
-    for (int i = 0; i < 10; i++) {
-        prev = [list insertValue:@(i) afterNode:prev];
+    JVLinkedNode *head = [[JVLinkedNode alloc] initWithValue:@10];
+
+    for (int i = 9; i > -1; i--) {
+        head = [JVLinkedNode insertValue:@(i) inList:head];
     }
     
-    XCTAssertEqual(0, [[list head].value intValue]);
+    XCTAssertNotNil([JVLinkedNode findValue:@3 inList:head]);
+    XCTAssertNil([JVLinkedNode findValue:@20 inList:head]);
+    XCTAssertEqual(@4, [JVLinkedNode findValue:@4 inList:head].value);
     
-    JVLinkedNode *removedSecond = [list removeAfterNode:[list head]];
+    JVLinkedNode *minusFour = [JVLinkedNode deleteValue:@4 fromList:head];
+    XCTAssertNotNil(minusFour);
+    XCTAssertNil([JVLinkedNode findValue:@4 inList:minusFour]);
     
-    XCTAssertEqual(1, [removedSecond.value intValue]);
-    XCTAssertEqual(2, [[list head].next.value intValue]);
+    JVLinkedNode *minusHead = [JVLinkedNode deleteValue:@0 fromList:minusFour];
+    XCTAssertEqual(@1, minusHead.value);
+    XCTAssertEqual(@2, minusHead.next.value);
+    
 }
 
 - (void)testStacks {
@@ -154,37 +157,11 @@
 
 - (void)testTree {
     
-    JVTree *tree = [[JVTree alloc] initWithValue:@5];
-    
-    [JVTree insertValue:@3 intoTree:tree];
-    [JVTree insertValue:@1 intoTree:tree];
-    [JVTree insertValue:@2 intoTree:tree];
-    
-    [JVTree insertValue:@9 intoTree:tree];
-    [JVTree insertValue:@8 intoTree:tree];
-    [JVTree insertValue:@10 intoTree:tree];
-    
-    NSLog(@"Preorder: \n");
-    [JVTree traverseTree:tree withTraversalType:Preorder withAction:^(JVTree *tree) {
-        NSLog(@"%@", tree.value);
-    }];
-    
-    NSLog(@"Inorder: \n");
-    [JVTree traverseTree:tree withTraversalType:Inorder withAction:^(JVTree *tree) {
-        NSLog(@"%@", tree.value);
-    }];
-    
-    NSLog(@"Postorder: \n");
-    [JVTree traverseTree:tree withTraversalType:Postorder withAction:^(JVTree *tree) {
-        NSLog(@"%@", tree.value);
-    }];
-    
-    NSLog(@"fin");
 }
 
 - (void)testHashMap {
     
-    NSNumber *input = @"Test string";
+    NSString *input = @"Test string";
     JVHashTable *hashTable = [[JVHashTable alloc] init];
     [hashTable addItem:input];
     id output = [hashTable findItem:input];
