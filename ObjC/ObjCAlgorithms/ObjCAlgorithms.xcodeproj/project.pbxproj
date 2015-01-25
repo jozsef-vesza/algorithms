@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB368CED1A75911F00F76EF7 /* JVTree.m in Sources */ = {isa = PBXBuildFile; fileRef = BB368CEC1A75911F00F76EF7 /* JVTree.m */; };
+		BB368CEE1A75911F00F76EF7 /* JVTree.m in Sources */ = {isa = PBXBuildFile; fileRef = BB368CEC1A75911F00F76EF7 /* JVTree.m */; };
 		BB55C71D1A47F10800CEF3C4 /* JVLinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55C71C1A47F10800CEF3C4 /* JVLinkedNode.m */; };
 		BB55C71E1A47F10800CEF3C4 /* JVLinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55C71C1A47F10800CEF3C4 /* JVLinkedNode.m */; };
 		BB55C7421A48E2F100CEF3C4 /* JVQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55C7411A48E2F100CEF3C4 /* JVQueue.m */; };
@@ -60,6 +62,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BB368CEB1A75911F00F76EF7 /* JVTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVTree.h; sourceTree = SOURCE_ROOT; };
+		BB368CEC1A75911F00F76EF7 /* JVTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVTree.m; sourceTree = SOURCE_ROOT; };
 		BB55C71B1A47F10800CEF3C4 /* JVLinkedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLinkedNode.h; sourceTree = "<group>"; };
 		BB55C71C1A47F10800CEF3C4 /* JVLinkedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVLinkedNode.m; sourceTree = "<group>"; };
 		BB55C7401A48E2F100CEF3C4 /* JVQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVQueue.h; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 		BB55C7251A48034500CEF3C4 /* Trees */ = {
 			isa = PBXGroup;
 			children = (
+				BB368CEB1A75911F00F76EF7 /* JVTree.h */,
+				BB368CEC1A75911F00F76EF7 /* JVTree.m */,
 			);
 			path = Trees;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 				BB9534C71A594A9B00207114 /* NSArray+MapFilterReduce.m in Sources */,
 				BBECC5931A3E1D8D004C0DED /* main.m in Sources */,
 				BB59DE0A1A5058FE000008DC /* JVLinkedNode+Examples.m in Sources */,
+				BB368CED1A75911F00F76EF7 /* JVTree.m in Sources */,
 				BB55C71D1A47F10800CEF3C4 /* JVLinkedNode.m in Sources */,
 				BB59DE1B1A50B868000008DC /* JVStringArrayMatrix.m in Sources */,
 			);
@@ -423,6 +430,7 @@
 				BBAF07311A61D8A20020B4F5 /* JVBucket.m in Sources */,
 				BB59DE0F1A5094F0000008DC /* JVDoublyLinkedNode.m in Sources */,
 				BB55C7431A48E2F100CEF3C4 /* JVQueue.m in Sources */,
+				BB368CEE1A75911F00F76EF7 /* JVTree.m in Sources */,
 				BBECC5B91A3E2748004C0DED /* JVStack.m in Sources */,
 				BBECC5A21A3E1E3E004C0DED /* StringArrayMatrixTests.m in Sources */,
 				BB9534C81A594A9B00207114 /* NSArray+MapFilterReduce.m in Sources */,
