@@ -10,7 +10,6 @@
 
 @interface JVTree ()
 
-@property (nonatomic, strong) id item;
 @property (nonatomic, strong) JVTree *left, *right;
 @property (nonatomic, weak) JVTree *parent;
 
@@ -108,23 +107,32 @@
 
 + (void)preorderTraverseTree:(JVTree *)tree withAction:(void (^)(JVTree *current))action {
     
-    action(tree);
-    [self preorderTraverseTree:tree.left withAction:action];
-    [self preorderTraverseTree:tree.right withAction:action];
+    if (tree != nil) {
+        
+        action(tree);
+        [self preorderTraverseTree:tree.left withAction:action];
+        [self preorderTraverseTree:tree.right withAction:action];
+    }
 }
 
 + (void)inorderTraverseTree:(JVTree *)tree withAction:(void (^)(JVTree *current))action {
     
-    [self inorderTraverseTree:tree.left withAction:action];
-    action(tree);
-    [self inorderTraverseTree:tree.right withAction:action];
+    if (tree != nil) {
+        
+        [self inorderTraverseTree:tree.left withAction:action];
+        action(tree);
+        [self inorderTraverseTree:tree.right withAction:action];
+    }
 }
 
 + (void)postorderTraverseTree:(JVTree *)tree withAction:(void (^)(JVTree *current))action {
     
-    [self postorderTraverseTree:tree.left withAction:action];
-    [self postorderTraverseTree:tree.right withAction:action];
-    action(tree);
+    if (tree != nil) {
+        
+        [self postorderTraverseTree:tree.left withAction:action];
+        [self postorderTraverseTree:tree.right withAction:action];
+        action(tree);
+    }
 }
 
 - (instancetype)initWithItem:(id)item {

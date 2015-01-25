@@ -16,6 +16,8 @@ typedef enum : NSUInteger {
 
 @interface JVTree : NSObject
 
+@property (nonatomic, strong) id item;
+
 + (instancetype)treeWithItem:(id)item;
 + (JVTree *)insertItem:(id)item inTree:(JVTree *)tree;
 + (JVTree *)findItem:(id)item inTree:(JVTree *)tree;

@@ -41,4 +41,25 @@
     XCTAssertNil([JVTree findItem:@100 inTree:self.tree]);
 }
 
+- (void)testTraversal {
+    
+    NSMutableArray *values = [[NSMutableArray alloc] init];
+    
+    [JVTree traverseTree:self.tree inOrder:Inorder withAction:^(JVTree *current) {
+        [values addObject:current.item];
+    }];
+    
+    XCTAssert([values count] > 0);
+    XCTAssertEqual(@1, [values firstObject]);
+    
+    NSMutableArray *parentFirst = [[NSMutableArray alloc] init];
+    
+    [JVTree traverseTree:self.tree inOrder:Preorder withAction:^(JVTree *current) {
+        NSLog(@"%@", current.item);
+        [parentFirst addObject:current.item];
+    }];
+    
+    XCTAssertEqual(@5, [parentFirst firstObject]);
+}
+
 @end
