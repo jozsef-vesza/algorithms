@@ -135,6 +135,64 @@
     }
 }
 
++ (JVTree *)deleteValue:(id)value fromTree:(JVTree *)tree {
+    
+    JVTree *doomedNode = [self findItem:value inTree:tree];
+    
+    if (!doomedNode.left && !doomedNode.right) {
+        
+        doomedNode.parent = [self removeChildFromParent:doomedNode];
+        
+    } else if (!doomedNode.left || !doomedNode.right) {
+        
+        doomedNode.parent = [self replaceChildWithGrandChild:doomedNode];
+    } else {
+        
+        doomedNode = [self replaceWithInorderSuccessor:doomedNode];
+    }
+    
+    return tree;
+}
+
++ (JVTree *)removeChildFromParent:(JVTree *)child {
+    
+    if (child.parent.item > child.item) {
+        child.parent.left = nil;
+    } else {
+        child.parent.right = nil;
+    }
+    
+    return child.parent;
+}
+
++ (JVTree *)replaceChildWithGrandChild:(JVTree *)child {
+    
+    JVTree *grandChild = child.left ?: child.right;
+    JVTree *grandParent = child.parent;
+    
+    if (child.item < grandParent.item) {
+        
+        grandParent.left = grandChild;
+        
+    } else {
+        
+        grandParent.right = grandChild;
+    }
+    
+    grandChild.parent = grandParent;
+    
+    return grandParent;
+}
+
++ (JVTree *)replaceWithInorderSuccessor:(JVTree *)tree {
+    
+    id newValue = [self minimumInTree:tree.right].item;
+    tree = [self deleteValue:newValue fromTree:tree];
+    tree.item = newValue;
+    
+    return tree;
+}
+
 - (instancetype)initWithItem:(id)item {
     self = [super init];
     if (self) {

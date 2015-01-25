@@ -24,5 +24,6 @@ typedef enum : NSUInteger {
 + (JVTree *)minimumInTree:(JVTree *)tree;
 + (JVTree *)maximumInTree:(JVTree *)tree;
 + (void)traverseTree:(JVTree *)tree inOrder:(JVTreeTraversalMode)mode withAction:(void (^)(JVTree *current))action;
++ (JVTree *)deleteValue:(id)value fromTree:(JVTree *)tree;
 
 @end
