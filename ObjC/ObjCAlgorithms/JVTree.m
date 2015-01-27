@@ -137,58 +137,23 @@
 
 + (JVTree *)deleteValue:(id)value fromTree:(JVTree *)tree {
     
-    JVTree *doomedNode = [self findItem:value inTree:tree];
+    if (!tree) { return nil; }
     
-    if (!doomedNode.left && !doomedNode.right) {
+    if ([value isEqualTo:tree.item]) {
         
-        doomedNode.parent = [self removeChildFromParent:doomedNode];
+        if (!tree.left && !tree.right) { return nil; }
         
-    } else if (!doomedNode.left || !doomedNode.right) {
+        if (!tree.left || !tree.right) { return tree.left ?: tree.right; }
         
-        doomedNode.parent = [self replaceChildWithGrandChild:doomedNode];
-    } else {
-        
-        doomedNode = [self replaceWithInorderSuccessor:doomedNode];
+        else {
+            id newValue = [self minimumInTree:tree.right].item;
+            tree.right = [self deleteValue:newValue fromTree:tree.right];
+            tree.item = newValue;
+        }
     }
     
-    return tree;
-}
-
-+ (JVTree *)removeChildFromParent:(JVTree *)child {
-    
-    if (child.parent.item > child.item) {
-        child.parent.left = nil;
-    } else {
-        child.parent.right = nil;
-    }
-    
-    return child.parent;
-}
-
-+ (JVTree *)replaceChildWithGrandChild:(JVTree *)child {
-    
-    JVTree *grandChild = child.left ?: child.right;
-    JVTree *grandParent = child.parent;
-    
-    if (child.item < grandParent.item) {
-        
-        grandParent.left = grandChild;
-        
-    } else {
-        
-        grandParent.right = grandChild;
-    }
-    
-    grandChild.parent = grandParent;
-    
-    return grandParent;
-}
-
-+ (JVTree *)replaceWithInorderSuccessor:(JVTree *)tree {
-    
-    id newValue = [self minimumInTree:tree.right].item;
-    tree = [self deleteValue:newValue fromTree:tree];
-    tree.item = newValue;
+    else if (value < tree.item) { tree.left = [self deleteValue:value fromTree:tree.left]; }
+    else { tree.right = [self deleteValue:value fromTree:tree.right]; }
     
     return tree;
 }

@@ -64,14 +64,23 @@
 
 - (void)testDeletionWithNoChildren {
     
-    JVTree *newTree = [JVTree deleteValue:@1 fromTree:self.tree];
+    JVTree *t = [JVTree treeWithItem:@1];
+    JVTree *newTree = [JVTree deleteValue:@1 fromTree:t];
     XCTAssertNil([JVTree findItem:@1 inTree:newTree]);
+    
+    JVTree *newTree2 = [JVTree deleteValue:@1 fromTree:self.tree];
+    XCTAssertNil([JVTree findItem:@1 inTree:newTree2]);
 }
 
 - (void)testDeletionWithOneChild {
     
-    JVTree *newTree = [JVTree deleteValue:@2 fromTree:self.tree];
-    XCTAssertNil([JVTree findItem:@2 inTree:newTree]);
+    JVTree *t = [JVTree treeWithItem:@5];
+    t = [JVTree insertItem:@3 inTree:t];
+    JVTree *newTree = [JVTree deleteValue:@5 fromTree:t];
+    XCTAssertNil([JVTree findItem:@5 inTree:newTree]);
+    
+    JVTree *newTree2 = [JVTree deleteValue:@2 fromTree:self.tree];
+    XCTAssertNil([JVTree findItem:@2 inTree:newTree2]);
 }
 
 - (void)testDeletionWithTwoChildren {
