@@ -2,7 +2,7 @@
 
 extension CollectionType where Index.Distance == Int {
 
-    func rev() -> [Generator.Element] {
+    func reversed() -> [Generator.Element] {
         
         var input = Array(self)
         var output: [Generator.Element] = []
@@ -18,11 +18,11 @@ extension CollectionType where Index.Distance == Int {
 
 extension String {
     
-    func reverseString() -> String {
-        return String(self.characters.rev())
+    func reversed() -> String {
+        return String(self.characters.reversed())
     }
 }
 
-let reversed = "abc".reverseString()
+let reversed = "abc".reversed()
 
 //: [Next](@next)
