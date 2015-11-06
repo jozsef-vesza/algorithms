@@ -13,7 +13,7 @@
 @interface SortTests : XCTestCase
 
 @property (nonatomic, copy) NSArray *forward;
-@property (nonatomic, copy) NSArray *rewerse;
+@property (nonatomic, copy) NSArray *reverse;
 
 @end
 
@@ -21,31 +21,31 @@
 
 - (void)setUp {
     self.forward = @[@1, @2, @3, @4];
-    self.rewerse = @[@4, @3, @2, @1];
+    self.reverse = @[@4, @3, @2, @1];
 }
 
 - (void)testBubbleSort {
     NSArray *output = [NSArray bubbleSortArray:self.forward];
-    XCTAssert([output isEqualToArray:self.rewerse]);
+    XCTAssert([output isEqualToArray:self.reverse]);
 }
 
 - (void)testSelectionSort {
-    NSArray *output = [NSArray selectionSortArray:self.rewerse];
+    NSArray *output = [NSArray selectionSortArray:self.reverse];
     XCTAssert([output isEqualToArray:self.forward]);
 }
 
 - (void)testInsertionSort {
-    NSArray *output = [NSArray insertionSortArray:self.rewerse];
+    NSArray *output = [NSArray insertionSortArray:self.reverse];
     XCTAssert([output isEqualToArray:self.forward]);
 }
 
 - (void)testQuickSort {
-    NSArray *output = [NSArray quickSortArray:self.rewerse];
+    NSArray *output = [NSArray quickSortArray:self.reverse];
     XCTAssert([output isEqualToArray:self.forward]);
 }
 
 - (void)testMergeSort {
-    NSArray *output = [NSArray mergeSortArray:self.rewerse];
+    NSArray *output = [NSArray mergeSortArray:self.reverse];
     XCTAssert([output isEqualToArray:self.forward]);
 }
 
