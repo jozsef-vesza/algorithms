@@ -75,8 +75,8 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
         }
         
         let middleIndex = self.count / 2
-        let left = self.enumerate().filter { (index, _) in return index < middleIndex }.map { return $0.1 }.mergeSort()
-        let right = self.enumerate().filter { (index, _) in return index >= middleIndex }.map { return $0.1 }.mergeSort()
+        let left = self.enumerate().filter { $0.0 < middleIndex }.map { return $0.1 }.mergeSort()
+        let right = self.enumerate().filter { $0.0 >= middleIndex }.map { return $0.1 }.mergeSort()
         
         return self.merge(left, right: right)
     }
