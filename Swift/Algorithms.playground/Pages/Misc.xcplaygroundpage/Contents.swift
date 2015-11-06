@@ -1,4 +1,4 @@
-import Cocoa
+//: [Previous](@previous)
 
 let arr = [2, -2, 6, -6, 8]
 
@@ -25,7 +25,7 @@ func zeroSumArrayExists(input: [Int]) -> Bool {
 func createSumArray(input: [Int]) -> [Int] {
     
     let output = input.map { num -> Int in
-    
+        
         let index = input.indexOf(num)!
         
         var sum = 0
@@ -41,17 +41,17 @@ func createSumArray(input: [Int]) -> [Int] {
 }
 
 func numberOfZeroSums(input: [Int]) -> Int {
-
+    
     var numOfSums = 0
     
     for j in 0 ..< input.count {
-    
+        
         if input[j] == 0 {
             numOfSums += 1
         }
         
         for k in j + 1 ..< input.count {
-        
+            
             if input[k] == input[j] {
                 numOfSums += 1
             }
@@ -70,3 +70,6 @@ let complexArr = [0,-9,-2,9,8,-3,9,-1,-6,1,-1,-6,8,-3,-10,-4,-8,8,6,6,-8,-10,-7,
 let complexCntains = zeroSumArrayExists(complexArr)
 let complexSum = createSumArray(complexArr)
 let complexNum = numberOfZeroSums(complexSum)
+
+
+//: [Next](@next)

@@ -27,26 +27,49 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
         
         var indexOfSmallest = 0
         
-        for i in 0 ..< output.count {
+        for primaryIndex in 0 ..< output.count {
         
-            indexOfSmallest = i
+            indexOfSmallest = primaryIndex
             
-            for j in i + 1 ..< output.count {
+            for secondaryIndex in primaryIndex + 1 ..< output.count {
             
-                if output[j] < output[indexOfSmallest] {
+                if output[secondaryIndex] < output[indexOfSmallest] {
                 
-                    indexOfSmallest = j
+                    indexOfSmallest = secondaryIndex
                 }
             }
             
-            if i != indexOfSmallest {
-                swap(&output[i], &output[indexOfSmallest])
+            if primaryIndex != indexOfSmallest {
+                swap(&output[primaryIndex], &output[indexOfSmallest])
+            }
+        }
+        
+        return output
+    }
+    
+    func bubbleSort() -> [Generator.Element] {
+    
+        var output = Array(self)
+        
+        var shouldRepeat = true
+        
+        while shouldRepeat {
+            
+            shouldRepeat = false
+        
+            for index in 1 ..< output.count {
+                if output[index] < output[index - 1] {
+                    swap(&output[index], &output[index - 1])
+                    shouldRepeat = true
+                }
             }
         }
         
         return output
     }
 }
+
+
 
 let numbers = [9, 8, 7, 5, 6]
 let strings = ["gnu", "zebra", "antelope", "aardvark", "yak", "iguana"]
@@ -58,3 +81,7 @@ let sortedSet = set.insertionSort()
 
 let selectionSortedNums = numbers.selectionSort()
 let selectionSortedStrings = strings.selectionSort()
+
+let bubbleSortedNums = numbers.bubbleSort()
+
+//: [Next](@next)
