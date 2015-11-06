@@ -1,15 +1,17 @@
 //: [Previous](@previous)
 
-extension CollectionType where Index.Distance == Int {
+extension CollectionType where Index: BidirectionalIndexType {
 
     func reversed() -> [Generator.Element] {
         
-        var input = Array(self)
         var output: [Generator.Element] = []
         
-        for var index = input.count - 1; index > -1; index-- {
-            
-            output.append(input[index])
+        var index = self.endIndex
+        
+        while index != self.startIndex {
+        
+            output.append(self[index.predecessor()])
+            index = index.predecessor()
         }
         
         return output
@@ -24,5 +26,6 @@ extension String {
 }
 
 let reversed = "abc".reversed()
+let reversedArr = [1, 2, 3, 4].reversed()
 
 //: [Next](@next)

@@ -67,9 +67,16 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
         
         return output
     }
+    
+    func mergeSort() -> [Generator.Element] {
+    
+        var output = Array(self)
+        
+        
+        
+        return output
+    }
 }
-
-
 
 let numbers = [9, 8, 7, 5, 6]
 let strings = ["gnu", "zebra", "antelope", "aardvark", "yak", "iguana"]
