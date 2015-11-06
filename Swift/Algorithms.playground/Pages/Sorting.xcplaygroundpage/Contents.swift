@@ -7,6 +7,39 @@ extension Array {
     }
 }
 
+extension Array where Element: Comparable {
+
+    func mergeWith(other:[Generator.Element]) -> [Generator.Element] {
+        
+        var output: [Generator.Element] = []
+        
+        var leftIndex = startIndex
+        var rightIndex = other.startIndex
+        
+        while leftIndex != endIndex && rightIndex != other.endIndex {
+            
+            let leftValue = self[leftIndex]
+            let rightValue = other[rightIndex]
+            
+            if leftValue < rightValue {
+                
+                output.append(leftValue)
+                leftIndex = leftIndex.successor()
+                
+            } else {
+                
+                output.append(rightValue)
+                rightIndex = rightIndex.successor()
+            }
+        }
+        
+        output += self[leftIndex ..< endIndex]
+        output += other[rightIndex ..< other.endIndex]
+        
+        return output
+    }
+}
+
 extension CollectionType where Generator.Element: Comparable, Index.Distance == Int {
     
     func insertionSort() -> [Generator.Element] {
@@ -87,37 +120,7 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
         let left = enumerate().filter { $0.0 < middleIndex }.map { return $0.1 }.mergeSort()
         let right = enumerate().filter { $0.0 >= middleIndex }.map { return $0.1 }.mergeSort()
         
-        return merge(left, right: right)
-    }
-    
-    func merge(left: [Generator.Element], right: [Generator.Element]) -> [Generator.Element] {
-    
-        var output: [Generator.Element] = []
-        
-        var leftIndex = left.startIndex
-        var rightIndex = left.startIndex
-        
-        while leftIndex != left.endIndex && rightIndex != right.endIndex {
-        
-            let leftValue = left[leftIndex]
-            let rightValue = right[rightIndex]
-            
-            if leftValue < rightValue {
-                
-                output.append(leftValue)
-                leftIndex = leftIndex.successor()
-                
-            } else {
-
-                output.append(rightValue)
-                rightIndex = rightIndex.successor()
-            }
-        }
-        
-        output += left[leftIndex ..< left.endIndex]
-        output += right[rightIndex ..< right.endIndex]
-        
-        return output
+        return left.mergeWith(right)
     }
     
     func quickSort() -> [Generator.Element] {
