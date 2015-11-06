@@ -6,9 +6,9 @@ extension CollectionType where Index: BidirectionalIndexType {
         
         var output: [Generator.Element] = []
         
-        var index = self.endIndex
+        var index = endIndex
         
-        while index != self.startIndex {
+        while index != startIndex {
         
             output.append(self[index.predecessor()])
             index = index.predecessor()
@@ -21,7 +21,7 @@ extension CollectionType where Index: BidirectionalIndexType {
 extension String {
     
     func reversed() -> String {
-        return String(self.characters.reversed())
+        return String(characters.reversed())
     }
 }
 

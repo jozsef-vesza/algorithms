@@ -4,7 +4,7 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
         
         var output = Array(self)
         
-        for primaryIndex in 0 ..< self.count {
+        for primaryIndex in 0 ..< count {
             
             let key = output[primaryIndex]
             
@@ -70,15 +70,15 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
     
     func mergeSort() -> [Generator.Element] {
         
-        if self.count < 2 {
+        if count < 2 {
             return Array(self)
         }
         
-        let middleIndex = self.count / 2
-        let left = self.enumerate().filter { $0.0 < middleIndex }.map { return $0.1 }.mergeSort()
-        let right = self.enumerate().filter { $0.0 >= middleIndex }.map { return $0.1 }.mergeSort()
+        let middleIndex = count / 2
+        let left = enumerate().filter { $0.0 < middleIndex }.map { return $0.1 }.mergeSort()
+        let right = enumerate().filter { $0.0 >= middleIndex }.map { return $0.1 }.mergeSort()
         
-        return self.merge(left, right: right)
+        return merge(left, right: right)
     }
     
     func merge(left: [Generator.Element], right: [Generator.Element]) -> [Generator.Element] {
