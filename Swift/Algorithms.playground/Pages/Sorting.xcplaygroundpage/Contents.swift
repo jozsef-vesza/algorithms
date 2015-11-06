@@ -1,3 +1,12 @@
+import Foundation
+
+extension Array {
+    
+    func randomElement() -> Generator.Element {
+        return self[Int(arc4random_uniform(UInt32(count)))]
+    }
+}
+
 extension CollectionType where Generator.Element: Comparable, Index.Distance == Int {
     
     func insertionSort() -> [Generator.Element] {
@@ -110,6 +119,25 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
         
         return output
     }
+    
+    func quickSort() -> [Generator.Element] {
+        
+        if self.count < 1 { return [] }
+        
+        let unsorted = Array(self)
+        
+        var less: [Generator.Element] = []
+        var more: [Generator.Element] = []
+        
+        let pivot = unsorted.randomElement()
+        
+        for element in unsorted where element != pivot {
+            if element < pivot { less.append(element) }
+            else { more.append(element) }
+        }
+        
+        return less.quickSort() + [pivot] + more.quickSort()
+    }
 }
 
 let numbers = [9, 8, 7, 5, 6]
@@ -126,5 +154,7 @@ let selectionSortedStrings = strings.selectionSort()
 let bubbleSortedNums = numbers.bubbleSort()
 
 let mergeSortedNums = numbers.mergeSort()
+
+let quickSortedNums = numbers.quickSort()
 
 //: [Next](@next)
