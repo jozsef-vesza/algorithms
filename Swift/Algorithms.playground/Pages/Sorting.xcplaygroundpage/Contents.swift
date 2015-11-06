@@ -69,10 +69,44 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
     }
     
     func mergeSort() -> [Generator.Element] {
+        
+        if self.count < 2 {
+            return Array(self)
+        }
+        
+        let middleIndex = self.count / 2
+        let left = self.enumerate().filter { (index, _) in return index < middleIndex }.map { return $0.1 }.mergeSort()
+        let right = self.enumerate().filter { (index, _) in return index >= middleIndex }.map { return $0.1 }.mergeSort()
+        
+        return self.merge(left, right: right)
+    }
     
-        var output = Array(self)
+    func merge(left: [Generator.Element], right: [Generator.Element]) -> [Generator.Element] {
+    
+        var output: [Generator.Element] = []
         
+        var leftIndex = left.startIndex
+        var rightIndex = left.startIndex
         
+        while leftIndex != left.endIndex && rightIndex != right.endIndex {
+        
+            let leftValue = left[leftIndex]
+            let rightValue = right[rightIndex]
+            
+            if leftValue < rightValue {
+                
+                output.append(leftValue)
+                leftIndex = leftIndex.successor()
+                
+            } else {
+
+                output.append(rightValue)
+                rightIndex = rightIndex.successor()
+            }
+        }
+        
+        output += left[leftIndex ..< left.endIndex]
+        output += right[rightIndex ..< right.endIndex]
         
         return output
     }
@@ -90,5 +124,7 @@ let selectionSortedNums = numbers.selectionSort()
 let selectionSortedStrings = strings.selectionSort()
 
 let bubbleSortedNums = numbers.bubbleSort()
+
+let mergeSortedNums = numbers.mergeSort()
 
 //: [Next](@next)
