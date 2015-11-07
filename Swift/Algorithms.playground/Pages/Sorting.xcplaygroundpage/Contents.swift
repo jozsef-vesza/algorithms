@@ -46,7 +46,7 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
         
         var output = Array(self)
         
-        for primaryIndex in 0 ..< count {
+        for primaryIndex in 0 ..< output.count {
             
             let key = output[primaryIndex]
             
