@@ -112,13 +112,16 @@ extension CollectionType where Generator.Element: Comparable, Index.Distance == 
     
     func mergeSort() -> [Generator.Element] {
         
+        let arrayRepresentation = Array(self)
+        
         if count < 2 {
-            return Array(self)
+            return arrayRepresentation
         }
         
         let middleIndex = count / 2
-        let left = enumerate().filter { $0.0 < middleIndex }.map { return $0.1 }.mergeSort()
-        let right = enumerate().filter { $0.0 >= middleIndex }.map { return $0.1 }.mergeSort()
+        
+        let left = arrayRepresentation[0 ..< middleIndex].mergeSort()
+        let right = arrayRepresentation[middleIndex ..< count].mergeSort()
         
         return left.mergeWith(right)
     }
