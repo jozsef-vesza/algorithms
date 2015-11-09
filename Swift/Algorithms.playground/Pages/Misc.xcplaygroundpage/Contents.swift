@@ -108,4 +108,20 @@ extension String {
 "rotor".palindrome()
 "motor".palindrome()
 
+extension Int {
+
+    func power(n: Int) -> Int {
+    
+        if n == 0 {
+            return 1
+        }
+        
+        return self * self.power(n - 1)
+    }
+}
+
+3.power(0)
+3.power(2)
+2.power(8)
+
 //: [Next](@next)
