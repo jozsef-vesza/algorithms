@@ -71,5 +71,41 @@ let complexCntains = zeroSumArrayExists(complexArr)
 let complexSum = createSumArray(complexArr)
 let complexNum = numberOfZeroSums(complexSum)
 
+extension Int {
+    
+    func factorial() -> Int {
+        
+        if self == 0 {
+            return 1
+        }
+        
+        return self * (self - 1).factorial()
+    }
+}
+
+0.factorial()
+1.factorial()
+2.factorial()
+3.factorial()
+4.factorial()
+
+extension String {
+    
+    func palindrome() -> Bool {
+        
+        if characters.count < 2 {
+            return true
+        }
+        
+        if characters.first == characters.last {
+            return String(characters[startIndex.successor() ..< endIndex.predecessor()]).palindrome()
+        }
+        
+        return false
+    }
+}
+
+"rotor".palindrome()
+"motor".palindrome()
 
 //: [Next](@next)
